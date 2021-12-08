@@ -10,6 +10,8 @@ SignupFeature.propTypes = {
 function SignupFeature(props) {
     return (
         <div>
+          <div className='square-signup'></div>
+          <Link><h2 className='signuptext'>ĐĂNG KÝ</h2></Link>
           <div className='BGDK-area'>
             <img className='BGDK' src={BGDK}/>
           </div>
@@ -30,9 +32,6 @@ function SignupFeature(props) {
                 </div>
                 <div className="repass-area">
                   <input type="password" placeholder="Nhập lại mật khẩu" className="repass-text" required/>
-                </div>
-                <div className="btn-signup">
-                  <Link className="signup-btn">ĐĂNG KÝ</Link>
                 </div>
               </form>
           </div>
