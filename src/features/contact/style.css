@@ -1,0 +1,84 @@
+.square {
+  width: 210px;
+  height: 340px;
+  background: orange;
+  margin-top: -85%;
+  margin-left: 40%;
+}
+
+.logo {
+  width: 290px;
+  height: 200px;
+  margin-left: 32%;
+  margin-top: -170%;
+}
+
+.bg-contact {
+  float: left;
+}
+
+.contact-text {
+  font-size: 30px;
+  color: orange;
+  padding-left: 83%;
+  padding-right: 10%;
+  align-items: center;
+  margin-top: -60%;
+}
+
+.name-area1 {
+  margin-left: 150%;
+  margin-top: -30%;
+  border: solid 3px gray;
+  width: 250px;
+  height: 360px;
+  background: white;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+}
+
+.name-area2 {
+  margin-left: 210%;
+  margin-top: -70%;
+  border: solid 3px gray;
+  width: 250px;
+  height: 360px;
+  background: white;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+}
+
+.mem-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 150px;
+  margin-left: 20px;
+  margin-top: 10%;
+  border: solid 1px gray;
+  -webkit-border-radius: 150px;
+  -moz-border-radius: 150px;
+  -ms-border-radius: 150px;
+  -o-border-radius: 150px;
+}
+
+.name {
+  font-size: 20px;
+  padding-left: 35px;
+}
+
+.mssv {
+  margin-top: -10%;
+  padding-left: 35px;
+}
+
+.square-decor {
+  background-color: rgb(253, 253, 127);
+  width: 300%;
+  height: 400px;
+}
