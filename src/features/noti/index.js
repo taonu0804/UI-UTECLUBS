@@ -1,29 +1,56 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { render } from '@testing-library/react';
+import React, { Component } from 'react';
 import './style.css';
-import '../../common.css';
 
-NotiFeature.propTypes = {
-};
+class NotiFeature extends Component {
+    constructor(props) {
+       super(props)
+       this.state = {
+          students: [
+             { id: 1, name: 'Tạ Thị Mai Hương', mssv: 18110298 },
+             { id: 2, name: 'Võ Trần Minh Quân', mssv: 18110344 },
+             { id: 3, name: 'Nguyễn Trung Tín', mssv: 18110381 },
+             { id: 4, name: 'Huỳnh Thị Thúy Vy', mssv: 18110400 }
+          ]
+       };
+    }
 
-function NotiFeature(props) {
-    return (
-        <div>
-            <header className="u-clearfix u-header u-palette-3-base u-header" id="sec-f8c1"><div className="u-align-left u-clearfix u-sheet u-sheet-1" /></header>
-            <section className="u-align-center u-clearfix u-white u-section-1" id="sec-a6b4">
-                <div className="u-clearfix u-sheet u-valign-middle u-sheet-1">
-                <div className="u-expanded-width-xs u-image u-image-circle u-preserve-proportions u-image-1" data-image-width={2000} data-image-height={2000}>
-                    <div className="u-preserve-proportions-child" style={{paddingTop: '100%'}} />
-                </div>
-                <p className="u-text u-text-default u-text-not-found-message u-text-1">Không có thông báo mới</p>
-                <Link to='#' className="u-active-palette-1-light-1 u-btn u-button-style u-hover-palette-1-light-1 u-palette-1-base u-text-active-white u-text-body-alt-color u-text-hover-white u-btn-1">Trở về trang chủ</Link>
-                </div>
-            </section>
-            <footer className="u-align-center u-clearfix u-footer u-white u-footer" id="sec-5843"><div className="u-align-left u-clearfix u-sheet u-sheet-1" />
-            </footer>
-        </div>
+    renderTableData() {
+        return this.state.students.map((student, index) => {
+          const { id, name, mssv } = student
+          return (
+            <tr>
+              <td>{id}</td>
+              <td>{name}</td>
+              <td>{mssv}</td>
+            </tr>
+          )
+        })
+      }
 
-    );
+      renderTableHeader() {
+         const header = Object.keys(this.state.students[0])
+         return header.map((key, index) => <th key={index}>{key.toUpperCase()}</th>)
+       }
+
+    render() {
+        return (
+            <div className='pending-form'>
+               <div className='button-group'>
+                  <button className='event-btn'><b>Phê duyệt tất cả</b></button>
+                  <button className='event-btn'><b>Phê duyệt</b></button>
+                  <button className='event-btn'><b>Xóa yêu cầu</b></button>
+               </div>
+               <table className='students'>
+                  <tbody>
+                     <tr>{this.renderTableHeader()}</tr>
+                     {this.renderTableData()}
+                  </tbody>
+               </table>
+
+            </div>
+         );
+   }
 }
 
 export default NotiFeature;

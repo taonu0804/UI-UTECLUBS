@@ -1,0 +1,55 @@
+.detail-contain {
+    width: 900px;
+    height: 480px;
+    border: solid 3px gray;
+    margin-left: 35%;
+    margin-top: 8%;
+    border-radius: 25px;
+    box-shadow: 5px 5px 5px gray;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+}
+
+.club-name {
+    font-size: 30px;
+    color: rgb(209, 209, 38);
+    margin-left: 10%;
+    margin-top: 5%;
+}
+
+.club-img {
+    width: 500px;
+    height: 250px;
+    margin-top: 5%;
+}
+
+.lead-text, .lead-name, .desc, .desc-detail {
+    position: absolute;
+}
+
+.lead-text {
+    margin-left: 30%;
+    margin-top: -17%;
+    font-size: 20px;
+}
+
+.lead-name {
+    font-size: 20px;
+    margin-top: -15%;
+    margin-left: 35%;
+}
+
+.desc {
+    font-size: 20px;
+    margin-top: -13%;
+    margin-left: 30%;
+}
+
+.desc-detail {
+    font-size: 20px;
+    margin-top: -11%;
+    margin-left: 35%;
+    width: 350px;
+}

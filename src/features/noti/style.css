@@ -1,63 +1,63 @@
-.u-section-1 {
-    background-image: none;
-  }
-  
-  .u-section-1 .u-sheet-1 {
-    min-height: 626px;
-  }
-  
-  .u-section-1 .u-image-1 {
-    width: 360px;
-    height: 360px;
-    background-image: url("/src/image/chuong.png");
-    background-position: 50% 50%;
-    margin: 40px auto 0;
-  }
-  
-  .u-section-1 .u-text-1 {
-    font-size: 3rem;
-    font-weight: 700;
-    line-height: 1;
-    margin: 40px auto 0;
-  }
-  
-  .u-section-1 .u-btn-1 {
-    background-image: none;
-    letter-spacing: 1px;
-    text-shadow: 0 0 0 rgba(0,0,0,0);
-    font-size: 1.25rem;
-    border-style: none;
-    text-transform: uppercase;
-    font-weight: 600;
-    align-self: center;
-    margin: 30px auto 40px;
-    padding: 17px 81px 19px 79px;
-  }
-  
-  @media (max-width: 767px) {
-    .u-section-1 .u-sheet-1 {
-      min-height: 1008px;
-    }
-  
-    .u-section-1 .u-text-1 {
-      font-size: 2.75rem;
-    }
-  }
-  
-  @media (max-width: 575px) {
-    .u-section-1 .u-sheet-1 {
-      min-height: 902px;
-    }
-  
-    .u-section-1 .u-image-1 {
-      height: 340px;
-      margin-right: initial;
-      margin-left: initial;
-      width: auto;
-    }
-  
-    .u-section-1 .u-text-1 {
-      font-size: 1.75rem;
-      margin-top: 30px;
-    }
-  }
+.students td, .students th {
+  border: 1px solid #fff;
+  padding: 8px;
+}
+
+.students tr:nth-child(even){
+  background-color: #666161;
+}
+
+.students tr:hover {background-color: #ddd;}
+
+.students th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #000;
+  color: rgb(255, 255, 255);
+}
+.title {
+  text-align: center;
+  font-family: arial, sans-serif;
+}
+
+.students {
+  text-align: center;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  border: 3px solid #ddd;
+  width: 100%;
+}
+.button-group, .students {
+  position: absolute;
+}
+
+.button-group {
+  z-index: 1;
+  margin-top: 2%;
+  margin-left: 20%;
+}
+
+.event-btn {
+  width: 200px;
+  height: 40px;
+  margin-left: 90px;
+  border-radius: 20px;
+  background: yellow;
+  color: black;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.event-btn:hover {
+  background: wheat;
+}
+
+.students {
+  width: 900px;
+  height: auto;
+  margin-top: 9%;
+  margin-left: 20%;
+}

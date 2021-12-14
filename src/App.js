@@ -1,13 +1,15 @@
 import './App.css';
 import React from 'react';
-import HomeFeature from './features/home';
-import LoginFeature from './features/login';
-import ContactFeature from './features/contact';
-import AdminFeature from './features/admin';
-import NotiFeature from './features/noti';
-import SignupFeature from './features/signup';
-import InfochangeFeature from './features/infochange';
-import NewFeedFeature from './features/newfeed';
+import HomeFeature from './features/Home';
+import LoginFeature from './features/Login';
+import ContactFeature from './features/Contact';
+import AdminFeature from './features/Admin';
+import NotiFeature from './features/Noti';
+import SignupFeature from './features/Signup';
+import InfochangeFeature from './features/Infochange';
+import NewFeedFeature from './features/Newfeed';
+import ClubDetailFeature from './features/ClubDetail';
+import ClubManagementFeature from './features/ClubManagement';
 import LOGO from './image/UTE-CLUBS.png';
 import { Route } from 'react-router-dom/cjs/react-router-dom.min';
 import { Link } from 'react-router-dom';
@@ -31,6 +33,8 @@ function App() {
         <Route path='/signup' component={ SignupFeature } exact/>
         <Route path='/infochange' component={ InfochangeFeature } exact/>
         <Route path='/newfeed' component={ NewFeedFeature } exact/>
+        <Route path='/clubdetail' component={ ClubDetailFeature } exact/>
+        <Route path='/clubmanage' component={ ClubManagementFeature } exact/>
       </div>
     </div>
   );
