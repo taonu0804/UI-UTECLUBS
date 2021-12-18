@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import './style.css';
-import DEL from '../../image/trashbin.png';
+import EDIT from '../../image/edit.png';
 import { Link } from 'react-router-dom';
 
 class ClubManagementFeature extends Component {
@@ -22,9 +22,9 @@ class ClubManagementFeature extends Component {
           return (
             <tr>
               <td>{id}</td>
-              <td><Link className='row-link'>{clubname}</Link></td>
+              <td><Link className='row-link' to='/clubdetail'>{clubname}</Link></td>
               <td>{leader}</td>
-              <td><button className='btn-del'><img className='delbtn' src={DEL}/></button></td>
+              <td><button className='btn-del'><img className='delbtn' src={EDIT}/></button></td>
             </tr>
           )
         })

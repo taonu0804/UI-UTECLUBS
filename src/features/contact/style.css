@@ -1,34 +1,36 @@
 .square {
+  z-index: 0;
   width: 210px;
   height: 340px;
   background: orange;
-  margin-top: -85%;
-  margin-left: 40%;
+  margin-top: -32%;
+  margin-left: 10%;
+}
+
+.square, .logo, .contact-text {
+  position: absolute;
 }
 
 .logo {
-  width: 290px;
+  z-index: 1;
+  width: 320px;
   height: 200px;
-  margin-left: 32%;
-  margin-top: -170%;
-}
-
-.bg-contact {
-  float: left;
+  margin-left: 6%;
+  margin-top: -25%;
 }
 
 .contact-text {
+  z-index: 2;
   font-size: 30px;
   color: orange;
-  padding-left: 83%;
-  padding-right: 10%;
+  padding-left: 25%;
   align-items: center;
-  margin-top: -60%;
+  margin-top: -25%;
 }
 
 .name-area1 {
-  margin-left: 150%;
-  margin-top: -30%;
+  margin-left: 330%;
+  margin-top: -60%;
   border: solid 3px gray;
   width: 250px;
   height: 360px;
@@ -41,8 +43,8 @@
 }
 
 .name-area2 {
-  margin-left: 210%;
-  margin-top: -70%;
+  margin-left: 460%;
+  margin-top: -143%;
   border: solid 3px gray;
   width: 250px;
   height: 360px;
@@ -79,6 +81,7 @@
 
 .square-decor {
   background-color: rgb(253, 253, 127);
-  width: 300%;
+  width: 1200%;
+  margin-top: 30%;
   height: 400px;
 }

@@ -27,15 +27,16 @@
 }
 
 .signup-form {
-  margin-top: 55%;
-  margin-left: 47%;
+  z-index: 0;
+  margin-top: 28%;
+  margin-left: 20%;
 }
 
-.name-text, .email-text, .date-text, .pass-text, .repass-text {
+.name-text, .email-text, .date-text, .pass-text, .repass-text, .username-text, .id-text, .gender-text, .major-text, .faculty-text {
   border-radius: 15px;
-  width: 750px;
+  width: 550px;
   height: 30px;
-  margin-top: 25px;
+  margin-top: 15px;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
   -ms-border-radius: 15px;
@@ -44,4 +45,32 @@
 
 Link:hover {
   color: gray;
+}
+
+.signup-form, .newavatar, .uploadbtn {
+  position: absolute;
+}
+
+.newavatar {
+  z-index: 1;
+  width: 300px;
+  height: 300px;
+  border-radius: 200px;
+  -webkit-border-radius: 200px;
+  -moz-border-radius: 200px;
+  -ms-border-radius: 200px;
+  -o-border-radius: 200px;
+  margin-left: 65%;
+  margin-top: 35%;
+  border: solid 2px gray;
+}
+
+
+
+.signup-area .MuiButton-label {
+  z-index: 2;
+  width: 0px;
+  height: 0px;
+  margin-top: 1800%;
+  margin-left: 4600%;
 }

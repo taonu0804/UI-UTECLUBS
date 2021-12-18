@@ -15,7 +15,7 @@ function ContactFeature(props) {
             <div className='bg-contact'>
                 <img className='logo' src={LOGO}/>
                 <div className='square'/>
-                <p className='contact-text'><b>Đừng ngại ngần liên hệ với chúng tôi</b></p>
+                <p className='contact-text'><b>Đừng ngại ngần liên hệ với<br/> CHÚNG TÔI</b></p>
             </div>
 
             <div className='member'>

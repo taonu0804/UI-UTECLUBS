@@ -5,19 +5,24 @@ import CTXH from '../../image/ctxh.jpg';
 import KN from '../../image/kn.png';
 import ESC from '../../image/esc.png';
 import TNXK from '../../image/tnxk.png';
+import { useHistory } from 'react-router-dom';
 
 AdminFeature.propTypes = {
     
 };
 
 function AdminFeature(props) {
+    const history = useHistory();
+    const handleClubManagement = history.push('/clubmanage');
+    const handleRoleManagement = history.push('/');
+
     return (
         <div>
             <img className='admin-bg' src={ADMIN}/>
-            <p className='welcome-txt'><b>CHÀO MỪNG ĐẾN VỚI TRANG ADMIN</b></p>
+            <p className='welcome-txt'><b>CHÀO MỪNG ĐẾN VỚI <br/>___TRANG ADMIN___</b></p>
             <div className='adminbtn-group'>
-                <button className='admin-btn'><b>Quản lý CLB</b></button>
-                <button className='admin-btn'><b>Thêm vai trò</b></button>
+                <button className='admin-btn' onClick={handleClubManagement}><b>Quản lý CLB</b></button>
+                <button className='admin-btn' onClick={handleRoleManagement}><b>Thêm vai trò</b></button>
             </div>
 
             <div className='clb-group'>

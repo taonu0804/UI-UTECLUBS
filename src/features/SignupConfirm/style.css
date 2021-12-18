@@ -1,0 +1,43 @@
+.signupConfirm-area {
+    width: 450px;
+    height: 250px;
+    border: solid 3px gray;
+    box-shadow: 5px 5px 5px gray;
+    border-radius: 25px;
+    margin-left: 35%;
+    margin-top: 10%;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+}
+
+.code-text {
+    border-radius: 15px;
+    width: 370px;
+    height: 30px;
+    margin-left: 5%;
+    margin-top: 15%;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+  }
+
+.confirmbtn {
+    background-color: yellow;
+    width: 150px;
+    height: 35px;
+    font-size: 15px;
+    border-radius: 15px;
+    margin-top: 20px;
+    margin-left: 31%;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+
+.confirmbtn:hover {
+    background-color: wheat;
+}

@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './style.css';
 
 class NotiFeature extends Component {
@@ -21,7 +22,7 @@ class NotiFeature extends Component {
           return (
             <tr>
               <td>{id}</td>
-              <td>{name}</td>
+              <td><Link className='member-link' to='/'>{name} </Link></td>
               <td>{mssv}</td>
             </tr>
           )

@@ -120,8 +120,8 @@
 }
 
 .MuiButton-label {
-  width: 170px;
-  height: 60px;
-  margin-top: 200%;
+  width: 0px;
+  height: 0px;
+  margin-top: 230%;
   margin-left: 260%;
 }

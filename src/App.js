@@ -10,6 +10,7 @@ import InfochangeFeature from './features/Infochange';
 import NewFeedFeature from './features/Newfeed';
 import ClubDetailFeature from './features/ClubDetail';
 import ClubManagementFeature from './features/ClubManagement';
+import SignupConfirmFeature from './features/SignupConfirm';
 import LOGO from './image/UTE-CLUBS.png';
 import { Route } from 'react-router-dom/cjs/react-router-dom.min';
 import { Link } from 'react-router-dom';
@@ -35,6 +36,7 @@ function App() {
         <Route path='/newfeed' component={ NewFeedFeature } exact/>
         <Route path='/clubdetail' component={ ClubDetailFeature } exact/>
         <Route path='/clubmanage' component={ ClubManagementFeature } exact/>
+        <Route path='/signupconfirm' component={ SignupConfirmFeature } exact/>
       </div>
     </div>
   );
