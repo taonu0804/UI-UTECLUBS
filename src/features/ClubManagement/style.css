@@ -1,38 +1,9 @@
-.clubs td, .clubs th {
-    border: 1px solid #fff;
-    padding: 8px;
-    align-items: center;
-  }
-  
-  .clubs tr:nth-child(even){
-    background-color: #666161;
-  }
-  
-  .clubs tr:hover {background-color: #ddd;}
-  
-  .clubs th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: center;
-    background-color: #000;
-    color: rgb(255, 255, 255);
-  }
   .title {
     text-align: center;
     font-family: arial, sans-serif;
   }
-  
-  .clubs {
-    text-align: center;
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    border: 3px solid #ddd;
-    width: 95%;
-    margin-left: 2.5%;
-    margin-bottom: 10px;
-  }
 
-  .row-link {
+  .table-link {
       text-decoration: none;
       color: black;
   }
@@ -68,4 +39,23 @@
     -moz-border-radius: 15px;
     -ms-border-radius: 15px;
     -o-border-radius: 15px;
+}
+
+.-pagination {
+  height: 60px;
+}
+
+.-previous, .-next {
+  height: 60px;
+  color: black;
+}
+
+.-center .-pageInfo, .-pageJump, .-totalPages {
+  height: 30px;
+  font-size: 15px;
+}
+
+.-pageSizeOptions {
+  height: 30px;
+  font-size: 15px;
 }

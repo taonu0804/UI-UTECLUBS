@@ -2,49 +2,52 @@ import React, { Component} from 'react';
 import './style.css';
 import EDIT from '../../image/edit.png';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import ReactTable from "react-table"; 
+import 'react-table/react-table.css';
 
 class ClubManagementFeature extends Component {
     constructor(props) {
        super(props)
        this.state = {
-          students: [
-             { id: 11, clubname: 'Kỹ Năng', leader: 'Nguyễn Thị A', delete:'Delete' },
-             { id: 12, clubname: 'Kỹ Năng', leader: 'Nguyễn Thị A', delete:'Delete' },
-             { id: 13, clubname: 'Kỹ Năng', leader: 'Nguyễn Thị A', delete: 'Delete' },
-             { id: 14, clubname: 'Kỹ Năng', leader: 'Nguyễn Thị A', delete:'Delete' }
-          ]
+          students: [],
+          loading: true
        };
     }
 
-    renderTableData() {
-        return this.state.students.map((student, index) => {
-          const { id, clubname, leader } = student
-          return (
-            <tr>
-              <td>{id}</td>
-              <td><Link className='row-link' to='/clubdetail'>{clubname}</Link></td>
-              <td>{leader}</td>
-              <td><button className='btn-del'><img className='delbtn' src={EDIT}/></button></td>
-            </tr>
-          )
-        })
-      }
-
-      renderTableHeader() {
-         const header = Object.keys(this.state.students[0])
-         return header.map((key, index) => <th key={index}>{key.toUpperCase()}</th>)
-       }
+    async getUsersData(){
+      const res = await axios.get('http://localhost:8080/club-mangement')
+      console.log(res.data)
+      this.setState({loading:false, students: res.data})
+    }
+    componentDidMount(){
+      this.getUsersData()
+    }
 
     render() {
+    
+      const columns = [{
+         Header: 'ID',
+         accessor: 'id',
+      },
+     {
+        Header: 'CÂU LẠC BỘ',
+        accessor: 'club',
+     },
+      {
+         Header: 'CHỦ NHIỆM',
+         accessor: 'host',
+      },
+      {
+         Header: 'CHỈNH SỬA',
+      }]
         return (
             <div className='club-form'>
                <h3 className='table-name'><b>CÁC CÂU LẠC BỘ</b></h3>
-               <table className='clubs'>
-                  <tbody>
-                     <tr>{this.renderTableHeader()}</tr>
-                     {this.renderTableData()}
-                  </tbody>
-               </table>
+               <Link className='table-link' to='/clubdetail'><ReactTable  
+               data={this.state.students}  
+               columns={columns}  
+            /></Link>
 
             </div>
          );

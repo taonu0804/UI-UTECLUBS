@@ -1,33 +1,8 @@
-.students td, .students th {
-  border: 1px solid #fff;
-  padding: 8px;
-}
-
-.students tr:nth-child(even){
-  background-color: #666161;
-}
-
-.students tr:hover {background-color: #ddd;}
-
-.students th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: center;
-  background-color: #000;
-  color: rgb(255, 255, 255);
-}
 .title {
   text-align: center;
   font-family: arial, sans-serif;
 }
 
-.students {
-  text-align: center;
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  border: 3px solid #ddd;
-  width: 100%;
-}
 .button-group, .students {
   position: absolute;
 }
@@ -55,11 +30,13 @@
   background: wheat;
 }
 
-.students {
+.member-table {
   width: 900px;
   height: auto;
-  margin-top: 9%;
-  margin-left: 20%;
+  border: solid 3px gray;
+  box-shadow: 5px 5px 5px 5px gray;
+  margin-top: 13%;
+  margin-left: 35%;
   border-radius: 25px;
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
@@ -67,7 +44,18 @@
   -o-border-radius: 25px;
 }
 
-.member-link {
+.row-link {
   text-decoration: none;
   color: black;
+}
+
+.-header {
+  background-color: rgb(48, 48, 48);
+  color: white;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
+.rt-tr-group {
+  height: 50px;
 }

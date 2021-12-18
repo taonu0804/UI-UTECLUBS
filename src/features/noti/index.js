@@ -2,39 +2,41 @@ import { render } from '@testing-library/react';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './style.css';
+import axios from 'axios'
+import ReactTable from "react-table"; 
+import 'react-table/react-table.css'
 
 class NotiFeature extends Component {
     constructor(props) {
        super(props)
        this.state = {
-          students: [
-             { id: 1, name: 'Tạ Thị Mai Hương', mssv: 18110298 },
-             { id: 2, name: 'Võ Trần Minh Quân', mssv: 18110344 },
-             { id: 3, name: 'Nguyễn Trung Tín', mssv: 18110381 },
-             { id: 4, name: 'Huỳnh Thị Thúy Vy', mssv: 18110400 }
-          ]
+          students: [],
+          loading: true,
        };
     }
 
-    renderTableData() {
-        return this.state.students.map((student, index) => {
-          const { id, name, mssv } = student
-          return (
-            <tr>
-              <td>{id}</td>
-              <td><Link className='member-link' to='/'>{name} </Link></td>
-              <td>{mssv}</td>
-            </tr>
-          )
-        })
-      }
-
-      renderTableHeader() {
-         const header = Object.keys(this.state.students[0])
-         return header.map((key, index) => <th key={index}>{key.toUpperCase()}</th>)
-       }
+    async getUsersData(){
+      const res = await axios.get('http://localhost:8080/club-management/:clubId/member-requests?page=0')
+      console.log(res.data)
+      this.setState({loading:false, users: res.data})
+    }
+    componentDidMount(){
+      this.getUsersData()
+    }
 
     render() {
+       const columns = [{
+          Header: 'ID',
+          accessor: 'id',
+       },
+      {
+         Header: 'Họ và Tên',
+         accessor: 'fullName',
+      },
+      {
+         Header: 'MSSV',
+         accessor: 'studentID',
+      }]
         return (
             <div className='pending-form'>
                <div className='button-group'>
@@ -42,12 +44,10 @@ class NotiFeature extends Component {
                   <button className='event-btn'><b>Phê duyệt</b></button>
                   <button className='event-btn'><b>Xóa yêu cầu</b></button>
                </div>
-               <table className='students'>
-                  <tbody>
-                     <tr>{this.renderTableHeader()}</tr>
-                     {this.renderTableData()}
-                  </tbody>
-               </table>
+               <Link className='row-link'><ReactTable className='member-table'
+                  data={this.state.students}  
+                  columns={columns}  
+               /></Link>
 
             </div>
          );
