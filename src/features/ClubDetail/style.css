@@ -1,6 +1,6 @@
 .detail-contain {
     width: 900px;
-    height: 480px;
+    height: 530px;
     border: solid 3px gray;
     margin-left: 35%;
     margin-top: 8%;
@@ -30,12 +30,13 @@
 }
 
 .lead-text {
-    margin-left: 30%;
+    margin-left: 35%;
     margin-top: -17%;
     font-size: 20px;
 }
 
 .lead-name {
+    width: 300px;
     font-size: 20px;
     margin-top: -15%;
     margin-left: 35%;
@@ -43,13 +44,63 @@
 
 .desc {
     font-size: 20px;
-    margin-top: -13%;
-    margin-left: 30%;
+    margin-top: -10%;
+    margin-left: 35%;
 }
 
 .desc-detail {
+    width: 300px;
+    height: 150px;
     font-size: 20px;
-    margin-top: -11%;
+    margin-top: -8%;
     margin-left: 35%;
-    width: 350px;
+}
+
+.club-name, .desc-detail, .lead-name {
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+
+.bouton-contact{
+    background-color: #f7f321;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    width: 100%;
+    border:0;
+    padding: 17px 25px;
+    border-radius: 0px 0px 25px 25px;
+    cursor: pointer;
+    margin-top: 73px;
+    font-size: 18px;
+    -webkit-border-radius: 0px 0px 25px 25px;
+    -moz-border-radius: 0px 0px 25px 25px;
+    -ms-border-radius: 0px 0px 25px 25px;
+    -o-border-radius: 0px 0px 25px 25px;
+}
+
+.bouton-contact:hover {
+    background-color: wheat;
+}
+
+.validation1, .validation2, .validation3 {
+    position: absolute;
+    font-size: small;
+    color: red;
+}
+
+.name-area .validation1 {
+    margin-left: 6%;
+}
+
+.unit-area .validation2 {
+    margin-left: 36%;
+    margin-top: -12.5%;
+}
+
+.desc-area .validation3 {
+    margin-left: 36%;
+    margin-top: 2%;
 }

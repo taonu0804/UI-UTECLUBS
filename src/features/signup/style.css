@@ -74,3 +74,8 @@ Link:hover {
   margin-top: 1800%;
   margin-left: 4600%;
 }
+
+.validation {
+  color: red;
+  font-size: 10px;
+}

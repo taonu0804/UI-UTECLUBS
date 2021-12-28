@@ -1,53 +1,57 @@
 import React, { Component} from 'react';
 import './style.css';
-import EDIT from '../../image/edit.png';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import ReactTable from "react-table"; 
-import 'react-table/react-table.css';
 
 class ClubManagementFeature extends Component {
     constructor(props) {
        super(props)
        this.state = {
-          students: [],
+          clubs: [],
           loading: true
        };
     }
 
-    async getUsersData(){
-      const res = await axios.get('http://localhost:8080/club-mangement')
-      console.log(res.data)
-      this.setState({loading:false, students: res.data})
-    }
     componentDidMount(){
-      this.getUsersData()
-    }
-
+      fetch('http:/localhost:8080/admin/club-management?page=0')
+            .then(response => response.json())
+            .then(clubs => {
+                this.setState({
+                    clubs: clubs
+                })
+            })
+         .catch(error => console.log(error))
+   }
     render() {
-    
-      const columns = [{
-         Header: 'ID',
-         accessor: 'id',
-      },
-     {
-        Header: 'CÂU LẠC BỘ',
-        accessor: 'club',
-     },
-      {
-         Header: 'CHỦ NHIỆM',
-         accessor: 'host',
-      },
-      {
-         Header: 'CHỈNH SỬA',
-      }]
+      const contents = this.state.clubs.forEach(item => {
+         return <tr><Link className='row-link' to={`/clubdetail/${item.clubId}`}>
+            <td>{item.clubId}</td> 
+            <td>{item.clubName}</td>
+            <td>{item.affiliatedUnit}</td>
+         </Link></tr>
+      })
+      const {loading, clubs} = this.state;
+      if(!loading){
+         return(
+            <h1>Loading...</h1>
+         )
+      }
+
         return (
             <div className='club-form'>
                <h3 className='table-name'><b>CÁC CÂU LẠC BỘ</b></h3>
-               <Link className='table-link' to='/clubdetail'><ReactTable  
-               data={this.state.students}  
-               columns={columns}  
-            /></Link>
+              <table className='table'>
+                  <thead>
+                     <tr>
+                        <th>Club ID</th>
+                        <th>Club Name</th>
+                        <th>Unit</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {contents}
+                  </tbody>
+              </table>
 
             </div>
          );

@@ -1,5 +1,6 @@
 import './App.css';
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
 import HomeFeature from './features/Home';
 import LoginFeature from './features/Login';
 import ContactFeature from './features/Contact';
@@ -34,7 +35,7 @@ function App() {
         <Route path='/signup' component={ SignupFeature } exact/>
         <Route path='/infochange' component={ InfochangeFeature } exact/>
         <Route path='/newfeed' component={ NewFeedFeature } exact/>
-        <Route path='/clubdetail' component={ ClubDetailFeature } exact/>
+        <Route path='/clubdetail/:clubId?' component={ ClubDetailFeature } exact/>
         <Route path='/clubmanage' component={ ClubManagementFeature } exact/>
         <Route path='/signupconfirm' component={ SignupConfirmFeature } exact/>
       </div>

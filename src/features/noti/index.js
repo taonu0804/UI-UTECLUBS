@@ -28,6 +28,7 @@ class NotiFeature extends Component {
        const columns = [{
           Header: 'ID',
           accessor: 'id',
+          render: ({ row }) => (<Link className='table-link' to='/clubdetail'>{'clubId'}</Link>),
        },
       {
          Header: 'Họ và Tên',

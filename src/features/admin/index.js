@@ -13,8 +13,8 @@ AdminFeature.propTypes = {
 
 function AdminFeature(props) {
     const history = useHistory();
-    const handleClubManagement = history.push('/clubmanage');
-    const handleRoleManagement = history.push('/');
+    const handleClubManagement = e => (history.push('/clubmanage'));
+    const handleRoleManagement = e => (history.push('/'));
 
     return (
         <div>
