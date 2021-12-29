@@ -33,8 +33,8 @@ function App() {
         <Route path='/admin' component={ AdminFeature } exact/>
         <Route path='/noti' component={ NotiFeature } exact/>
         <Route path='/signup' component={ SignupFeature } exact/>
-        <Route path='/infochange' component={ InfochangeFeature } exact/>
-        <Route path='/newfeed' component={ NewFeedFeature } exact/>
+        <Route path='/infochange/:id?' component={ InfochangeFeature } exact/>
+        <Route path='/newfeed/:id?' component={ NewFeedFeature } exact/>
         <Route path='/clubdetail/:clubId?' component={ ClubDetailFeature } exact/>
         <Route path='/clubmanage' component={ ClubManagementFeature } exact/>
         <Route path='/signupconfirm' component={ SignupConfirmFeature } exact/>

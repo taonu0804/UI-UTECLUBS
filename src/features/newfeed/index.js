@@ -32,7 +32,7 @@ function NewFeedFeature(props) {
             this.state.selectedFile.name
         );
     };
-    const handleCLBManage = e => {history.push('/clubmanage')};
+    const handleCLBManage = e => {history.push('/clubdetail')};
     return (
         <div>
             <div className='content-border'>

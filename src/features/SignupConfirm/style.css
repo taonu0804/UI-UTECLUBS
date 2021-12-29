@@ -41,3 +41,7 @@
 .confirmbtn:hover {
     background-color: wheat;
 }
+
+.code-area .validation {
+    margin-left: 5%;
+}

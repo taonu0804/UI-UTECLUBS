@@ -45,6 +45,12 @@ class ClubDetailFeature extends Component {
     });
   }
 
+  handleInput = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
   handleSubmit = (e) => {
     this.setState({
       errors: this.validator.validate(this.state),
@@ -58,18 +64,18 @@ class ClubDetailFeature extends Component {
           <div>
               <div className='detail-contain'>
                 <div className='name-area'>
-                  <input className='club-name'></input>
+                  <input className='club-name' name='clubName' value={this.state.clubName} onChange={this.handleInput} required></input>
                   {errors.clubName && <div className="validation1" style={{display: 'block'}}>{errors.clubName}</div>}
                 </div>
                   <img className='club-img' src={TNXK}/>
                 <div className='unit-area'>
                   <h5 className='lead-text'><b>Đơn vị: </b></h5>
-                  <input className='lead-name'></input>
+                  <input className='lead-name' name='afficatedUnit' value={this.state.afficatedUnit} onChange={this.handleInput} required></input>
                   {errors.afficatedUnit && <div className="validation2" style={{display: 'block'}}>{errors.afficatedUnit}</div>}
                 </div>
                 <div className='desc-area'>
                   <p className='desc'><b>Mô tả: </b></p>
-                  <input className='desc-detail'></input>
+                  <input className='desc-detail' name='description' value={this.state.description} onChange={this.handleInput} required></input>
                   {errors.description && <div className="validation3" style={{display: 'block'}}>{errors.description}</div>}
                 </div>
                   <button type="submit" class="bouton-contact" onClick={this.handleSubmit}>Update</button>

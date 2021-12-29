@@ -61,6 +61,13 @@
   color: white;
 }
 
+.forgetpass-link {
+  font-size: 10px;
+  margin-left: 170px;
+  text-decoration: none;
+  color: white;
+}
+
 .decor {
   width: 150%;
   height: 400px;

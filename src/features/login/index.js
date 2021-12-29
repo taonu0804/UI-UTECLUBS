@@ -50,7 +50,10 @@ function LoginFeature() {
             }
           }
         })
-        .catch((error) => console.error(error));
+        .catch((error) => {
+            alert('Username hoặc mật khẩu không đúng');
+            console.error(error);
+        })
     }
 
     return (
@@ -75,7 +78,8 @@ function LoginFeature() {
                     </div>
                     <input type="hidden" defaultValue name="recaptchaResponse" wfd-invisible="true" />
                 </form>
-                <Link className="signup-link" to='/signup'>Chưa có tài khoản? Đăng ký ngay</Link>
+                <Link className="signup-link" to='/signup'>Chưa có tài khoản? Đăng ký ngay</Link><br/>
+                <Link className="forgetpass-link">Quên mật khẩu?</Link>
             </div>
         </div>
 
