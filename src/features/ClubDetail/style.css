@@ -20,9 +20,16 @@
 }
 
 .club-img {
-    width: 500px;
-    height: 250px;
-    margin-top: 5%;
+    z-index: 0;
+    width: 280px;
+    height: 280px;
+    margin-top: 1%;
+    margin-left: 7%;
+    border-radius: 250px;
+    -webkit-border-radius: 250px;
+    -moz-border-radius: 250px;
+    -ms-border-radius: 250px;
+    -o-border-radius: 250px;
 }
 
 .lead-text, .lead-name, .desc, .desc-detail {
@@ -31,20 +38,20 @@
 
 .lead-text {
     margin-left: 35%;
-    margin-top: -17%;
+    margin-top: 3%;
     font-size: 20px;
 }
 
 .lead-name {
     width: 300px;
     font-size: 20px;
-    margin-top: -15%;
+    margin-top: 5%;
     margin-left: 35%;
 }
 
 .desc {
     font-size: 20px;
-    margin-top: -10%;
+    margin-top: 8%;
     margin-left: 35%;
 }
 
@@ -52,7 +59,7 @@
     width: 300px;
     height: 150px;
     font-size: 20px;
-    margin-top: -8%;
+    margin-top: 10%;
     margin-left: 35%;
 }
 
@@ -73,7 +80,7 @@
     padding: 17px 25px;
     border-radius: 0px 0px 25px 25px;
     cursor: pointer;
-    margin-top: 73px;
+    margin-top: 41%;
     font-size: 18px;
     -webkit-border-radius: 0px 0px 25px 25px;
     -moz-border-radius: 0px 0px 25px 25px;
@@ -100,7 +107,27 @@
     margin-top: -12.5%;
 }
 
-.desc-area .validation3 {
-    margin-left: 36%;
-    margin-top: 2%;
+.img, .changeimg, .club-img {
+    position: absolute;
+}
+
+.img, .changeimg {
+    z-index: 1;
+    margin-top: 20%;
+    margin-left: 13%;
+}
+
+.img {
+    border: solid 2px gray;
+    background-color: yellow;
+    padding-inline: 5px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.img:hover {
+    background-color: wheat;
 }

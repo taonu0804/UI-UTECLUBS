@@ -1,15 +1,24 @@
 import React, { useState, Component } from 'react';
 import { Button  } from '@material-ui/core';
 import './style.css';
-import HG from '../../image/huong.jpg';
 import Validator from '../../utils/validator.js';
+import { storage } from '../../firebase';
 
 class InfoChangeFeature extends Component {
   constructor (props) {
     super(props);
     this.state = {
+      image: null,
+      url: '',
+      progress: 0,
       errors: {},
     }
+
+    this.handleChange = this
+      .handleChange
+      .bind(this);
+      this.handleUpload = this.handleUpload.bind(this);
+
     const requiredWith = (value, field, state) => (!state[field] && !value) || !!value;
 
     const rules = [
@@ -46,7 +55,34 @@ class InfoChangeFeature extends Component {
       },
     ];
     this.validator = new Validator(rules);
+  }handleChange = e => {
+    if (e.target.files[0]) {
+      const image = e.target.files[0];
+      this.setState(() => ({image}));
+    }
   }
+
+  handleUpload = () => {
+    const {image} = this.state;
+    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    uploadTask.on('state_changed',
+    (snapshot) => {
+      // progrss function ....
+      const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+      this.setState({progress});
+    },
+    (error) => {
+         // error function ....
+      console.log(error);
+    },
+  () => {
+      // complete function ....
+      storage.ref('images').child(image.name).getDownloadURL().then(url => {
+        console.log(url);
+        this.setState({url});
+      });
+    });
+  };
 
   handleInput = (e) => {
     this.setState({
@@ -60,15 +96,11 @@ class InfoChangeFeature extends Component {
     });
     console.log(this.state);
   };
-
-    _onChange = (e) => {
-        const acceptedImageTypes = ["image/gif", "image/jpeg", "image/png"];
-        if (acceptedImageTypes.includes(e.target.files[0].type)) {
-          this.setState({
-            avatarFile: e.target.files[0],
-          });
-        }
-    };
+  
+  handleLogout = () => {
+    localStorage.removeItem('user');
+    this.props.history.push('/');
+  }
 
     render() {
       const {errors} = this.state;
@@ -76,26 +108,14 @@ class InfoChangeFeature extends Component {
         <div>
             <div className='frame'></div>
             <form method="POST" className="info-form" style={{padding: 0}} source="custom" name="form">
-                <div className='avatar-group'>
-                    <img alt="" className="avatar" src={HG} />
-                    <label htmlFor="upload-photo">
-                    <input
-                      style={{ display: "none" }}
-                      id="upload-photo"
-                      name="upload-photo"
-                      type="file"
-                      accept="image/*"
-                      onChange={this._onChange}
-                    />
-
-                    <Button
-                      component="span"
-                    >
-                      Upload
-                    </Button>
-                  </label>
+              <div className='avatar-group'>
+                  <progress value={this.state.progress} max="100" hidden={true}/>
+                  <label for="files" className='ava'>Tải ảnh lên</label>
+                  <input id='files' type='file' className='ava' name='img' onChange={this.handleChange} hidden='true' required/>
+                  <button className='changeava' onClick={this.handleUpload}></button>
+                  <img src={this.state.url} value={this.state.logoUrl} className='avatar' alt=" "/>
                 </div>
-                <button className='logout'>ĐĂNG XUẤT</button>
+                <button className='logout' onClick={this.handleLogout}>ĐĂNG XUẤT</button>
                 <div className="pass-group">
                     <label className="pass-label">Mật khẩu cũ</label>
                     <input type="password" name='oldpassword' placeholder="Vui lòng nhập mật khẩu cũ" className="oldpassword" value={this.state.oldpassword} onChange={this.handleInput} required />

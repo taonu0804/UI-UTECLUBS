@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import './style.css';
-import { Button  } from '@material-ui/core';
 import BGDK from '../../image/bgdk.png';
 import Validator from '../../utils/validator.js';
-import HG from '../../image/huong.jpg';
+import { storage } from '../../firebase';
 import axios from 'axios';
 
 class SignupFeature extends Component {
   constructor (props) {
     super(props);
     this.state = {
+      image: null,
+      url: '',
+      progress: 0,
       info: [],
       errors: {},
     }
+
+    this.handleInput = this
+      .handleInput
+      .bind(this);
+      this.handleUpload = this.handleUpload.bind(this);
 
     const requiredWith = (value, field, state) => (!state[field] && !value) || !!value;
 
@@ -102,8 +109,36 @@ class SignupFeature extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.register = this.register.bind(this);
-    this._onChange = this._onChange.bind(this);
   }
+
+  handleInput = e => {
+    if (e.target.files[0]) {
+      const image = e.target.files[0];
+      this.setState(() => ({image}));
+    }
+  }
+
+  handleUpload = () => {
+    const {image} = this.state;
+    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    uploadTask.on('state_changed',
+    (snapshot) => {
+      // progrss function ....
+      const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+      this.setState({progress});
+    },
+    (error) => {
+         // error function ....
+      console.log(error);
+    },
+  () => {
+      // complete function ....
+      storage.ref('images').child(image.name).getDownloadURL().then(url => {
+        console.log(url);
+        this.setState({url});
+      });
+    });
+  };
 
   passwordMatch = (confirmation, state) => (state.password === confirmation)
     handleChange = event => {
@@ -134,7 +169,8 @@ class SignupFeature extends Component {
         faculty: this.state.faculty,
         password: this.state.password,
         confirmedpassword: this.state.confirmedpassword,
-        username: this.state.username
+        username: this.state.username,
+        avatarUrl: this.state.avatarUrl
       }
     },
     {withCredentials: true}
@@ -148,18 +184,8 @@ class SignupFeature extends Component {
       console.log('registration res', res); 
     }).catch(error => {
       console.log('registration error', error);
-      alert('User existed');
     })
     e.preventDefault();
-  }
-
-  _onChange(e) {
-    const acceptedImageTypes = ["image/gif", "image/jpeg", "image/png"];
-    if (acceptedImageTypes.includes(e.target.files[0].type)) {
-      this.state({
-        avatarFile: e.target.files[0],
-      });
-    }
   }
 
 render() {
@@ -167,7 +193,7 @@ render() {
   return (
       <div>
         <div className='square-signup'></div>
-        <button onClick={this.register}><h2 className='signuptext'>ĐĂNG KÝ</h2></button>
+        <Link onClick={this.register}><h2 className='signuptext'>ĐĂNG KÝ</h2></Link>
         <div className='BGDK-area'>
           <img alt='' className='BGDK' src={BGDK}/>
         </div>
@@ -216,23 +242,11 @@ render() {
               </div>
             </form>
             <div className='newavatar-group'>
-                  <img alt="" className="newavatar" src={HG} />
-                  <label htmlFor="upload-photo">
-                  <input
-                    style={{ display: "none" }}
-                    id="upload-photo"
-                    name="upload-photo"
-                    type="file"
-                    accept="image/*"
-                    onChange={this._onChange}
-                  />
-
-                  <Button
-                    component="span"
-                  >
-                    Upload
-                  </Button>
-                </label>
+              <progress value={this.state.progress} max="100" hidden={true}/>
+              <label for="files" className='uploadbtn'>Tải ảnh lên</label>
+              <input id='files' type='file' className='uploadbtn' name='img' onChange={this.handleInput} hidden='true' required/>
+              <button className='uploadbtn' onClick={this.handleUpload}></button>
+              <img src={this.state.url} value={this.state.avatarUrl} className='newavatar' alt=" "/>
             </div>
         </div>
       </div>
