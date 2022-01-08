@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './style.css';
 import Validator from '../../utils/validator.js';
 import { storage } from '../../firebase';
+import jwt from 'jwt-decode';
+import { matchPath } from 'react-router';
 
 class ClubDetailFeature extends Component {
   constructor (props) {
@@ -12,6 +14,7 @@ class ClubDetailFeature extends Component {
       progress: 0,
       clubs: [],
       errors: {},
+      showBtn: false,
     }
 
     this.handleChange = this
@@ -45,10 +48,27 @@ class ClubDetailFeature extends Component {
   }
 
   componentDidMount() {
-    fetch('')
+    const match = matchPath(this.props.history.location.pathname, {
+      path: '/clubdetail/:clubId',
+      exact: true,
+      strict: false
+    })
+    const id = match.params.clubId;
+    console.log('id', id);
+
+    fetch('http://localhost:8080/admin/club-management/' + `${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'text/html',
+        'access-control-allow-headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+        'access-control-allow-methods': 'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT',
+      },
+   },
+   {withCredentials: false})
     .then((response) => response.json())
     .then(item => {
         this.setState({ clubs: item });
+        console.log(item);
     });
   }
 
@@ -96,11 +116,12 @@ class ClubDetailFeature extends Component {
 
   render() {
     const {errors} = this.state;
+    const {clubs} = this.state;
       return (
           <div>
               <div className='detail-contain'>
                 <div className='name-area'>
-                  <input className='club-name' name='clubName' value={this.state.clubName} onChange={this.handleInput} required></input>
+                  <input className='club-name' name='clubName' value={clubs.clubName} onChange={this.handleInput} required/>
                   {errors.clubName && <div className="validation1" style={{display: 'block'}}>{errors.clubName}</div>}
                 </div>
                 <div className='img-area'>
@@ -108,16 +129,16 @@ class ClubDetailFeature extends Component {
                   <label for="files" className='img'>Tải ảnh lên</label>
                   <input id='files' type='file' className='img' name='img' onChange={this.handleChange} hidden='true' required/>
                   <button className='changeimg' onClick={this.handleUpload}></button>
-                  <img src={this.state.url} value={this.state.logoUrl} className='club-img' alt=" "/>
+                  <img src={clubs.logoUrl} value={this.state.url} className='club-img' alt=" "/>
                 </div>
                 <div className='unit-area'>
                   <h5 className='lead-text'><b>Đơn vị: </b></h5>
-                  <input className='lead-name' name='afficatedUnit' value={this.state.afficatedUnit} onChange={this.handleInput} required></input>
+                  <input className='lead-name' name='affiliatedUnit' value={clubs.affiliatedUnit} onChange={this.handleInput} required/>
                   {errors.afficatedUnit && <div className="validation2" style={{display: 'block'}}>{errors.afficatedUnit}</div>}
                 </div>
                 <div className='desc-area'>
                   <p className='desc'><b>Mô tả: </b></p>
-                  <input className='desc-detail' name='description' value={this.state.description} onChange={this.handleInput} required></input>
+                  <input className='desc-detail' name='description' value={clubs.description} onChange={this.handleInput} required/>
                   {errors.description && <div className="validation3" style={{display: 'block'}}>{errors.description}</div>}
                 </div>
                   <button type="submit" class="bouton-contact" onClick={this.handleSubmit}>Cập nhật</button>

@@ -1,0 +1,76 @@
+.login-bg {
+  margin-left: 15%;
+  margin-top: -33%;
+  align-content: center;
+  float: left;
+}
+
+.bg {
+  width: 630px;
+  height: 560px;
+  border: solid 3px #233077;
+}
+
+.login-area {
+  float: right;
+  padding-left: 380px;
+  margin-top: -35%;
+}
+
+.text {
+  font-size: 50px;
+  color: white;
+  margin-left: 15px;
+}
+
+.password {
+  width: 400px;
+  height: 30px;
+  margin-top: 10px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.email {
+  width: 400px;
+  height: 30px;
+  border-radius: 10px;
+}
+
+.login-btn {
+  width: 410px;
+  border-radius: 10px;
+  height: 35px;
+  font-size: 15px;
+  color: black;
+  background-color: yellow;
+  margin-top: 30px;
+}
+
+.login-btn:hover {
+  background: rgba(255, 255, 0, 0.596);
+}
+
+.signup-link {
+  font-size: 10px;
+  margin-left: 130px;
+  text-decoration: none;
+  color: white;
+}
+
+.forgetpass-link {
+  font-size: 10px;
+  margin-left: 170px;
+  text-decoration: none;
+  color: white;
+}
+
+.decor {
+  width: 150%;
+  height: 400px;
+  margin-top: 100px;
+  background: #233077;
+}

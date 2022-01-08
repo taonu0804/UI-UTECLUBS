@@ -12,30 +12,32 @@ class ClubManagementFeature extends Component {
     }
 
     componentDidMount(){
-      fetch('http:/localhost:8080/admin/club-management?page=0')
+      const token = localStorage.getItem('access_token');
+      console.log('userId', token);
+      fetch('http://localhost:8080/admin/club-management?page=0', {
+         headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          }
+      })
             .then(response => response.json())
             .then(clubs => {
+               let details = [];
+
+               for (var i in clubs.content) {
+                   details.push({ name: i, value: clubs.content[i] })
+               }
+   
                 this.setState({
-                    clubs: clubs
+                    clubs: details,
+                    loading: true,
                 })
             })
          .catch(error => console.log(error))
    }
     render() {
-      const contents = this.state.clubs.forEach(item => {
-         return <tr><Link className='row-link' to={`/clubdetail/${item.clubId}`}>
-            <td>{item.clubId}</td> 
-            <td>{item.clubName}</td>
-            <td>{item.affiliatedUnit}</td>
-         </Link></tr>
-      })
-      const {loading, clubs} = this.state;
-      if(!loading){
-         return(
-            <h1>Loading...</h1>
-         )
-      }
-
+       console.log(this.state);
         return (
             <div className='club-form'>
                <h3 className='table-name'><b>CÁC CÂU LẠC BỘ</b></h3>
@@ -48,7 +50,13 @@ class ClubManagementFeature extends Component {
                      </tr>
                   </thead>
                   <tbody>
-                     {contents}
+                  {this.state.clubs.map((item) => (
+                        <tr>
+                           <Link className='row-link' to={`/clubdetail/${item.value.clubId}`}> <td>{item.value.clubId}</td></Link>
+                           <td>{item.value.clubName}</td>
+                           <td>{item.value.affiliatedUnit}</td>
+                        </tr>
+                      ))}
                   </tbody>
               </table>
 

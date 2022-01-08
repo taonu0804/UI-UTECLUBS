@@ -1,0 +1,252 @@
+.clb-btn, .add-btn {
+    text-decoration: none;
+    background-color: yellow;
+    border: solid 2px gray;
+    border-radius: 15px;
+    padding-inline: 15px;
+    color: black;
+    width: 200px;
+    height: 30px;
+    margin-left: 5%;
+    padding-top: 10px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+
+.admin-area {
+    border: solid 2px gray;
+    width: 800%;
+    height: 60px;
+    margin-top: -10px;
+}
+
+.clb-btn {
+    margin-left: 23%;
+}
+
+.clb-btn:hover, .add-btn:hover {
+    background-color: rgb(168, 168, 64);
+    color: black;
+}
+
+.group-info, .newfeed, .search {
+    position: absolute;
+}
+
+.group-info {
+    z-index: 0;
+    border-right: solid 2px rgb(231, 223, 223);
+    width: 20%;
+    height: 100%;
+}
+
+.nf-avatar {
+    width: 70px;
+    height: 70px;
+    border: solid 2px gray;
+    margin-top: 5%;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -ms-border-radius: 100px;
+    -o-border-radius: 100px;
+}
+
+.info-link {
+    text-decoration: none;
+    margin-left: 10%;
+    margin-top: 5%;
+}
+
+.nf-home {
+    color: rgb(230, 230, 1);
+    margin-left: 43%;
+    margin-top: -20%;
+    font-size: 23px;
+}
+
+.nf-joined-gr {
+    width: 50px;
+    height: 50px;
+    margin-top: 15%;
+    border-radius: 50px;
+    border: solid 2px gray;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+}
+
+.joined-group {
+    text-decoration: none;
+    margin-left: 25%;
+}
+
+.nf-joined-txt {
+    color: black;
+    margin-left: 50%;
+    margin-top: -15%;
+}
+
+.nf-not-joined-gr {
+    width: 50px;
+    height: 50px;
+    margin-top: 5%;
+    border-radius: 50px;
+    border: solid 2px gray;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+}
+
+.not-joined-group {
+    text-decoration: none;
+    margin-left: 25%;
+}
+
+.nf-not-joined-txt {
+    color: black;
+    margin-left: 50%;
+    margin-top: -15%;
+}
+
+.newfeed {
+    z-index: 1;
+    margin-left: 20%;
+    width: 900px;
+}
+
+.search {
+    z-index: 2;
+    border-left: solid 2px rgb(231, 223, 223);
+    height: 100%;
+    width: 20%;
+    margin-left: 79%;
+}
+
+.selectPrefix {
+    border-radius: 5px;
+    width: 250px;
+    height: 25px;
+    margin-left: 10%;
+    margin-top: 5%;
+    border: solid 2px black;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.searchbox {
+    width: 250px;
+    height: 25px;
+    border-radius: 5px;
+    margin-left: 10%;
+    margin-top: 5%;
+}
+
+.date-search {
+    width: 250px;
+    height: 25px;
+    border-radius: 5px;
+    margin-top: 15px;
+    margin-left: 10%;
+}
+
+.search-txt {
+    margin-top: 10px;
+    margin-left: 40%;
+    background-color: yellow;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.search-txt:hover {
+    background-color: wheat;
+}
+
+.stt-box, .postbtn {
+    position: absolute;
+}
+
+.stt-box {
+    z-index: 0;
+    width: 740px;
+    height: 80px;
+    border: solid 3px gray;
+    border-radius: 8px;
+    margin-left: 3%;
+    margin-top: 20px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+
+
+.sttimg-btn {
+    z-index: 1;
+    background-image: url('/src/image/img.png');
+    background-size: 45px 45px;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.sttimg-btn, .changesttimg, .sttimg, .delimg {
+    position: absolute;
+}
+
+.sttimg-btn, .changesttimg {
+    z-index: 0;
+    margin-left: 79%;
+    margin-top: 5%;
+}
+
+.sttimg {
+    z-index: 1;
+    width: 700px;
+    height: 400px;
+    margin-top: 12%;
+    margin-left: 5%;
+}
+
+.delimg {
+    z-index: 2;
+    border: none;
+    border-radius: 50px;
+    width: 25px;
+    height: 25px;
+    margin-top: 13%;
+    margin-left: 79%;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+}
+
+.postbtn {
+    z-index: 2;
+    background-color: yellow;
+    width: 80px;
+    height: 80px;
+    border-radius: 15px;
+    margin-top: 2.5%;
+    margin-left: 88%;
+}
+
+.postbtn:hover {
+    background-color: wheat;
+}

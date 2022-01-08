@@ -1,0 +1,61 @@
+.title {
+  text-align: center;
+  font-family: arial, sans-serif;
+}
+
+.button-group, .students {
+  position: absolute;
+}
+
+.button-group {
+  z-index: 1;
+  margin-top: 2%;
+  margin-left: 20%;
+}
+
+.event-btn {
+  width: 200px;
+  height: 40px;
+  margin-left: 90px;
+  border-radius: 20px;
+  background: yellow;
+  color: black;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.event-btn:hover {
+  background: wheat;
+}
+
+.member-table {
+  width: 900px;
+  height: auto;
+  border: solid 3px gray;
+  box-shadow: 5px 5px 5px 5px gray;
+  margin-top: 13%;
+  margin-left: 35%;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+}
+
+.row-link {
+  text-decoration: none;
+  color: black;
+}
+
+.-header {
+  background-color: rgb(48, 48, 48);
+  color: white;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
+.rt-tr-group {
+  height: 50px;
+}

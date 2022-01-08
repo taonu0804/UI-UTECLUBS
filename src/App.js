@@ -1,4 +1,5 @@
 import './App.css';
+import jwt from 'jwt-decode';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import HomeFeature from './features/Home';
@@ -18,7 +19,10 @@ import { Link, Switch } from 'react-router-dom';
 import JoinedCLBFeature from './features/JoinedCLB';
 import NotJoinedCLBFeature from './features/NotJoinedCLB';
 import ErrorFeature from './features/Error';
+import UserClubDetailFeature from './features/UserClubDetail';
+import UserWelcomeFeature from './features/UserWelcome';
 import { useHistory } from 'react-router-dom';
+import ClbMembersFeature from './features/ClbMembers';
 
 function App() {
   const history = useHistory();
@@ -26,19 +30,30 @@ function App() {
     try {
       const user = localStorage.getItem('user');
       const ava = user.avatarUrl;
-      history.push('/newfeed');
+      const access_token = localStorage.getItem('access_token');
+      const role = (jwt(access_token)).roles[0];
+      if (role === 'ROLE_ADMIN') {
+        history.push('/admin');
+      }
+      else {
+        history.push('/userwelcome');
+      }
     } catch(error) {
       console.log(error);
       history.push('/error');
     }
+  }
+
+  const contactPage = () => {
+    history.push('/contact');
   }
   return (
     <div className="App">
       <div className="Header">
         <img className='Logo' src={LOGO}/>
         <button className='home-link' onClick={handleMoving}><b>HOME</b></button>
-        <button className='contact-link' to='/contact'><b>LIÊN HỆ</b></button>
-      </div> 
+        <button className='contact-link' onClick={contactPage}><b>LIÊN HỆ</b></button>
+      </div>
 
       <div className='Body'>
       <Switch>
@@ -48,13 +63,19 @@ function App() {
         <Route path='/admin' component={ AdminFeature } exact/>
         <Route path='/noti' component={ NotiFeature } exact/>
         <Route path='/signup' component={ SignupFeature } exact/>
-        <Route path='/infochange/:id?' component={ InfochangeFeature } exact/>
-        <Route path='/newfeed' component={ NewFeedFeature } exact/>
-        <Route path='/clubdetail/:clubId?' component={ ClubDetailFeature } exact/>
+        <Route path='/infochange/:userId' component={ InfochangeFeature } exact/>
+        <Route path='/newfeed/:clubId' component={ NewFeedFeature } exact/>
+        <Route path='/clubdetail/:clubId' component={ ClubDetailFeature } exact/>
         <Route path='/clubmanage' component={ ClubManagementFeature } exact/>
         <Route path='/signupconfirm' component={ SignupConfirmFeature } exact/>
         <Route path='/joinedclb' component={ JoinedCLBFeature } exact/>
         <Route path='/notjoinedclb' component={ NotJoinedCLBFeature } exact/>
+        <Route path='/userclubdetail' component={ UserClubDetailFeature }>
+            <Route path='/userclubdetail/:clubId' component={ UserClubDetailFeature } exact/>
+            <Route path='/userclubdetail/:clubId/notjoin' component={ UserClubDetailFeature } exact/>
+        </Route>
+        <Route path='/userwelcome' component={ UserWelcomeFeature } exact/>
+        <Route path='/clbmember/:clubId' component={ ClbMembersFeature } exact/>
         <Route path='/error' component={ ErrorFeature } exact/>
       </Switch>
       </div>

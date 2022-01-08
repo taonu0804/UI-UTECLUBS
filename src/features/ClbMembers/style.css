@@ -33,7 +33,7 @@
         color: black;
     }
   
-    .club-form {
+    .member-form {
         width: 1200px;
         border: solid 3px gray;
         border-radius: 25px;
@@ -75,4 +75,14 @@
   .-pageSizeOptions {
     height: 30px;
     font-size: 15px;
+  }
+
+  .role-area {
+    margin-left: 80%;
+  }
+
+  .role-text {
+    border: solid 2px gray;
+    width: 210px;
+    margin-bottom: 10px;
   }

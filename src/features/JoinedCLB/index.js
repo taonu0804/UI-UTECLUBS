@@ -6,36 +6,34 @@ class JoinedCLBFeature extends Component {
     constructor(props) {
         super(props)
         this.state = {
-           clubs: [],
-           loading: true
+           loading: true,
+           userclubs: [],
         };
      }
  
      componentDidMount(){
-       fetch('http:/localhost:8080/users/joined-clubs')
+        const token = localStorage.getItem('access_token');
+        console.log('userId', token);
+
+       fetch('http://localhost:8080/users/joined-clubs', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          }
+       })
              .then(response => response.json())
              .then(clubs => {
+                console.log('clubs', clubs);
                  this.setState({
-                     clubs: clubs
+                     userclubs: clubs,
+                     loading: true,
                  })
              })
           .catch(error => console.log(error))
     }
+
      render() {
-       const contents = this.state.clubs.forEach(item => {
-          return <tr><Link className='row-link' to={`/clubdetail/${item.clubId}`}>
-             <td>{item.clubId}</td> 
-             <td>{item.clubName}</td>
-             <td>{item.affiliatedUnit}</td>
-          </Link></tr>
-       })
-       const {loading, clubs} = this.state;
-       if(!loading){
-          return(
-             <h1>Loading...</h1>
-          )
-       }
- 
          return (
              <div className='club-form'>
                 <h3 className='table-name'><b>CÁC CÂU LẠC BỘ</b></h3>
@@ -48,7 +46,13 @@ class JoinedCLBFeature extends Component {
                       </tr>
                    </thead>
                    <tbody>
-                      {contents}
+                      {this.state.userclubs.map((item) => (
+                        <tr>
+                           <Link className='row-link' to={`/newfeed/${item.clubId}`}> <td>{item.clubId}</td></Link>
+                           <td>{item.clubName}</td>
+                           <td>{item.affiliatedUnit}</td>
+                        </tr>
+                      ))}
                    </tbody>
                </table>
  

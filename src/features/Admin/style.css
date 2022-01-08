@@ -1,0 +1,62 @@
+.admin-bg {
+  z-index: 0;
+  width: 1200px;
+  height: 500px;
+  margin-left: 10%;
+  background: linear-gradient(180deg, black, black);
+  }
+
+.admin-bg, .welcome-txt, .adminbtn-group, .clb-group {
+  position: absolute;
+}
+
+.welcome-txt {
+  z-index: 1;
+  font-size: 60px;
+  color: black;
+  stroke: yellow;
+  stroke-width: 4px;
+  margin-top: 0%;
+  margin-left: 26%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.adminbtn-group {
+  margin-top: 32%;
+  margin-left: 33%;
+}
+
+.admin-btn {
+  margin-left: 20px;
+  width: 140px;
+  height: 30px;
+  border-radius: 25px;
+  background: yellow;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+}
+
+.admin-btn:hover {
+  background: wheat;
+}
+
+.clb-group {
+  z-index: 3;
+  width: 150%;
+  margin-top: 35%;
+  background: rgb(62, 62, 124);
+}
+
+.clb-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 300px;
+  border: solid 2px gray;
+  margin-left: 6%;
+  -webkit-border-radius: 300px;
+  -moz-border-radius: 300px;
+  -ms-border-radius: 300px;
+  -o-border-radius: 300px;
+}
