@@ -19,69 +19,39 @@
 .frame {
   z-index: 0;
   border: solid 3px gray;
-  width: 770px;
-  height: 350px;
+  width: 700px;
+  height: 320px;
   margin-left: 40%;
   margin-top: 9%;
 }
 
-.pass-group, .newpass-group, .repass-group, .change-group, .logout, .ava, .changeava, .fullName-group, .gender-group, .dob-group, .gender-group {
+.pass-group, .newpass-group, .repass-group, .change-group, .logout, .ava, .changeava {
   position: absolute;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-.fullName-group {
-  margin-top: 10%;
-  margin-left: 42%;
-}
-
-.gender-group {
-  margin-top: 13%;
-  margin-left: 42%;
-}
-
-.dob-group {
-  margin-top: 16%;
-  margin-left: 42%;
 }
 
 .pass-group {
   z-index: 0;
   margin-left: 42%;
-  margin-top: 19%;
+  margin-top: 12%;
 }
 
 .newpass-group {
   z-index: 1;
   margin-left: 42%;
-  margin-top: 22%;
+  margin-top: 16%;
 }
 
 .repass-group {
   z-index: 2;
   margin-left: 42%;
-  margin-top: 25%;
+  margin-top: 20%;
 }
 
 .change-group {
   z-index: 3;
   margin-left: 55%;
-  margin-top: 29%;
-}
-
-.fullName-label {
-  font-size: 20px;
-  color: rgb(116, 21, 21);
-}
-
-.gender-label {
-  font-size: 20px;
-  color: rgb(116, 21, 21);
-}
-
-.dob-label {
-  font-size: 20px;
-  color: rgb(116, 21, 21);
+  margin-top: 25%;
 }
 
 .pass-label {
@@ -100,7 +70,7 @@
 }
 
 .oldpassword {
-  width: 550px;
+  width: 430px;
   height: 30px;
   margin-left: 40px;
   border-radius: 15px;
@@ -111,7 +81,7 @@
 }
 
 .newpassword {
-  width:550px;
+  width: 430px;
   height: 30px;
   margin-left: 28px;
   border-radius: 15px;
@@ -122,45 +92,10 @@
 }
 
 .renewpassword {
-  width: 467px;
+  width: 347px;
   height: 30px;
   margin-left: 20px;
   border-radius: 15px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
-}
-
-.fullName {
-  width: 550px;
-  height: 30px;
-  margin-left: 66px;
-  border-radius: 15px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
-}
-
-.gender-group .gender {
-  width: 550px;
-  height: 30px;
-  margin-left: 79px;
-  border-radius: 15px;
-  border: solid 2px black;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
-}
-
-.dob-group .dob {
-  width: 550px;
-  height: 30px;
-  margin-left: 65px;
-  border-radius: 15px;
-  border: solid 2px black;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
   -ms-border-radius: 15px;
@@ -219,8 +154,4 @@
 
 .ava:hover {
     background-color: wheat;
-}
-
-.fullName-group .validation, .newpass-group .validation, .repass-group .validation {
-  margin-top: -1%;
 }

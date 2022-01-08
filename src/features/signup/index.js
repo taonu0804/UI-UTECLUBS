@@ -11,16 +11,21 @@ class SignupFeature extends Component {
     super(props);
     this.state = {
       image: null,
-      url: '',
       progress: 0,
-      info: [],
+      url:'',
       errors: {},
+      fullName: '',
+      email: '',
+      studentId: '',
+      gender: '',
+      major: '',
+      faculty: '',
+      password: '',
+      confirmedPassword: '',
+      username:'',
+      dob: '',
+      avatarUrl: '',
     }
-
-    this.handleInput = this
-      .handleInput
-      .bind(this);
-      this.handleUpload = this.handleUpload.bind(this);
 
     const requiredWith = (value, field, state) => (!state[field] && !value) || !!value;
 
@@ -86,8 +91,8 @@ class SignupFeature extends Component {
         message: 'The password field is required.',
       },
       {
-        field: 'confirmedpassword',
-        method: 'isEmpty',
+        field: 'confirmedPassword',
+        method: 'isEmpty', 
         validWhen: false,
         message: 'The password confirmation field is required.',
       },
@@ -107,15 +112,22 @@ class SignupFeature extends Component {
     ];
     this.validator = new Validator(rules);
 
+    this.handleInput = this.handleInput.bind(this);
+    this.handleUpload = this.handleUpload.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.register = this.register.bind(this);
   }
 
-  handleInput = e => {
+  handleInput(e) {
     if (e.target.files[0]) {
       const image = e.target.files[0];
       this.setState(() => ({image}));
-    }
+    }}
+
+  handleChange(e) {
+    this.setState({
+      [this.state.name]: this.state.value
+    });
   }
 
   handleUpload = () => {
@@ -136,6 +148,9 @@ class SignupFeature extends Component {
       storage.ref('images').child(image.name).getDownloadURL().then(url => {
         console.log(url);
         this.setState({url});
+
+        const avatarUrl = url;
+        this.setState({avatarUrl});
       });
     });
   };
@@ -147,46 +162,34 @@ class SignupFeature extends Component {
       [event.target.name]: event.target.value,
     });
   }
-
-  handleChange(e) {
-    this.setState({
-      [this.state.name]: this.state.value
-    });
-  }
   
   register(e) {
+    e.preventDefault();
     this.setState({
       errors: this.validator.validate(this.state),
     });
 
-    axios.post('http://localhost:8080/users/signup', {
-      user: {
-        fullName: this.state.fullName,
-        email: this.state.email,
-        studentId: this.state.studentId,
-        gender: this.state.gender,
-        major: this.state.major,
-        faculty: this.state.faculty,
-        password: this.state.password,
-        confirmedpassword: this.state.confirmedpassword,
-        username: this.state.username,
-        avatarUrl: this.state.avatarUrl
-      }
-    },
-    {withCredentials: true}
-    ).then(res => {
-    <Redirect
-      to={{
-          pathname: "/signupconfirm",
-          state: { email: "this.state.email" }
-      }}
-    />
-      console.log('registration res', res); 
-    }).catch(error => {
-      console.log('registration error', error);
-    })
-    e.preventDefault();
-  }
+   fetch('http://localhost:8080/users/signup', {
+        mode: 'cors',
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify(this.state),
+   },
+   {withCredentials: false}
+  )
+      .then(response => {
+        response.json();
+        console.log('info', response);
+        this.props.history.push('/signupconfirm', {email: this.state.email});
+      })
+      .catch(error => {
+        console.log('registration error', error);
+        alert('Can not register. The email or studentID is existed');
+      })
+}
 
 render() {
   const {errors} = this.state;
@@ -213,16 +216,34 @@ render() {
                 {errors.studentId && <div className="validation" style={{display: 'block'}}>{errors.studentId}</div>}
               </div>
               <div className="gender-area">
-                <input type="text" name='studentId' value={this.state.gender} onChange={this.handleChange} placeholder="Nhập giới tính" className="gender-text" required />
-                {errors.gender && <div className="validation" style={{display: 'block'}}>{errors.gender}</div>}
+                <select 
+                    className='gender-text'
+                    value={this.state.gender}
+                    onChange={this.handleChange}
+                    name='gender'
+                    required
+                >
+                    <option value="male">Nam</option>
+                    <option value="female">Nữ</option>
+                </select>
               </div>
               <div className="major-area">
                 <input type="text" name='major' value={this.state.major} onChange={this.handleChange} placeholder="Nhập chuyên ngành học" className="major-text" required />
                 {errors.major && <div className="validation" style={{display: 'block'}}>{errors.major}</div>}
               </div>
               <div className="faculty-area">
-                <input type="text" name='faculty' value={this.state.faculty} onChange={this.handleChange} placeholder="Nhập tên Khoa" className="faculty-text" required />
-                {errors.faculty && <div className="validation" style={{display: 'block'}}>{errors.faculty}</div>}
+                <select 
+                    className='faculty-text'
+                    value={this.state.faculty}
+                    onChange={this.handleChange}
+                    name='faculty'
+                    required
+                >
+                    <option value="fit">Công nghệ thông tin</option>
+                    <option value="kt">Kinh tế</option>
+                    <option value="ddt">Điện - Điện tử</option>
+                    <option value="ck">Cơ khí</option>
+                </select>
               </div>
               <div className="date-area">
                 <input type="date" name='dob' value={this.state.dob} onChange={this.handleChange} placeholder="Ngày tháng năm sinh" className="date-text" required />
@@ -233,8 +254,8 @@ render() {
                 {errors.password && <div className="validation" style={{display: 'block'}}>{errors.password}</div>}
               </div>
               <div className="repass-area">
-                <input type="password" name='confirmedpassword' value={this.state.confirmedpassword} onChange={this.handleChange} placeholder="Nhập lại mật khẩu" className="repass-text" required/>
-                {errors.confirmedpassword && <div className="validation" style={{display: 'block'}}>{errors.confirmedpassword}</div>}
+                <input type="password" name='confirmedPassword' value={this.state.confirmedPassword} onChange={this.handleChange} placeholder="Nhập lại mật khẩu" className="repass-text" required/>
+                {errors.confirmedPassword && <div className="validation" style={{display: 'block'}}>{errors.confirmedPassword}</div>}
               </div>
               <div className="username-area">
                 <input type="text" name='username' value={this.state.username} onChange={this.handleChange} placeholder="Nhập tên đăng nhập" className="username-text" required/>
@@ -244,9 +265,9 @@ render() {
             <div className='newavatar-group'>
               <progress value={this.state.progress} max="100" hidden={true}/>
               <label for="files" className='uploadbtn'>Tải ảnh lên</label>
-              <input id='files' type='file' className='uploadbtn' name='img' onChange={this.handleInput} hidden='true' required/>
+              <input id='files' type='file' className='uploadbtn' onChange={this.handleInput} hidden='true' required/>
               <button className='uploadbtn' onClick={this.handleUpload}></button>
-              <img src={this.state.url} value={this.state.avatarUrl} className='newavatar' alt=" "/>
+              <img src={this.state.url} value={this.state.avatarUrl} name='avatarUrl' className='newavatar' alt=" "/>
             </div>
         </div>
       </div>

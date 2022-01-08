@@ -15,7 +15,8 @@ function AdminFeature(props) {
     const history = useHistory();
     const handleClubManagement = e => (history.push('/clubmanage'));
     const handleRoleManagement = e => (history.push('/'));
-
+    const handleLogout = e => (history.push('/infochange'));
+    
     return (
         <div>
             <img className='admin-bg' src={ADMIN}/>
@@ -23,6 +24,7 @@ function AdminFeature(props) {
             <div className='adminbtn-group'>
                 <button className='admin-btn' onClick={handleClubManagement}><b>Quản lý CLB</b></button>
                 <button className='admin-btn' onClick={handleRoleManagement}><b>Thêm vai trò</b></button>
+                <button className='admin-btn' onClick={handleLogout}><b>Trang cá nhân</b></button>
             </div>
 
             <div className='clb-group'>

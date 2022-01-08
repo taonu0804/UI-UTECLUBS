@@ -1,8 +1,8 @@
-import React, { useState, Component } from 'react';
-import { Button  } from '@material-ui/core';
+import React, { Component } from 'react';
 import './style.css';
 import Validator from '../../utils/validator.js';
 import { storage } from '../../firebase';
+import { matchPath } from 'react-router';
 
 class InfoChangeFeature extends Component {
   constructor (props) {
@@ -11,51 +11,51 @@ class InfoChangeFeature extends Component {
       image: null,
       url: '',
       progress: 0,
+      users: [],
       errors: {},
     }
 
-    this.handleChange = this
-      .handleChange
-      .bind(this);
-      this.handleUpload = this.handleUpload.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleUpload = this.handleUpload.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
 
     const requiredWith = (value, field, state) => (!state[field] && !value) || !!value;
 
     const rules = [
       {
-        field: 'oldpassword',
+        field: 'fullName',
         method: 'isEmpty',
         validWhen: false,
-        message: 'The old password is required.',
+        message: 'The name is required.',
       },
       {
-        field: 'newpassword',
-        method: 'isEmpty',
-        validWhen: false,
-        message: 'The new password is required.',
-      },
-      {
-        field: 'confirmedpassword',
-        method: 'isEmpty',
-        validWhen: false,
-        message: 'The password confirmation is required.',
-      },
-      {
-        field: 'newpassword',
+        field: 'newPassword',
         method: 'isLength',
         args: [{min: 8}],
         validWhen: true,
-        message: 'The password must be at least 8 characters, one upper letter, one special character.',
+        message: 'The password must be at least 8 characters, one upper letter, one lower letter, one special character.',
       },
       {
-        field: 'confirmedpassword',
+        field: 'confirmedPassword',
         method: this.passwordMatch,
         validWhen: true,
         message: 'Password and password confirmation do not match.'
       },
     ];
     this.validator = new Validator(rules);
-  }handleChange = e => {
+  }
+
+  passwordMatch = (confirmation, state) => (state.password === confirmation)
+    handleInput = event => {
+    event.preventDefault();
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  }
+  
+  handleChange = e => {
     if (e.target.files[0]) {
       const image = e.target.files[0];
       this.setState(() => ({image}));
@@ -90,11 +90,38 @@ class InfoChangeFeature extends Component {
     });
   };
 
+  componentDidMount() {
+    const match = matchPath(this.props.history.location.pathname, {
+      path: '/infochange/:userId',
+      exact: true,
+      strict: false
+    })
+    const id = match.params.clubId;
+    console.log('id', id);
+
+    fetch('http://localhost:8080/users/' + `${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'text/html',
+        'access-control-allow-headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+        'access-control-allow-methods': 'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT',
+      },
+   },
+   {withCredentials: false})
+    .then((response) => response.json())
+    .then(item => {
+        this.setState({ users: item });
+        console.log(item);
+    });
+  }
+
   handleSubmit = (e) => {
+    e.preventDefault();
     this.setState({
       errors: this.validator.validate(this.state),
     });
-    console.log(this.state);
+    
+    const access_token = localStorage.getItem('access_token');
   };
   
   handleLogout = () => {
@@ -113,23 +140,47 @@ class InfoChangeFeature extends Component {
                   <label for="files" className='ava'>Tải ảnh lên</label>
                   <input id='files' type='file' className='ava' name='img' onChange={this.handleChange} hidden='true' required/>
                   <button className='changeava' onClick={this.handleUpload}></button>
-                  <img src={this.state.url} value={this.state.logoUrl} className='avatar' alt=" "/>
+                  <img src={this.state.url} name='avatarUrl' value={this.state.url} className='avatar' alt=" "/>
                 </div>
                 <button className='logout' onClick={this.handleLogout}>ĐĂNG XUẤT</button>
+                <div className="fullName-group">
+                    <label className="fullName-label">Họ và tên</label>
+                    <input type="text" name='fullName' className="fullName" value={this.state.fullName} onChange={this.handleInput} required />
+                    {errors.fullName && <div className="validation" style={{display: 'block'}}>{errors.fullName}</div>}
+                </div>
+                <div className="gender-group">
+                    <label className="gender-label">Giới tính</label>
+                    <select 
+                        className='gender'
+                        value={this.state.gender}
+                        onChange={this.handleInput}
+                        name='gender'
+                        required
+                    >
+                        <option value="male">Nam</option>
+                        <option value="female">Nữ</option>
+                    </select>
+                    {errors.gender && <div className="validation" style={{display: 'block'}}>{errors.gender}</div>}
+                </div>
+                <div className="dob-group">
+                    <label className="dob-label">Ngày sinh</label>
+                    <input type="date" name='dob' value={this.state.dob} onChange={this.handleInput} placeholder="Ngày tháng năm sinh" className="dob" required />
+                    {errors.dob && <div className="validation" style={{display: 'block'}}>{errors.dob}</div>}
+                </div>
                 <div className="pass-group">
                     <label className="pass-label">Mật khẩu cũ</label>
-                    <input type="password" name='oldpassword' placeholder="Vui lòng nhập mật khẩu cũ" className="oldpassword" value={this.state.oldpassword} onChange={this.handleInput} required />
-                    {errors.oldpassword && <div className="validation" style={{display: 'block'}}>{errors.oldpassword}</div>}
+                    <input type="password" name='oldPassword' placeholder="Vui lòng nhập mật khẩu cũ" className="oldpassword" value={this.state.oldPassword} onChange={this.handleInput}/>
+                    {errors.oldPassword && <div className="validation" style={{display: 'block'}}>{errors.oldPassword}</div>}
                 </div>
                 <div className="newpass-group">
                     <label className="newpass-label">Mật khẩu mới</label>
-                    <input type="password" name='newpassword' placeholder="Vui lòng nhập mật khẩu mới" className="newpassword" value={this.state.newpassword} onChange={this.handleInput} required />
-                    {errors.newpassword && <div className="validation" style={{display: 'block'}}>{errors.newpassword}</div>}
+                    <input type="password" name='newPassword' placeholder="Vui lòng nhập mật khẩu mới" className="newpassword" value={this.state.newPassword} onChange={this.handleInput}/>
+                    {errors.newPassword && <div className="validation" style={{display: 'block'}}>{errors.newPassword}</div>}
                 </div>
                 <div className="repass-group">
                     <label className="repass-label" wfd-invisible="true">Nhập lại mật khẩu mới</label>
-                    <input type="password" name='confirmedpassword' placeholder="Vui lòng nhập lại mật khẩu mới" className="renewpassword"  value={this.state.confirmedpassword} onChange={this.handleInput} required />
-                    {errors.confirmedpassword && <div className="validation" style={{display: 'block'}}>{errors.confirmedpassword}</div>}
+                    <input type="password" name='confirmedPassword' placeholder="Vui lòng nhập lại mật khẩu mới" className="renewpassword"  value={this.state.confirmedPassword} onChange={this.handleInput}/>
+                    {errors.confirmedPassword && <div className="validation" style={{display: 'block'}}>{errors.confirmedPassword}</div>}
                 </div>
                 <div className="change-group">
                     <button className="change-link" onClick={this.handleSubmit}>THAY ĐỔI</button>

@@ -1,0 +1,88 @@
+.table td, .table th {
+    border: 1px solid #fff;
+    padding: 8px;
+  }
+  
+  .table tr:nth-child(even){background-color: #666161;}
+  
+  .table tr:hover {background-color: #ddd;}
+  
+  .table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .table {
+    text-align: center;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    border: 3px solid #ddd;
+    width: 100%;
+  }
+  
+  .title {
+      text-align: center;
+      font-family: arial, sans-serif;
+    }
+  
+    .row-link {
+        text-decoration: none;
+        color: black;
+    }
+  
+    .member-form {
+        width: 1200px;
+        border: solid 3px gray;
+        border-radius: 25px;
+        margin-left: 10%;
+        margin-top: 2%;
+        box-shadow: 5px 5px 5px 5px gray;
+        -webkit-border-radius: 25px;
+        -moz-border-radius: 25px;
+        -ms-border-radius: 25px;
+        -o-border-radius: 25px;
+  }
+  
+  .delbtn {
+      width: 25px;
+      height:25px;
+  }
+  
+  .table-name {
+      font-size: 30px;
+      color: gray;
+      align-self: center;
+      margin-left: 40%;
+  }
+  
+  .-pagination {
+    height: 60px;
+  }
+  
+  .-previous, .-next {
+    height: 60px;
+    color: black;
+  }
+  
+  .-center .-pageInfo, .-pageJump, .-totalPages {
+    height: 30px;
+    font-size: 15px;
+  }
+  
+  .-pageSizeOptions {
+    height: 30px;
+    font-size: 15px;
+  }
+
+  .role-area {
+    margin-left: 80%;
+  }
+
+  .role-text {
+    border: solid 2px gray;
+    width: 210px;
+    margin-bottom: 10px;
+  }

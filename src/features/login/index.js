@@ -46,7 +46,7 @@ function LoginFeature() {
             if (role.roles[0] === 'ROLE_ADMIN') {
                 history.push("/admin");
             } else {
-                history.push("/newfeed");
+                history.push("/userwelcome");
             }
           }
         })

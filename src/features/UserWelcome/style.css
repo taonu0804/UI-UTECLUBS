@@ -1,0 +1,69 @@
+.bg-area {
+    z-index: 0;
+    background-repeat: no-repeat;
+    width: 100%;
+    align-items: center;
+    height: 91.5%;
+    margin-top: -0.6%;
+
+}
+
+.bg-area, .welcome-txt, .manageclb, .joinedclb, .notjoinedclb {
+    position: absolute;
+}
+
+.welcom-form .welcome-txt {
+    z-index: 1;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    margin-top: 5%;
+    text-shadow: 2px 3px rgb(247, 228, 60);
+}
+
+.logobtn {
+    width: 50px;
+    height: 50px;
+    margin-top: 5%;
+    border-radius: 50px;
+    border: solid 2px gray;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+}
+
+.managebtn, .joinedbtn, .notjoinedbtn {
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    -webkit-text-stroke: 1px black;
+}
+
+.managebtn:hover, .joinedbtn:hover, .notjoinedbtn:hover {
+    text-decoration: none;
+    color: black;
+    -webkit-text-stroke: 1px white;
+}
+
+.manageclb {
+    margin-top: 20%;
+    margin-left: 22%;
+    border-right: solid 2px gray;
+    padding-right: 5%;
+}
+
+.joinedclb {
+    margin-top: 20%;
+    margin-left: 41%;
+    border-right: solid 2px gray;
+    padding-right: 5%;
+}
+
+.notjoinedclb {
+    margin-top: 20%;
+    margin-left: 65%;
+}
+
+.logobtn {
+    margin-left: 35%;
+}

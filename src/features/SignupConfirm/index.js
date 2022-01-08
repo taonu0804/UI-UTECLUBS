@@ -53,7 +53,7 @@ class SignupConfirmFeature extends Component {
       const result = await response.json();
       console.log(result);
       if (result.data === "verified") {
-        return <Redirect to="/login" />;
+        this.props.history.push('/login');
       }
     } catch (error) {
       console.error(error);
@@ -69,7 +69,7 @@ class SignupConfirmFeature extends Component {
                 <input type="text" name='otp' value={this.state.otp} placeholder="Nhập mã xác thực ở đây" onChange={this.onchange} className="code-text" required />
                   {errors.otp && <div className="validation" style={{display: 'block'}}>{errors.otp}</div>}
               </div>
-              <button className='confirmbtn' onClick={event => this.performVerify(event)}><b>Xác nhận</b></button>
+              <button className='confirmbtn' onClick={this.performVerify}><b>Xác nhận</b></button>
             </form>
         </div>
     );

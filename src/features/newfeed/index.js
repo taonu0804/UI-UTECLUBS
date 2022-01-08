@@ -5,7 +5,8 @@ import JOINED from '../../image/group.png';
 import { Link } from "react-router-dom";
 import { storage } from '../../firebase';
 
-class NewFeedFeature extends Component {constructor (props) {
+class NewFeedFeature extends Component {
+    constructor (props) {
     super(props);
     this.state = {
         image: null,
@@ -13,13 +14,13 @@ class NewFeedFeature extends Component {constructor (props) {
         progress: 0,
         showDelBtn: false,
         showImg: false,
+        userclubs: [],
         user: '',
     }
     
-    this.handleChange = this
-    .handleChange
-    .bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleUpload = this.handleUpload.bind(this);
+    this.handlePost = this.handlePost.bind(this);
 
     }
 
@@ -55,21 +56,50 @@ class NewFeedFeature extends Component {constructor (props) {
     };
 
     handleDelete = () => {
+        const url = '';
+        this.setState(() => ({url}));
         this.setState(() => ({showImg: false}));
         this.setState(() => ({showDelBtn: false}));
     };
   
     componentDidMount() {
-        const user = localStorage.getItem('user');
-        const ava = user.avatarUrl;
-        this.setState({ ava });
+        const access_token = localStorage.getItem('access_token');
+        const user = parseJwt(access_token);
+        console.log('avatar', user);
+
+        const token = localStorage.getItem('access_token');
+        console.log('userId', token);
+
+       fetch('http://localhost:8080/club-management', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          }
+       })
+             .then(response => response.json())
+             .then(clubs => {
+                console.log('clubs', clubs);
+                 this.setState({
+                     userclubs: clubs,
+                     loading: true,
+                 })
+             })
+          .catch(error => console.log(error))
+      }
+
+      handlePost(e) {
+          e.preventDefault();
       }
     render() {
+        const {userclubs} = this.state; 
+        console.log(this.state);
+        const clubId = userclubs.map((item) => ( item.clubId ));
     return (
         <div>
             <div className='content-border'>
                 <div className='admin-area'>
-                    <Link className='clb-btn' to='/clubdetail'><b>Quản lý CLB</b></Link>
+                    <Link className='clb-btn' to={`/userclubdetail/${clubId}`}><b>Quản lý CLB</b></Link>
                     <Link className='add-btn'><b>Quản lý thành viên</b></Link>
                 </div>
 
@@ -96,12 +126,12 @@ class NewFeedFeature extends Component {constructor (props) {
                         <div className='sttimg-box'>
                             <progress value={this.state.progress} max="100" hidden={true}/>
                             <label for="files" className='sttimg-btn'></label>
-                            <input id='files' type='file' className='sttimg-btn' name='img' onChange={this.handleChange} hidden='true' required/>
+                            <input id='files' type='file' className='sttimg-btn' onChange={this.handleChange} hidden='true' required/>
                             <button className='changesttimg' onClick={this.handleUpload}></button>
-                            <img src={this.state.url} className='sttimg' alt=" " style={{display: this.state.showImg ? 'block' : 'none'}}/>
+                            <img src={this.state.url} name='imageUrl' value={this.state.url} className='sttimg' alt=" " style={{display: this.state.showImg ? 'block' : 'none'}}/>
                             <button className='delimg' onClick={this.handleDelete} style={{display: this.state.showDelBtn ? 'block' : 'none'}}>x</button>
                         </div>
-                        <button className='postbtn'><b>Đăng</b></button>
+                        <button className='postbtn' onClick={this.handlePost}><b>Đăng</b></button>
                     </div>
 
                     <div className='search'>
@@ -124,5 +154,12 @@ class NewFeedFeature extends Component {constructor (props) {
 
     );
 }}
+
+function parseJwt(token) {
+    if (!token) { return; }
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(window.atob(base64));
+}
 
 export default NewFeedFeature;

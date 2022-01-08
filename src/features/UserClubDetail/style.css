@@ -71,7 +71,7 @@
     -o-border-radius: 15px;
 }
 
-.bouton-contact{
+.register-btn{
     background-color: #f7f321;
     color: rgb(0, 0, 0);
     text-align: center;
@@ -88,7 +88,7 @@
     -o-border-radius: 0px 0px 25px 25px;
 }
 
-.bouton-contact:hover {
+.register-btn:hover {
     background-color: wheat;
 }
 
@@ -134,5 +134,26 @@
 }
 
 .img:hover {
+    background-color: wheat;
+}
+
+.cancel-btn{
+    background-color: #f7f321;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    width: 100%;
+    border:0;
+    padding: 17px 25px;
+    border-radius: 0px 0px 25px 25px;
+    cursor: pointer;
+    margin-top: 41%;
+    font-size: 18px;
+    -webkit-border-radius: 0px 0px 25px 25px;
+    -moz-border-radius: 0px 0px 25px 25px;
+    -ms-border-radius: 0px 0px 25px 25px;
+    -o-border-radius: 0px 0px 25px 25px;
+}
+
+.cancel-btn:hover {
     background-color: wheat;
 }
