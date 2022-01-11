@@ -79,7 +79,7 @@ function LoginFeature() {
                     <input type="hidden" defaultValue name="recaptchaResponse" wfd-invisible="true" />
                 </form>
                 <Link className="signup-link" to='/signup'>Chưa có tài khoản? Đăng ký ngay</Link><br/>
-                <Link className="forgetpass-link">Quên mật khẩu?</Link>
+                <Link className="forgetpass-link" to='/inputemail'>Quên mật khẩu?</Link>
             </div>
         </div>
 

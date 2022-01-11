@@ -1,0 +1,53 @@
+.rolemanage {
+    background-color: white;
+    width: 550px;
+    height: 250px;
+    border: solid 6px black;
+    border-radius: 25px;
+    padding-inline: 35px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+    box-shadow: 15px 15px 25px 15px gray;
+}
+
+.rolemanage-title {
+    margin-left: 13%;
+    color: yellow;
+    -webkit-text-stroke: 1px gray;
+}
+
+.studentId {
+    border: solid 1px black;
+    border-radius: 5px;
+    width: 250px;
+    margin-top: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.roleInClub {
+    border: solid 1px black;
+    border-radius: 5px;
+    margin-left: 15px;
+    width: 190px;
+}
+.addsubmit {
+    background-color: gray;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    margin-top: 25px;
+    margin-left: 80%;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+
+.addmember .validation {
+    position: absolute;
+}

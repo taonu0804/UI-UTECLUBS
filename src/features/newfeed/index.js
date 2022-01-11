@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './style.css';
-import NOTJOIN from '../../image/ingroup.png';
-import JOINED from '../../image/group.png';
+import NOTJOIN from '../../image/group.png';
+import JOINED from '../../image/home.jpg';
+import NOTI from '../../image/chuong.png';
 import { Link } from "react-router-dom";
 import { storage } from '../../firebase';
 
@@ -98,11 +99,6 @@ class NewFeedFeature extends Component {
     return (
         <div>
             <div className='content-border'>
-                <div className='admin-area'>
-                    <Link className='clb-btn' to={`/userclubdetail/${clubId}`}><b>Quản lý CLB</b></Link>
-                    <Link className='add-btn'><b>Quản lý thành viên</b></Link>
-                </div>
-
                 <div className='home-page'>
                     <div className='group-info'>
                     <Link className='info-link' to='/infochange'>
@@ -110,19 +106,26 @@ class NewFeedFeature extends Component {
                         <p className='nf-home'><b>Trang cá nhân</b></p>
                     </Link>
 
-                    <Link className='joined-group' to='/joinedclb'>
+                    <Link className='joined-group' to={`/userclubdetail/${clubId}`}>
                         <img className='nf-joined-gr' src={JOINED}/>
-                        <p className='nf-joined-txt'><b>CLB đã tham gia</b></p>
+                        <p className='nf-joined-txt'><b>Thông tin CLB</b></p>
                     </Link>
 
-                    <Link className='not-joined-group' to='/notjoinedclb'>
+                    <Link className='not-joined-group' to={`/clbmember/${clubId}`}>
                         <img className='nf-not-joined-gr' src={NOTJOIN}/>
-                        <p className='nf-not-joined-txt'><b>CLB chưa tham gia</b></p>
+                        <p className='nf-not-joined-txt'><b>Thành viên CLB</b></p>
                     </Link>
+
+                    <Link className='get-noti-group' to={`/noti/${clubId}`}>
+                        <img className='nf-get-noti-gr' src={NOTI}/>
+                        <p className='nf-get-noti-txt'><b>Thêm thành viên</b></p>
+                    </Link>
+
+                    <button className='leave'><b>Rời câu lạc bộ</b></button>
                     </div>
 
                     <div className='newfeed'>
-                        <input className='stt-box' type='text' placeholder='Hôm nay bạn thể nào?'></input>
+                        <textarea className='stt-box' type='text' placeholder='Hôm nay bạn thể nào?'></textarea>
                         <div className='sttimg-box'>
                             <progress value={this.state.progress} max="100" hidden={true}/>
                             <label for="files" className='sttimg-btn'></label>

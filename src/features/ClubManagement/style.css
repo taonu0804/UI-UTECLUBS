@@ -37,8 +37,8 @@
       width: 1200px;
       border: solid 3px gray;
       border-radius: 25px;
-      margin-left: 10%;
-      margin-top: 2%;
+      margin-left: 15%;
+      margin-top: 6%;
       box-shadow: 5px 5px 5px 5px gray;
       -webkit-border-radius: 25px;
       -moz-border-radius: 25px;
@@ -75,4 +75,24 @@
 .-pageSizeOptions {
   height: 30px;
   font-size: 15px;
+}
+
+.addbtn:hover {
+  text-decoration: none;
+  background-color: wheat;
+  color: #000;
+}
+
+.addbtn {
+  background-color: yellow;
+  border-radius: 15px;
+  border: solid 2px gray;
+  color: black;
+  margin-left: 87%;
+  margin-top: 2%;
+  padding-inline: 5px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
 }

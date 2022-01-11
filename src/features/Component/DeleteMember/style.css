@@ -1,0 +1,41 @@
+.delete-form {
+    background-color: white;
+    width: 550px;
+    height: 200px;
+    border: solid 6px black;
+    border-radius: 25px;
+    padding-inline: 35px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+    box-shadow: 15px 15px 25px 15px gray;
+}
+
+.del-title {
+    margin-left: 22%;
+    color: yellow;
+    -webkit-text-stroke: 1px gray;
+}
+
+.delsubmit, .cancelsubmit {
+    background-color: gray;
+    border: none;
+    border-radius: 15px;
+    padding-inline: 30px;
+    color: white;
+    margin-top: 5%;
+    margin-left: 15%;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+
+.delsubmit {
+    margin-left: 16%;
+}
+
+.delsubmit:hover, .cancelsubmit:hover {
+    background-color: rgb(185, 184, 184);
+}

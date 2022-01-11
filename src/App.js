@@ -23,6 +23,9 @@ import UserClubDetailFeature from './features/UserClubDetail';
 import UserWelcomeFeature from './features/UserWelcome';
 import { useHistory } from 'react-router-dom';
 import ClbMembersFeature from './features/ClbMembers';
+import AddClbFeature from './features/AddClb';
+import ForgetPassFeature from './features/ForgetPassword';
+import InputEmailForgetPassFeature from './features/InputEmailForgetPass';
 
 function App() {
   const history = useHistory();
@@ -61,7 +64,7 @@ function App() {
         <Route path='/login' component={ LoginFeature } exact/>
         <Route path='/contact' component={ ContactFeature } exact/>
         <Route path='/admin' component={ AdminFeature } exact/>
-        <Route path='/noti' component={ NotiFeature } exact/>
+        <Route path='/noti/:clubId' component={ NotiFeature } exact/>
         <Route path='/signup' component={ SignupFeature } exact/>
         <Route path='/infochange/:userId' component={ InfochangeFeature } exact/>
         <Route path='/newfeed/:clubId' component={ NewFeedFeature } exact/>
@@ -76,6 +79,9 @@ function App() {
         </Route>
         <Route path='/userwelcome' component={ UserWelcomeFeature } exact/>
         <Route path='/clbmember/:clubId' component={ ClbMembersFeature } exact/>
+        <Route path='/addclb' component={ AddClbFeature } exact/>
+        <Route path='/inputemail' component={ InputEmailForgetPassFeature } exact/>
+        <Route path='/forgetpass' component={ ForgetPassFeature } exact/>
         <Route path='/error' component={ ErrorFeature } exact/>
       </Switch>
       </div>

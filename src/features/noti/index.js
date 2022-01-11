@@ -1,10 +1,7 @@
-import { render } from '@testing-library/react';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './style.css';
-import axios from 'axios'
-import ReactTable from "react-table"; 
-import 'react-table/react-table.css'
+import { matchPath } from 'react-router';
 
 class NotiFeature extends Component {
     constructor(props) {
@@ -15,41 +12,57 @@ class NotiFeature extends Component {
        };
     }
 
-    async getUsersData(){
-      const res = await axios.get('http://localhost:8080/club-management/:clubId/member-requests?page=0')
-      console.log(res.data)
-      this.setState({loading:false, users: res.data})
-    }
     componentDidMount(){
-      this.getUsersData()
-    }
+      const token = localStorage.getItem('access_token');
+      console.log('userId', token);
+
+      const match = matchPath(this.props.history.location.pathname, {
+        path: '/noti/:clubId',
+        exact: true,
+        strict: false
+      })
+      const id = match.params.clubId;
+      console.log('id', id);
+
+     fetch(`http://localhost:8080/club-management/${id}/member-requests?page=0`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+     })
+           .then(response => response.json())
+           .then(students => {
+              console.log('students', students);
+               this.setState({
+                  students: students,
+                   loading: true,
+               })
+           })
+        .catch(error => console.log(error))
+  }
 
     render() {
-       const columns = [{
-          Header: 'ID',
-          accessor: 'id',
-          render: ({ row }) => (<Link className='table-link' to='/clubdetail'>{'clubId'}</Link>),
-       },
-      {
-         Header: 'Họ và Tên',
-         accessor: 'fullName',
-      },
-      {
-         Header: 'MSSV',
-         accessor: 'studentID',
-      }]
         return (
-            <div className='pending-form'>
-               <div className='button-group'>
-                  <button className='event-btn'><b>Phê duyệt tất cả</b></button>
-                  <button className='event-btn'><b>Phê duyệt</b></button>
-                  <button className='event-btn'><b>Xóa yêu cầu</b></button>
-               </div>
-               <Link className='row-link'><ReactTable className='member-table'
-                  data={this.state.students}  
-                  columns={columns}  
-               /></Link>
-
+            <div className='club-form'>
+               <table className='table'>
+                   <thead>
+                      <tr>
+                         <th>Club ID</th>
+                         <th>Club Name</th>
+                         <th>Unit</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                      {this.state.students.map((item) => (
+                        <tr>
+                           <Link className='row-link' to={`/newfeed/${item.clubId}`}> <td>{item.clubId}</td></Link>
+                           <td>{item.clubName}</td>
+                           <td>{item.affiliatedUnit}</td>
+                        </tr>
+                      ))}
+                   </tbody>
+               </table>
             </div>
          );
    }
