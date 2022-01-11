@@ -39,6 +39,8 @@ class ClubManagementFeature extends Component {
     render() {
        console.log(this.state);
         return (
+           <div>
+           <Link className='addbtn' to='/addclb'> + Thêm Câu lạc bộ</Link>
             <div className='club-form'>
                <h3 className='table-name'><b>CÁC CÂU LẠC BỘ</b></h3>
               <table className='table'>
@@ -51,7 +53,7 @@ class ClubManagementFeature extends Component {
                   </thead>
                   <tbody>
                   {this.state.clubs.map((item) => (
-                        <tr>
+                        <tr key={item.value.id}>
                            <Link className='row-link' to={`/clubdetail/${item.value.clubId}`}> <td>{item.value.clubId}</td></Link>
                            <td>{item.value.clubName}</td>
                            <td>{item.value.affiliatedUnit}</td>
@@ -61,6 +63,7 @@ class ClubManagementFeature extends Component {
               </table>
 
             </div>
+         </div>
          );
    }
 }

@@ -91,20 +91,20 @@ class InfoChangeFeature extends Component {
   };
 
   componentDidMount() {
+    const token = localStorage.getItem('access_token');
+    console.log(token);
     const match = matchPath(this.props.history.location.pathname, {
       path: '/infochange/:userId',
       exact: true,
       strict: false
     })
-    const id = match.params.clubId;
+    const id = match.params.userId;
     console.log('id', id);
 
     fetch('http://localhost:8080/users/' + `${id}`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'text/html',
-        'access-control-allow-headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
-        'access-control-allow-methods': 'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT',
+        Authorization: `Bearer ${token}`,
       },
    },
    {withCredentials: false})
@@ -121,7 +121,6 @@ class InfoChangeFeature extends Component {
       errors: this.validator.validate(this.state),
     });
     
-    const access_token = localStorage.getItem('access_token');
   };
   
   handleLogout = () => {

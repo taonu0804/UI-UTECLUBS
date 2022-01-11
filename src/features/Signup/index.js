@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './style.css';
 import BGDK from '../../image/bgdk.png';
 import Validator from '../../utils/validator.js';
 import { storage } from '../../firebase';
-import axios from 'axios';
 
 class SignupFeature extends Component {
   constructor (props) {
@@ -35,6 +34,12 @@ class SignupFeature extends Component {
         method: 'isEmpty',
         validWhen: false,
         message: 'The full name field is required.',
+      },
+      {
+        field: 'avatarUrl',
+        method: 'isEmpty',
+        validWhen: false,
+        message: 'The avatar is required.',
       },
       {
         field: 'email',
@@ -101,7 +106,7 @@ class SignupFeature extends Component {
         method: 'isLength',
         args: [{min: 8}],
         validWhen: true,
-        message: 'The password must be at least 8 characters, one upper letter, one special character.',
+        message: 'The password must be at least 8 characters, one upper letter, one lower letter, one special character.',
       },
       {
         field: 'confirmedpassword',
@@ -148,9 +153,7 @@ class SignupFeature extends Component {
       storage.ref('images').child(image.name).getDownloadURL().then(url => {
         console.log(url);
         this.setState({url});
-
-        const avatarUrl = url;
-        this.setState({avatarUrl});
+        this.setState({avatarUrl: url});
       });
     });
   };
@@ -164,11 +167,6 @@ class SignupFeature extends Component {
   }
   
   register(e) {
-    e.preventDefault();
-    this.setState({
-      errors: this.validator.validate(this.state),
-    });
-
    fetch('http://localhost:8080/users/signup', {
         mode: 'cors',
         method: 'POST',
@@ -183,7 +181,16 @@ class SignupFeature extends Component {
       .then(response => {
         response.json();
         console.log('info', response);
-        this.props.history.push('/signupconfirm', {email: this.state.email});
+        if (response.status === 400) {
+          this.setState({
+            errors: this.validator.validate(this.state),
+          });
+        }
+        if (response.status === 500) {
+          alert('Xin thử lại lần khác');
+        }
+        else {
+          this.props.history.push('/signupconfirm', {email: this.state.email});}
       })
       .catch(error => {
         console.log('registration error', error);
@@ -196,7 +203,7 @@ render() {
   return (
       <div>
         <div className='square-signup'></div>
-        <Link onClick={this.register}><h2 className='signuptext'>ĐĂNG KÝ</h2></Link>
+        <button onClick={this.register}><h2 className='signuptext'>ĐĂNG KÝ</h2></button>
         <div className='BGDK-area'>
           <img alt='' className='BGDK' src={BGDK}/>
         </div>
@@ -264,10 +271,11 @@ render() {
             </form>
             <div className='newavatar-group'>
               <progress value={this.state.progress} max="100" hidden={true}/>
-              <label for="files" className='uploadbtn'>Tải ảnh lên</label>
-              <input id='files' type='file' className='uploadbtn' onChange={this.handleInput} hidden='true' required/>
+              <label htmlFor="files" className='uploadbtn'>Tải ảnh lên</label>
+              <input id='files' type='file' className='uploadbtn' onChange={this.handleInput} hidden={true} required/>
               <button className='uploadbtn' onClick={this.handleUpload}></button>
-              <img src={this.state.url} value={this.state.avatarUrl} name='avatarUrl' className='newavatar' alt=" "/>
+              <img src={this.state.url} name='avatarUrl' value={this.state.avatarUrl} onChange={this.handleChange} className='newavatar' alt=" "/>
+              {errors.avatarUrl && <div className="validationava" style={{display: 'block'}}>{errors.avatarUrl}</div>}
             </div>
         </div>
       </div>

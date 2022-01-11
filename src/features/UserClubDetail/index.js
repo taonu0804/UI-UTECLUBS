@@ -34,7 +34,7 @@ class UserClubDetailFeature extends Component {
     }
     else {
       this.setState({showBtn: false});
-      this.setState({showCancel: true});
+      this.setState({showCancel: false});
     }
     
     const id = (condition[1].split('/notjoin'))[0];
@@ -135,7 +135,6 @@ class UserClubDetailFeature extends Component {
     else {
       this.setState({showBtn: true});
       this.setState({ showCancel: false });
-      this.setState({ showBtn: true });
     }
   }
   
@@ -158,7 +157,7 @@ class UserClubDetailFeature extends Component {
                 </div>
                 <div className='desc-area'>
                   <p className='desc'><b>Mô tả: </b></p>
-                  <input className='desc-detail' value={clubs.description} required/>
+                  <textarea className='desc-detail' value={clubs.description} required/>
                 </div>
                   <button type="submit" class="register-btn" onClick={this.handleRegister} style={{display: this.state.showBtn ? 'block' : 'none'}}>Yêu cầu tham gia</button>
                   <button type="submit" class="cancel-btn" onClick={this.handleCancel} style={{display: this.state.showCancel ? 'block' : 'none'}}>Hủy yêu cầu</button>

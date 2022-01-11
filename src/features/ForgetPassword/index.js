@@ -1,151 +1,161 @@
 import React, { Component } from 'react';
 import './style.css';
 import Validator from '../../utils/validator.js';
-import { storage } from '../../firebase';
+import { Link } from 'react-router-dom';
+import KEY from '../../image/key.png';
 
-class InfoChangeFeature extends Component {
+class ForgetPassFeature extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      image: null,
-      url: '',
-      progress: 0,
       errors: {},
+      username: '',
+      otp: '',
+      newPassword: '',
+      confirmedPassword: '',
     }
-
-    this.handleChange = this
-      .handleChange
-      .bind(this);
-      this.handleUpload = this.handleUpload.bind(this);
 
     const requiredWith = (value, field, state) => (!state[field] && !value) || !!value;
 
     const rules = [
       {
-        field: 'oldpassword',
+        field: 'uname',
         method: 'isEmpty',
         validWhen: false,
-        message: 'The old password is required.',
+        message: 'The username is required.',
       },
       {
-        field: 'newpassword',
+        field: 'oldPassword',
+        method: 'isEmpty',
+        validWhen: false,
+        message: 'The otp is required.',
+      },
+      {
+        field: 'oldPassword',
+        method: 'isLength',
+        args: [{min: 6}],
+        validWhen: true,
+        message: 'The password must be at least 6 characters.',
+      },
+      {
+        field: 'newPassword',
         method: 'isEmpty',
         validWhen: false,
         message: 'The new password is required.',
       },
       {
-        field: 'confirmedpassword',
+        field: 'confirmedPassword',
         method: 'isEmpty',
         validWhen: false,
         message: 'The password confirmation is required.',
       },
       {
-        field: 'newpassword',
+        field: 'newPassword',
         method: 'isLength',
         args: [{min: 8}],
         validWhen: true,
         message: 'The password must be at least 8 characters, one upper letter, one special character.',
       },
       {
-        field: 'confirmedpassword',
+        field: 'confirmedPassword',
         method: this.passwordMatch,
         validWhen: true,
         message: 'Password and password confirmation do not match.'
       },
     ];
     this.validator = new Validator(rules);
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   passwordMatch = (confirmation, state) => (state.password === confirmation)
-    handleInput = event => {
-    event.preventDefault();
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  }
+  handleChange = event => {
+  event.preventDefault();
+  this.setState({
+    [event.target.name]: event.target.value,
+  });
+}
   
-  handleChange = e => {
-    if (e.target.files[0]) {
-      const image = e.target.files[0];
-      this.setState(() => ({image}));
-    }
-  }
-
-  handleUpload = () => {
-    const {image} = this.state;
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
-    uploadTask.on('state_changed',
-    (snapshot) => {
-      // progrss function ....
-      const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-      this.setState({progress});
-    },
-    (error) => {
-         // error function ....
-      console.log(error);
-    },
-  () => {
-      // complete function ....
-      storage.ref('images').child(image.name).getDownloadURL().then(url => {
-        console.log(url);
-        this.setState({url});
-      });
-    });
-  };
-
-  handleInput = (e) => {
+  handleChange(e) {
     this.setState({
-      [e.target.name]: e.target.value,
+      [this.state.name]: this.state.value,
     });
-  };
+    console.log('event', this.state);
+  }
 
   handleSubmit(e)  {
-    this.setState({
-      errors: this.validator.validate(this.state),
-    });
-    console.log(this.state);
+    fetch('http://localhost:8080/users/reset-password/input-new-password', {
+            method: 'PUT',
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(this.state),
+       },
+       {withCredentials: false}
+      )
+          .then(response => {
+            response.json();
+            console.log('info', response);
+            if (response.status === 400) {
+                this.setState({
+                    errors: this.validator.validate(this.state),
+                });
+                alert('Mã OTP đã hết hạn');
+            }
+            if (response.status === 404) {
+                alert('Người dùng không tồn tại')
+            }
+            if (response.status === 500) {
+              alert('Xin thử lại');
+            }
+            if (response.status === 200) {
+                alert('Thay đổi thông tin thành công');
+            }
+          })
+          .catch(error => {
+            console.log('error', error);
+            alert('Somthing went wrong');
+          })
   };
-  
-  handleLogout = () => {
-    localStorage.removeItem('user');
-    this.props.history.push('/');
-  }
 
     render() {
       const {errors} = this.state;
     return (
-        <div>
-            <div className='frame'></div>
-            <form method="POST" className="info-form" style={{padding: 0}} source="custom" name="form">
-              <div className='avatar-group'>
-                  <progress value={this.state.progress} max="100" hidden={true}/>
-                  <label for="files" className='ava'>Tải ảnh lên</label>
-                  <input id='files' type='file' className='ava' name='img' onChange={this.handleChange} hidden='true' required/>
-                  <button className='changeava' onClick={this.handleUpload}></button>
-                  <img src={this.state.url} value={this.state.logoUrl} className='avatar' alt=" "/>
-                </div>
-                <button className='logout' onClick={this.handleLogout}>ĐĂNG XUẤT</button>
-                <div className="pass-group">
-                    <label className="pass-label">Mật khẩu cũ</label>
-                    <input type="password" name='oldpassword' placeholder="Vui lòng nhập mật khẩu cũ" className="oldpassword" value={this.state.oldpassword} onChange={this.handleInput} required />
-                    {errors.oldpassword && <div className="validation" style={{display: 'block'}}>{errors.oldpassword}</div>}
-                </div>
-                <div className="newpass-group">
-                    <label className="newpass-label">Mật khẩu mới</label>
-                    <input type="password" name='newpassword' placeholder="Vui lòng nhập mật khẩu mới" className="newpassword" value={this.state.newpassword} onChange={this.handleInput} required />
-                    {errors.newpassword && <div className="validation" style={{display: 'block'}}>{errors.newpassword}</div>}
-                </div>
-                <div className="repass-group">
-                    <label className="repass-label" wfd-invisible="true">Nhập lại mật khẩu mới</label>
-                    <input type="password" name='confirmedpassword' placeholder="Vui lòng nhập lại mật khẩu mới" className="renewpassword"  value={this.state.confirmedpassword} onChange={this.handleInput} required />
-                    {errors.confirmedpassword && <div className="validation" style={{display: 'block'}}>{errors.confirmedpassword}</div>}
-                </div>
-                <div className="change-group">
-                    <button className="change-link" onClick={this.handleSubmit}>THAY ĐỔI</button>
-                </div>
-            </form>
+        <div className='forgetpass-body'>
+          <h1 className='webname'>UTE-CLUBS</h1>
+          <p className='titletxt'>Vui lòng đổi mật khẩu để tiếp tục sử dụng</p>
+          <img src={KEY} className='keylogo'/>
+          <div className='frame'>
+          <form className="forgetpass-form" style={{padding: 0}}>
+              <div className="username-group">
+                  <label className="username-label">Tên người dùng</label>
+                  <input type='text' name='username' value={this.state.username} onChange={this.handleChange} placeholder="Vui lòng nhập tên người dùng" className='uname' required />
+                  {errors.uname && <div className="validation" style={{display: 'block'}}>{errors.uname}</div>}
+              </div>
+              <div className="pass-group">
+                  <label className="pass-label">OTP</label>
+                  <input type="number" name='otp' value={this.state.otp} onChange={this.handleChange} placeholder="Vui lòng nhập mã OTP" className="oldPassword" required />
+                  {errors.oldPassword && <div className="validation" style={{display: 'block'}}>{errors.oldPassword}</div>}
+              </div>
+              <div className="newpass-group">
+                  <label className="newpass-label">Mật khẩu mới</label>
+                  <input type="password" name='newPassword' value={this.state.newPassword} onChange={this.handleChange} placeholder="Vui lòng nhập mật khẩu mới" className="newPassword" required />
+                  {errors.newPassword && <div className="validation" style={{display: 'block'}}>{errors.newPassword}</div>}
+              </div>
+              <div className="repass-group">
+                  <label className="repass-label" wfd-invisible="true">Nhập lại mật khẩu mới</label>
+                  <input type="password" name='confirmedPassword' value={this.state.confirmedPassword} onChange={this.handleChange} placeholder="Vui lòng nhập lại mật khẩu mới" className="renewPassword" required />
+                  {errors.confirmedPassword && <div className="validation" style={{display: 'block'}}>{errors.confirmedPassword}</div>}
+              </div>
+              <div className="change-group">
+                  <button className="change-link" onClick={this.handleSubmit}>THAY ĐỔI</button>
+              </div>
+          </form>
+          </div>
+          <Link className='loginlink' to='/login'>Đăng nhập vào tài khoản</Link>
         </div>
     );
   }
 }
-export default InfoChangeFeature;
+export default ForgetPassFeature;
