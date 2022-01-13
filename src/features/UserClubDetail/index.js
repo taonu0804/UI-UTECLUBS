@@ -10,7 +10,6 @@ class UserClubDetailFeature extends Component {
       showBtn: false,
       showCancel: false,
     }
-    this.handleInput = this.handleInput.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
   }
@@ -23,14 +22,8 @@ class UserClubDetailFeature extends Component {
     console.log('con', condition[1]);
     
     if ( condition[1].length > 1 ) {
-      if (this.showBtn === this.state.true) {
-        this.setState({showBtn: false});
-        this.setState({showCancel: true});
-      }
-      else {
         this.setState({showBtn: true});
         this.setState({showCancel: false});
-      }
     }
     else {
       this.setState({showBtn: false});
@@ -43,9 +36,6 @@ class UserClubDetailFeature extends Component {
     fetch('http://localhost:8080/clubs/' + `${id}`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'text/html',
-        'access-control-allow-headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
-        'access-control-allow-methods': 'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT',
       },
    },
    {withCredentials: false})
@@ -54,12 +44,6 @@ class UserClubDetailFeature extends Component {
         this.setState({ clubs: item });
     });
   }
-
-  handleInput = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  };
 
   handleRegister = (e) => {
     e.preventDefault();
@@ -76,9 +60,7 @@ class UserClubDetailFeature extends Component {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,
-        Accept: 'application/json',
         'Content-Type': 'application/json',
-        "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify(id),
    },
@@ -100,41 +82,35 @@ class UserClubDetailFeature extends Component {
 
   handleCancel = (e) => {
     e.preventDefault();
+    const token = localStorage.getItem('access_token');
+    console.log('token', token);
     const link = (this.props.history.location.pathname).toString();
     console.log(link);
 
     const condition = link.split('/userclubdetail/');
     const id = (condition[1].split('/notjoin'))[0];
     console.log('id', id);
-    if (this.showCancel === this.state.true) {
+    if (window.confirm('Bạn muốn hủy yêu cầu?') == true) {
       fetch(`http://localhost:8080/users/cancel-request/${id}`, {
         method: 'DELETE',
         headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+          Authorization: `Bearer ${token}`,
         },
     },
     {withCredentials: false})
-      .then('/*', (response) => {
-        response.sendStatus(200);
+      .then((response) => {
         response.json();
-        if (response.status === 403) {
-          this.setState({ showCancel: false });
-          this.setState({ showBtn: true });
-        }
-        else {
           this.setState({ showCancel: false });
           this.setState({ showBtn: true });
           alert('Hủy yêu cầu thành công');
-        }
       })
       .catch(error => {
         console.log(error);
+        alert('Có lỗi xảy ra');
       })
     }
     else {
-      this.setState({showBtn: true});
-      this.setState({ showCancel: false });
+      return;
     }
   }
   
@@ -144,7 +120,7 @@ class UserClubDetailFeature extends Component {
       return (
           <div>
               <div className='detail-contain'>
-                  <input className='id' name='clubId' value={clubs.clubId} onChange={this.handleInput} hidden={true} required/>
+                  <input className='id' name='clubId' value={clubs.clubId} hidden={true} required/>
                 <div className='name-area'>
                   <input className='club-name' value={clubs.clubName} required/>
                 </div>

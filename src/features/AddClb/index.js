@@ -103,7 +103,7 @@ class AddClbFeature extends Component {
             console.log(res);
             this.setState({clubs: this.state});
             console.log('body', this.state.clubs);
-            this.props.history.push('/clubmanage');
+            this.props.history.push('/admin');
           })
           .catch((e) => {
             console.log(e);
@@ -129,7 +129,19 @@ class AddClbFeature extends Component {
                 </div>
                 <div className='unit-area'>
                   <h5 className='lead-text'><b>Đơn vị: </b></h5>
-                  <input className='lead-name' placeholder='Nhập đơn vị trực thuộc' name='affiliatedUnit' onChange={this.handleInput} required/>
+                  <select 
+                        className='lead-name'
+                        value={this.state.affiliatedUnit}
+                        onChange={this.handleInput}
+                        name='affiliatedUnit'
+                        required
+                    >
+                        <option value="Hội Sinh viên">Hội Sinh viên</option>
+                        <option value="Khoa Công Nghệ thông tin">Khoa Công Nghệ thông tin</option>
+                        <option value="Khoa Kinh tế">Khoa Kinh tế</option>
+                        <option value="Khoa Điện - Điện tử">Khoa Điện - Điện tử</option>
+                        <option value="Khoa Ngoại ngữ">Khoa Ngoại ngữ</option>
+                    </select>
                   {errors.affiliatedUnit && <div className="validation2" style={{display: 'block'}}>{errors.affiliatedUnit}</div>}
                 </div>
                 <div className='desc-area'>

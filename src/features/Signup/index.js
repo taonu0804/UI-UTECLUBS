@@ -168,11 +168,9 @@ class SignupFeature extends Component {
   
   register(e) {
    fetch('http://localhost:8080/users/signup', {
-        mode: 'cors',
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify(this.state),
    },

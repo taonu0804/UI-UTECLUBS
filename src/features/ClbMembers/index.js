@@ -9,6 +9,7 @@ import CHANGE from '../../image/change.png';
 import DEL from '../../image/del.png';
 import DeleteMemberComponent from '../Component/DeleteMember/Content';
 import ChangeComponent from '../Component/ChangeMember/Content';
+import jwt from 'jwt-decode';
 
 class ClbMembersFeature extends Component {
     constructor(props) {
@@ -19,6 +20,7 @@ class ClbMembersFeature extends Component {
        clubId:'',
        show: false,
        isLoaded: false,
+       showBtn: true,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleOff = this.handleOff.bind(this);
@@ -29,6 +31,42 @@ class ClbMembersFeature extends Component {
 
  handleOff(e) {
      this.setState({show: false})
+ }
+
+ componentDidMount() {
+     const token = localStorage.getItem('access_token');
+    const match = matchPath(this.props.history.location.pathname, {
+        path: '/clbmember/:clubId',
+        exact: true,
+        strict: false
+    })
+    const id = match.params.clubId;
+    console.log('id', id);
+
+    const roleadm = jwt(token);
+    console.log('role', roleadm);
+    if (roleadm.roles[0] === 'ROLE_ADMIN') {
+        this.setState({showBtn: true});
+    }
+    else {
+        fetch(`http://localhost:8080/clubs/${id}/get-role`, {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        })
+            .then(response => {response.json();
+                if (response.status === 400 ) {
+                    this.setState({showBtn: false});
+                }
+                else if (response.role === 'ROLE_MEMBER') {
+                    this.setState({showBtn: false});
+                }
+                else {
+                    this.setState({showBtn: true});
+                }
+        })
+    }
  }
 
  handleBlur(e) {
@@ -113,9 +151,31 @@ class ClbMembersFeature extends Component {
 
     render() {
         console.log(this.state);
+        var value = this.state.members.map((item) => {
+            var sex = '';
+            if (item.value.gender === 'female') {
+                sex = 'Nữ';
+            }
+            else {
+                sex = 'Nam';
+            }
+            return (
+              <tr>
+                 <Link className='row-link' to={`/userdetail/${item.value.userId}`}> <td>{item.value.fullName}</td></Link>
+                 <td>{item.value.studentId}</td>
+                 <td>{sex}</td>
+                 <td>{item.value.faculty}</td>
+                 <td style={{display: this.state.showBtn ? 'block' : 'none'}}><Popup modal trigger={<button className='delete'><img src={DEL} className='delete' onClick={this.handleBlur}/></button>}>
+                      {<DeleteMemberComponent userId={item.value.userId} clubId={this.state.clubId} handleBlur={this.state.show}/>}
+                  </Popup>
+                  <Popup modal trigger={<button className='change'><img src={CHANGE} className='change' onClick={this.handleBlur}/></button>}>
+                      {<ChangeComponent userId={item.value.userId} clubId={this.state.clubId} role={this.state.role} fullName={item.value.fullName}/>}
+                  </Popup></td>
+              </tr>)
+        });
         return (
             <div className='member-form' style={{filter: this.state.show ? 'grayscale(50%) blur(5px)' : 'none'}}>
-                <div className='adminbtn'>
+                <div className='adminbtn' style={{display: this.state.showBtn ? 'block' : 'none'}}>
                     <Popup modal trigger={<button className='add'><img src={ADD} className='add' onClick={this.handleBlur}/></button>}>
                         {<ContentComponent clubId={this.state.clubId}/>}
                     </Popup>
@@ -142,24 +202,11 @@ class ClbMembersFeature extends Component {
                         <th>Mã số sinh viên</th>
                         <th>Giới tính</th>
                         <th>Khoa</th>
-                        <th>Tác vụ</th>
+                        <th style={{display: this.state.showBtn ? 'block' : 'none'}}>Tác vụ</th>
                      </tr>
                   </thead>
                   <tbody>
-                  {this.state.members.map((item) => (
-                        <tr>
-                           <Link className='row-link' to={`/clubdetail/${item.value.userId}`}> <td>{item.value.fullName}</td></Link>
-                           <td>{item.value.studentId}</td>
-                           <td>{item.value.gender}</td>
-                           <td>{item.value.faculty}</td>
-                           <td><Popup modal trigger={<button className='delete'><img src={DEL} className='delete' onClick={this.handleBlur}/></button>}>
-                                {<DeleteMemberComponent userId={item.value.userId} clubId={this.state.clubId} handleBlur={this.state.show}/>}
-                            </Popup>
-                            <Popup modal trigger={<button className='change'><img src={CHANGE} className='change' onClick={this.handleBlur}/></button>}>
-                                {<ChangeComponent userId={item.value.userId} clubId={this.state.clubId} role={this.state.role} fullName={item.value.fullName}/>}
-                            </Popup></td>
-                        </tr>
-                      ))}
+                    {value.length ? value : <p className='empty'>Không có thành viên nào. Vui lòng chọn vai trò khác</p>}
                   </tbody>
               </table>
 

@@ -11,6 +11,7 @@ class UserWelcomeFeature extends Component {
     super(props);
     this.state = {
         userclubs: [],
+        user: [],
         loading: false
     }
 }
@@ -35,16 +36,32 @@ class UserWelcomeFeature extends Component {
                  })
              })
           .catch(error => console.log(error))
+
+          fetch('http://localhost:8080/users/current-user', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+       })
+             .then(response => response.json())
+             .then(user => {
+                console.log('user', user);
+                 this.setState({
+                     user: user,
+                     loading: true,
+                 })
+             })
+          .catch(error => console.log(error))
       }
 
     render() {
         const {userclubs} = this.state; 
+        const {user} = this.state;
         console.log(this.state);
         const clubId = userclubs.map((item) => ( item.clubId ));
     return (
         <div className='welcome-form'>
             <img className='bg-area' src={BG}/>
-            <h3 className='welcome-txt'><b>Xin chào, Tạ Thị Mai Hương</b></h3>
+            <h3 className='welcome-txt'><b>Xin chào, {user.fullName}</b></h3>
             <div className='clbbtn-group'>
                 <div className='manageclb'>
                     <img className='logobtn' src={LEAD}/><br/>

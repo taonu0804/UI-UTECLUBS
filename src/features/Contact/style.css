@@ -28,7 +28,7 @@
   margin-top: -25%;
 }
 
-.name-area1 {
+.member .name-area1 {
   margin-left: 330%;
   margin-top: -60%;
   border: solid 3px gray;
@@ -42,7 +42,7 @@
   -o-border-radius: 25px;
 }
 
-.name-area2 {
+.member .name-area2 {
   margin-left: 460%;
   margin-top: -143%;
   border: solid 3px gray;
@@ -69,7 +69,7 @@
   -o-border-radius: 150px;
 }
 
-.name {
+.member .name {
   font-size: 20px;
   padding-left: 35px;
 }

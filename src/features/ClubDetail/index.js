@@ -16,6 +16,7 @@ class ClubDetailFeature extends Component {
       clubs: [],
       errors: {},
       showBtn: false,
+      showUnit: true,
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -69,6 +70,7 @@ class ClubDetailFeature extends Component {
     .then((response) => response.json())
     .then(item => {
         this.setState({ clubs: item });
+        this.setState({showUnit: true});
         console.log('item', item);
     });
   }
@@ -112,10 +114,11 @@ class ClubDetailFeature extends Component {
       clubName: (this.state.clubName === undefined) ? clubName : this.state.clubName,
       affiliatedUnit: (this.state.affiliatedUnit === undefined) ? affiliatedUnit : this.state.affiliatedUnit,
       description: (this.state.description === undefined) ? description : this.state.description,
-      logoUrl: (this.state.logoUrl === logoUrl) ? logoUrl : this.state.url,
+      logoUrl: (this.state.logoUrl === undefined) ? logoUrl : this.state.url,
     }
 
     console.log(body);
+    if (window.confirm('Bạn chắc chắc muốn cập nhật?') == true) {
 
     fetch('http://localhost:8080/admin/club-management/' + `${id}` + '/update-info', {
             method: 'PUT',
@@ -130,6 +133,7 @@ class ClubDetailFeature extends Component {
           .then(() => {
               let item = {id, clubName, affiliatedUnit, description, logoUrl};
                 this.setState({ clubs: item });
+                this.setState({showUnit: true});
                 console.log('item', item);
                 alert('Cập nhật thành công');
           })
@@ -139,6 +143,10 @@ class ClubDetailFeature extends Component {
               errors: this.validator.validate(this.state),
           });
           })
+        }
+        else {
+          return;
+        }
   };
 
   render() {
@@ -152,9 +160,10 @@ class ClubDetailFeature extends Component {
       img = clubs.logoUrl;
     }
       return (
-          <div>
+          <div className='clbdetail'>
             <Link className='addmem' to={`/clbmember/${clubs.clubId}`}><img src={BTN} className='btn'/>Quản lý thành viên</Link>
               <div className='detail-contain'>
+              <h2 className='titletxt'><b>Thông tin Câu lạc bộ</b></h2>
                 <div className='name-area'>
                   <input type='text' className='club-name' name='clubName' placeholder={clubs.clubName} onChange={(e) => {this.setState({[e.target.name]: e.target.value})}} required/>
                   {errors.clubName && <div className="validation1" style={{display: 'block'}}>{errors.clubName}</div>}
@@ -168,7 +177,20 @@ class ClubDetailFeature extends Component {
                 </div>
                 <div className='unit-area'>
                   <h5 className='lead-text'><b>Đơn vị: </b></h5>
-                  <input className='lead-name' name='affiliatedUnit' placeholder={clubs.affiliatedUnit} onChange={(e) => {this.setState({[e.target.name]: e.target.value})}} required/>
+                  <p className='unittxt' style={{display: this.state.showUnit ? 'block' : 'none'}}>{clubs.affiliatedUnit}</p>
+                  <select
+                        className='lead-name'
+                        onChange={(e) => {this.setState({[e.target.name]: e.target.value}); this.setState({showUnit: false})}}
+                        name='affiliatedUnit'
+                        value={this.state.affiliatedUnit}
+                        required
+                    >
+                        <option value="Hội Sinh viên">Hội Sinh viên</option>
+                        <option value="Khoa Công Nghệ thông tin">Khoa Công Nghệ thông tin</option>
+                        <option value="Khoa Kinh tế">Khoa Kinh tế</option>
+                        <option value="Khoa Điện - Điện tử">Khoa Điện - Điện tử</option>
+                        <option value="Khoa Ngoại ngữ">Khoa Ngoại ngữ</option>
+                    </select>
                   {errors.affiliatedUnit && <div className="validation2" style={{display: 'block'}}>{errors.affiliatedUnit}</div>}
                 </div>
                 <div className='desc-area'>

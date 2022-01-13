@@ -1,4 +1,5 @@
 .detail-contain {
+    background-color: white;
     width: 900px;
     height: 530px;
     border: solid 3px gray;
@@ -37,14 +38,14 @@
     position: absolute;
 }
 
-.lead-text {
+.detail-contain .lead-text {
     margin-left: 35%;
     margin-top: 3%;
     font-size: 20px;
 }
 
-.lead-name {
-    width: 300px;
+.detail-contain .lead-name {
+    width: 315px;
     font-size: 20px;
     margin-top: 5%;
     margin-left: 35%;
@@ -163,4 +164,28 @@
 .btn {
     width: 60px;
     height: 50px;
+}
+
+.detail-contain .titletxt {
+    position: absolute;
+    margin-left: 1%;
+    margin-top: -3%;
+    -webkit-text-stroke: 0.5px yellow;
+}
+
+.unittxt {
+    position: absolute;
+    z-index: 1;
+    font-size: 20px;
+    background-color: white;
+    margin-left: 35%;
+    margin-top: 5%;
+    border-left: solid 1px gray;
+    border-top: solid 1px gray;
+    border-bottom: solid 1px gray;
+    border-radius: 65px;
+    -webkit-border-radius: 65px;
+    -moz-border-radius: 65px;
+    -ms-border-radius: 65px;
+    -o-border-radius: 65px;
 }

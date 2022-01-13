@@ -1,0 +1,170 @@
+.table td, .table th {
+  border: 1px solid #fff;
+  padding: 8px;
+}
+
+.table tr:nth-child(even){background-color: #666161;}
+
+.table tr:hover {background-color: #ddd;}
+
+.table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #000;
+  color: #fff;
+}
+
+.table {
+  text-align: center;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  border: 3px solid #ddd;
+  width: 100%;
+}
+
+.title {
+    text-align: center;
+    font-family: arial, sans-serif;
+  }
+
+  .row-link {
+      text-decoration: none;
+      color: black;
+  }
+
+.clubmanage .club-form {
+  overflow: auto;
+    width: 1180px;
+    height: 300px;
+    border: solid 3px gray;
+    border-radius: 25px;
+    margin-left: -3%;
+    margin-top: 2%;
+    box-shadow: 5px 5px 5px 5px gray;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+}
+
+.delbtn {
+    width: 25px;
+    height:25px;
+}
+
+.table-name {
+    font-size: 30px;
+    color: gray;
+    align-self: center;
+    margin-left: 40%;
+}
+
+.addbtn:hover {
+  text-decoration: none;
+  background-color: wheat;
+  color: #000;
+}
+
+.addbtn {
+  background-color: yellow;
+  border-radius: 15px;
+  border: solid 2px gray;
+  color: black;
+  margin-left: 80%;
+  padding-inline: 5px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+.slider {
+  color: white;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  -webkit-scroll-snap-points-x: repeat(300px);
+      -ms-scroll-snap-points-x: repeat(300px);
+          scroll-snap-points-x: repeat(300px);
+  -webkit-scroll-snap-type: mandatory;
+      -ms-scroll-snap-type: mandatory;
+          scroll-snap-type: mandatory;
+}
+
+.slide {
+  width: 300px;
+  flex-shrink: 0;
+  height: 100%;
+}
+
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #ffffff;
+}
+
+.slides > div:target {
+  transform: scale(0.8);
+}
+
+.slider {
+  border-radius: 20px;
+  border: solid 2px gray;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.total {
+  position: absolute;
+  width: 68%;
+  height: 300px;
+  border: solid 2px gray;
+  border-radius: 20px;
+  margin-left: 28%;
+  margin-top: -25.3%;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.amount {
+  width: 250px;
+  height: 260px;
+  margin-left: 7%;
+}
+
+.clbtxt {
+  margin-top: -3%;
+  margin-left: 6%;
+  font-size: 25px;
+}
+
+.nobg {
+  position: absolute;
+  height: 290px;
+  margin-top: -36%;
+  margin-left: 51%;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.clubnum {
+  position: absolute;
+  font-size: 150px;
+  margin-top: -33%;
+  margin-left: 60%;
+  color:lightseagreen;
+}

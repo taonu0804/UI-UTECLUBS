@@ -18,8 +18,9 @@ class ContentComponent extends Component {
         field: 'studentId',
         method: 'isLength',
         args: [{min: 8}],
+        args: [{max: 8}],
         validWhen: true,
-        message: 'The student ID must be at least 8 characters.',
+        message: 'The student ID must be 8 characters.',
       },
     ];
     this.validator = new Validator(rules);
@@ -53,9 +54,11 @@ class ContentComponent extends Component {
             .then((response) => {
                 response.json();
                 if (response.status === 400) {
-                    if (response.errors === 'Bad Request') {
-                        alert('Thành viên đã ở trong câu lạc bộ');}
-                    } 
+                        alert('Thành viên đã ở trong câu lạc bộ');
+                }
+                if (response.status === 404) {
+                    alert('Người dùng không tồn tại');
+                }
                 if (response.status === 200) {
                     alert('Đã thêm thành viên vào Câu lạc bộ');
                     window.location.reload();
