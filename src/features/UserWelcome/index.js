@@ -58,6 +58,7 @@ class UserWelcomeFeature extends Component {
         const {user} = this.state;
         console.log(this.state);
         const clubId = userclubs.map((item) => ( item.clubId ));
+        const link = clubId.length ? `/newfeed/${clubId}` : '/notjoinedclb';
     return (
         <div className='welcome-form'>
             <img className='bg-area' src={BG}/>
@@ -65,15 +66,15 @@ class UserWelcomeFeature extends Component {
             <div className='clbbtn-group'>
                 <div className='manageclb'>
                     <img className='logobtn' src={LEAD}/><br/>
-                    <Link className='managebtn' to={`/newfeed/${clubId}`}><b>Quản lý CLB</b></Link>
+                    <Link className='managebtn' to={link}><b>Quản lý CLB</b></Link>
                 </div>
                 <div className='joinedclb'>
                     <img className='logobtn' src={JOINED}/><br/>
-                    <Link className='joinedbtn' to='/joinedclb'><b>Nhóm đã tham gia</b></Link>
+                    <Link className='joinedbtn' to='/joinedclb'><b>CLB đã tham gia</b></Link>
                 </div>
                 <div className='notjoinedclb'>
                     <img className='logobtn' src={NOTJOIN}/><br/>
-                    <Link className='notjoinedbtn' to='/notjoinedclb'><b>Nhóm chưa tham gia</b></Link>
+                    <Link className='notjoinedbtn' to='/notjoinedclb'><b>CLB chưa tham gia</b></Link>
                 </div>
             </div>
         </div>

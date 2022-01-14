@@ -37,19 +37,19 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.fullName-group {
+.info-form .fullName-group {
   position: absolute;
   margin-top: 13%;
-  margin-left: 53%;
+  margin-left: 59.5%;
 }
 
-.gender-group {
+.info-form .gender-group {
   position: absolute;
   margin-top: 16%;
-  margin-left: 53%;
+  margin-left: 58.5%;
 }
 
-.dob-group {
+.info-form .dob-group {
   position: absolute;
   margin-top: 16%;
   margin-left: 53%;
@@ -61,17 +61,13 @@
   margin-top: 19%;
 }
 
-.sex {
+.info-form .sex {
   position: absolute;
   width: 50px;
-  margin-left: 23.8%;
+  margin-left: 13.5%;
   border-radius: 10px;
-  margin-top: -4.7%;
+  margin-top: 0.5%;
   background-color: white;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
 }
 
 .info-form .newpass-group {
@@ -86,23 +82,29 @@
   margin-top: 25%;
 }
 
-.change-group {
+.info-form .change-group {
   z-index: 3;
   margin-left: 55%;
   margin-top: 29%;
 }
 
-.fullName-label {
+.fullName-group .fullName-label {
+  font-size: 20px;
+  position: absolute;
+  margin-left: -16.5%;
+  margin-top: 0%;
+  color: rgb(116, 21, 21);
+}
+
+.info-form .gender-label {
+  position: absolute;
+  margin-left: -13.5%;
+  margin-top: 0%;
   font-size: 20px;
   color: rgb(116, 21, 21);
 }
 
-.gender-label {
-  font-size: 20px;
-  color: rgb(116, 21, 21);
-}
-
-.dob-label {
+.info-form .dob-label {
   font-size: 20px;
   color: rgb(116, 21, 21);
 }
@@ -155,7 +157,7 @@
   -o-border-radius: 15px;
 }
 
-.fullName {
+.fullName-group .fullName {
   width: 550px;
   height: 30px;
   margin-left: 66px;

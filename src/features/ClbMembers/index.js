@@ -55,16 +55,22 @@ class ClbMembersFeature extends Component {
                 Authorization: `Bearer ${token}`,
             }
         })
-            .then(response => {response.json();
-                if (response.status === 400 ) {
-                    this.setState({showBtn: false});
-                }
-                else if (response.role === 'ROLE_MEMBER') {
-                    this.setState({showBtn: false});
-                }
-                else {
-                    this.setState({showBtn: true});
-                }
+        .then(response => {
+            if (response.status === 400 ) {
+                this.setState({showBtn: false});
+            }
+            console.log(response.statusText);
+            return response.text();
+        })
+        .then(item => {
+            console.log(item);
+            this.setState({role: item});
+            if (item === 'ROLE_LEADER') {
+                this.setState({showBtn: true});
+            }
+            else {
+                this.setState({showBtn: false});
+            }
         })
     }
  }
@@ -102,6 +108,24 @@ class ClbMembersFeature extends Component {
 
         var role = this.state.role;
         console.log(role);
+
+        const token = localStorage.getItem('access_token');
+        const roleadm = jwt(token);
+        console.log('role', roleadm);
+        if (roleadm.roles[0] !== 'ROLE_ADMIN') {
+            if (role === 'ROLE_LEADER') {
+                this.setState({showBtn: false});
+            }
+            else if (this.state.role === 'ROLE_LEADER') {
+                this.setState({showBtn: true});
+            }
+            else {
+                this.setState({showBtn: false});
+            }
+        }
+        else {
+            this.setState({showBtn: true});
+        }
 
     fetch(`http://localhost:8080/clubs/${id}/members?role=${role}`, {
         headers: {

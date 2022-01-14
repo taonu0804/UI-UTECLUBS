@@ -40,7 +40,7 @@ class UserDetailFeature extends Component {
     render () {
         const {user} = this.state;
         Moment.locale('en');
-        var dt = Moment(user.dob).format('d/MM/yyyy');
+        var dt = Moment(user.dob).format('DD/MM/yyyy');
 
         var sex='';
         if (user.gender === 'female') {
