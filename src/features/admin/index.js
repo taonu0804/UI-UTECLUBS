@@ -1,11 +1,7 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import './style.css';
-import ADMIN from '../../image/admin.png';
-import CTXH from '../../image/ctxh.jpg';
-import KN from '../../image/kn.png';
-import ESC from '../../image/esc.png';
-import TNXK from '../../image/tnxk.png';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import ClubManagementFeature from '../Component/ClubManagement';
 
 class AdminFeature extends Component {
     constructor (props) {
@@ -13,9 +9,6 @@ class AdminFeature extends Component {
       this.state = {
           user: [],
       }
-
-      this.handleClubManagement = this.handleClubManagement.bind(this);
-      this.handleLogout = this.handleLogout.bind(this);
     }
 
     componentDidMount() {
@@ -35,29 +28,17 @@ class AdminFeature extends Component {
                 console.log('item', item);
             });
     }
-
-    handleClubManagement() {
-        this.props.history.push('/clubmanage');
-    }
-
-    handleLogout() {
-        this.props.history.push(`/infochange/${this.state.user.userId}`);
-    }
     render() {
     return (
         <div>
-            <img className='admin-bg' src={ADMIN}/>
-            <p className='welcome-txt'><b>Xin chào<br/><span className='fullname'>{this.state.user.fullName}</span></b></p>
-            <div className='adminbtn-group'>
-                <button className='admin-btn' onClick={this.handleClubManagement}><b>Quản lý CLB</b></button>
-                <button className='admin-btn' onClick={this.handleLogout}><b>Trang cá nhân</b></button>
+            <div className='infoadm-group'>
+                <p className='helo'><b>XIN CHÀO</b></p>
+                <img className='avaadm' src={this.state.user.avatarUrl}/><br/>
+                <Link className='nameadm' to={`/infochange/${this.state.user.userId}`}><b>{this.state.user.fullName}</b></Link>
             </div>
 
-            <div className='clb-group'>
-                <img className='clb-img' src={KN}/>
-                <img className='clb-img' src={TNXK}/>
-                <img className='clb-img' src={ESC}/>
-                <img className='clb-img' src={CTXH}/>
+            <div className='adm-club'>
+                {<ClubManagementFeature/>}
             </div>
         </div>
 

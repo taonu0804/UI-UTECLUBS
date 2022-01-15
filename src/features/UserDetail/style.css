@@ -1,0 +1,196 @@
+.userdetail .avatar {
+    position: absolute;
+    margin-top: 10%;
+    margin-left:30%;
+    width: 300px;
+    height: 350px;
+    border: solid 2px gray;
+  }
+  
+ .userdetail .decos {
+    position: absolute;
+    background-color: rgb(258, 232, 203);
+    width: 25%;
+    margin-top: -0.5%;
+    height: 660px;
+  }
+  
+ .userdetail .decos .helo {
+    margin-top: 25%;
+    font-size: 40px;
+  }
+  
+  .label {
+    position: absolute;
+    font-size: 25px;
+    margin-top: 4%;
+    margin-left: 28%;
+  }
+  
+  .name {
+    color: white;
+    font-size: 35px;
+    text-align: center;
+    -webkit-text-stroke: 1px gray;
+  }
+
+  .id {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    -webkit-text-stroke: 1px gray;
+  }
+
+  .fullName-label {
+    position: absolute;
+    font-size: 22px;
+    margin-left: 58%;
+    margin-top: 13%;
+    color: rgb(116, 21, 21);
+  }
+
+  .infodetail .fullname {
+    position: absolute;
+    margin-left: 70%;
+    margin-top: 13%;
+    font-size: 22px;
+    border: solid 2px gray;
+    border-radius: 5px;
+    padding-inline: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+  .mssv-label {
+    position: absolute;
+    font-size: 22px;
+    margin-left: 58%;
+    margin-top: 16%;
+    color: rgb(116, 21, 21);
+  }
+
+  .infodetail .msv {
+    position: absolute;
+    margin-left: 70%;
+    margin-top: 16%;
+    font-size: 22px;
+    border: solid 2px gray;
+    border-radius: 5px;
+    padding-inline: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+  }
+
+  .gender-label {
+    position: absolute;
+    font-size: 22px;
+    margin-left: 58%;
+    margin-top: 19%;
+    color: rgb(116, 21, 21);
+  }
+
+  .infodetail .gen {
+    position: absolute;
+    margin-left: 70%;
+    margin-top: 19%;
+    font-size: 22px;
+    border: solid 2px gray;
+    border-radius: 5px;
+    padding-inline: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+  }
+
+  .sn-label {
+    position: absolute;
+    font-size: 22px;
+    margin-left: 58%;
+    margin-top: 22%;
+    color: rgb(116, 21, 21);
+  }
+
+  .infodetail .sn {
+    position: absolute;
+    margin-left: 70%;
+    margin-top: 22%;
+    font-size: 22px;
+    border: solid 2px gray;
+    border-radius: 5px;
+    padding-inline: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+  }
+
+  .fac-label {
+    position: absolute;
+    font-size: 22px;
+    margin-left: 58%;
+    margin-top: 25%;
+    color: rgb(116, 21, 21);
+  }
+
+  .infodetail .fac {
+    position: absolute;
+    margin-left: 70%;
+    margin-top: 25%;
+    font-size: 22px;
+    border: solid 2px gray;
+    border-radius: 5px;
+    padding-inline: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+  }
+
+  .maj-label {
+    position: absolute;
+    font-size: 22px;
+    margin-left: 58%;
+    margin-top: 28%;
+    color: rgb(116, 21, 21);
+  }
+
+  .infodetail .maj {
+    position: absolute;
+    margin-left: 70%;
+    margin-top: 28%;
+    font-size: 22px;
+    border: solid 2px gray;
+    border-radius: 5px;
+    padding-inline: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+  }
+
+  .mail-label {
+    position: absolute;
+    font-size: 22px;
+    margin-left: 58%;
+    margin-top: 31%;
+    color: rgb(116, 21, 21);
+  }
+
+  .infodetail .mail {
+    position: absolute;
+    margin-left: 70%;
+    margin-top: 31%;
+    font-size: 22px;
+    border: solid 2px gray;
+    border-radius: 5px;
+    padding-inline: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+  }

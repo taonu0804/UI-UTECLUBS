@@ -13,6 +13,8 @@ class InfoChangeFeature extends Component {
       progress: 0,
       users: [],
       errors: {},
+      showImg: false,
+      showGender: true,
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -54,6 +56,32 @@ class InfoChangeFeature extends Component {
       [event.target.name]: event.target.value,
     });
   }
+
+  componentDidMount() {
+    const token = localStorage.getItem('access_token');
+    console.log(token);
+    const match = matchPath(this.props.history.location.pathname, {
+      path: '/infochange/:userId',
+      exact: true,
+      strict: false
+    })
+    const id = match.params.userId;
+    console.log('id', id);
+
+    fetch('http://localhost:8080/users/' + `${id}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+   },
+   {withCredentials: false})
+    .then((response) => response.json())
+    .then(item => {
+        this.setState({ users: item });
+        this.setState({showGender: true});
+        console.log(item);
+    });
+  }
   
   handleChange = e => {
     if (e.target.files[0]) {
@@ -88,67 +116,142 @@ class InfoChangeFeature extends Component {
     this.setState({
       [e.target.name]: e.target.value,
     });
+    this.setState({showGender: false});
   };
 
-  componentDidMount() {
-    const token = localStorage.getItem('access_token');
-    console.log(token);
-    const match = matchPath(this.props.history.location.pathname, {
-      path: '/infochange/:userId',
-      exact: true,
-      strict: false
-    })
-    const id = match.params.userId;
-    console.log('id', id);
+  handleSubmit = (fullName, gender, avatarUrl) => {
+    if (this.state.oldPassword !== undefined) {
+      this.setState({showImg: true});
+    }
+    else {
+      this.setState({showImg: false});
+    }
+    if (window.confirm('Bạn chắc chắn muốn thay đổi?') == true ){
+    const access_token = localStorage.getItem('access_token');
+    console.log('token', access_token);
 
-    fetch('http://localhost:8080/users/' + `${id}`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-   },
-   {withCredentials: false})
-    .then((response) => response.json())
-    .then(item => {
-        this.setState({ users: item });
-        console.log(item);
-    });
+    var body = {
+      fullName: (this.state.fullName === undefined) ? fullName : this.state.fullName,
+      gender: (this.state.gender === undefined) ? gender : this.state.gender,
+      avatarUrl: (this.state.avatarUrl === undefined) ? avatarUrl : this.state.url,
+    }
+
+    console.log(body);
+
+    fetch('http://localhost:8080/users/update-info', {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${access_token}`,
+            },
+            body: JSON.stringify(body),
+       },
+       {withCredentials: false}
+        )
+          .then(() => {
+              let item = {fullName, gender, avatarUrl};
+                this.setState({ users: item });
+                this.setState({showGender: true});
+                console.log('item', item);
+          })
+          .catch((e) => {
+            console.log(e);
+            this.setState({
+              errors: this.validator.validate(this.state),
+            });
+          })
+
+      if (this.state.oldPassword !== undefined) {
+        fetch('http://localhost:8080/users/change-password', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${access_token}`,
+        },
+        body: JSON.stringify(this.state),
+    },
+    {withCredentials: false}
+    )
+      .then((res) => {
+            res.json();
+            this.setState({showGender: true});
+            console.log('item', res);
+            if (res.status === 400) {
+              alert('Mật khẩu cũ không trùng khớp');
+              this.setState({
+                errors: this.validator.validate(this.state),
+              });
+            }
+            else {
+            alert('Cập nhật thành công');
+            }
+      })
+      .catch((e) => {
+        console.log(e);
+        alert('Không thể cập nhật!');
+      })
+    }
+    else {
+      alert('Cập nhật thành công');
+    }
   }
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.setState({
-      errors: this.validator.validate(this.state),
-    });
-    
+  else {
+    return;
+  }
   };
   
   handleLogout = () => {
-    localStorage.removeItem('user');
-    this.props.history.push('/');
+    if (window.confirm('Bạn chắc chắc muốn đăng xuất?') == true) {
+      localStorage.removeItem('access_token');
+      this.props.history.push('/');
+    }
+    else {
+      return;
+    }
   }
 
     render() {
       const {errors} = this.state;
+      var img;
+      if (this.state.url !== '') {
+        img = this.state.url;
+      }
+      else {
+        img = this.state.users.avatarUrl;
+      }
+
+      var sex='';
+      if (this.state.users.gender === 'female') {
+        sex='Nữ';
+      }
+      else {
+        sex='Nam';
+      }
+
     return (
         <div>
-            <div className='frame'></div>
-            <form method="POST" className="info-form" style={{padding: 0}} source="custom" name="form">
+            <div className='decos'>
+              <p className='helo'><b>XIN CHÀO</b></p>
+              <p className='name'><b>{this.state.users.fullName}</b></p>
+            </div>
+            <div className="info-form">
+              <p className='label'><b>Chỉnh sửa thông tin</b><hr/></p>
               <div className='avatar-group'>
                   <progress value={this.state.progress} max="100" hidden={true}/>
-                  <label for="files" className='ava'>Tải ảnh lên</label>
-                  <input id='files' type='file' className='ava' name='img' onChange={this.handleChange} hidden='true' required/>
+                  <label htmlFor="files" className='ava'>Tải ảnh lên</label>
+                  <input id='files' type='file' className='ava' onChange={this.handleChange} hidden={true} required/>
                   <button className='changeava' onClick={this.handleUpload}></button>
-                  <img src={this.state.url} name='avatarUrl' value={this.state.url} className='avatar' alt=" "/>
+                  <img src={img} name='avatarUrl' value={img} onChange={this.handleInput} className='avatar' alt=" "/>
                 </div>
                 <button className='logout' onClick={this.handleLogout}>ĐĂNG XUẤT</button>
                 <div className="fullName-group">
                     <label className="fullName-label">Họ và tên</label>
-                    <input type="text" name='fullName' className="fullName" value={this.state.fullName} onChange={this.handleInput} required />
+                    <input type="text" name='fullName' className="fullName" placeholder={this.state.users.fullName} value={this.state.fullName} onChange={this.handleInput}/>
                     {errors.fullName && <div className="validation" style={{display: 'block'}}>{errors.fullName}</div>}
                 </div>
                 <div className="gender-group">
                     <label className="gender-label">Giới tính</label>
+                    <p className='sex' style={{display: this.state.showGender ? 'block' : 'none'}}>{sex}</p>
                     <select 
                         className='gender'
                         value={this.state.gender}
@@ -161,11 +264,6 @@ class InfoChangeFeature extends Component {
                     </select>
                     {errors.gender && <div className="validation" style={{display: 'block'}}>{errors.gender}</div>}
                 </div>
-                <div className="dob-group">
-                    <label className="dob-label">Ngày sinh</label>
-                    <input type="date" name='dob' value={this.state.dob} onChange={this.handleInput} placeholder="Ngày tháng năm sinh" className="dob" required />
-                    {errors.dob && <div className="validation" style={{display: 'block'}}>{errors.dob}</div>}
-                </div>
                 <div className="pass-group">
                     <label className="pass-label">Mật khẩu cũ</label>
                     <input type="password" name='oldPassword' placeholder="Vui lòng nhập mật khẩu cũ" className="oldpassword" value={this.state.oldPassword} onChange={this.handleInput}/>
@@ -174,17 +272,17 @@ class InfoChangeFeature extends Component {
                 <div className="newpass-group">
                     <label className="newpass-label">Mật khẩu mới</label>
                     <input type="password" name='newPassword' placeholder="Vui lòng nhập mật khẩu mới" className="newpassword" value={this.state.newPassword} onChange={this.handleInput}/>
-                    {errors.newPassword && <div className="validation" style={{display: 'block'}}>{errors.newPassword}</div>}
+                    {errors.newPassword && <div className="validation" style={{display: 'block', display: this.state.showImg ? 'block' : 'none'}}>{errors.newPassword}</div>}
                 </div>
                 <div className="repass-group">
                     <label className="repass-label" wfd-invisible="true">Nhập lại mật khẩu mới</label>
                     <input type="password" name='confirmedPassword' placeholder="Vui lòng nhập lại mật khẩu mới" className="renewpassword"  value={this.state.confirmedPassword} onChange={this.handleInput}/>
-                    {errors.confirmedPassword && <div className="validation" style={{display: 'block'}}>{errors.confirmedPassword}</div>}
+                    {errors.confirmedPassword && <div className="validation" style={{display: 'block', display: this.state.showImg ? 'block' : 'none'}}>{errors.confirmedPassword}</div>}
                 </div>
                 <div className="change-group">
-                    <button className="change-link" onClick={this.handleSubmit}>THAY ĐỔI</button>
+                    <button className="change-link" onClick={() => {this.handleSubmit(this.state.users.fullName, this.state.users.gender, this.state.users.avatarUrl)}}>THAY ĐỔI</button>
                 </div>
-            </form>
+            </div>
         </div>
     );
   }

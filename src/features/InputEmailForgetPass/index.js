@@ -28,12 +28,14 @@ class InputEmailForgetPassFeature extends Component {
 
     handleChange(e) {
         this.setState({
-          email: e.target.value
+          [e.target.name]: e.target.value,
         });
-        console.log('input', this.state);
     }
 
     handleSubmit(e) {
+      this.setState({
+          errors: this.validator.validate(this.state),
+      });
         fetch('http://localhost:8080/users/reset-password/input-email', {
             method: 'POST',
             headers: {
@@ -47,9 +49,6 @@ class InputEmailForgetPassFeature extends Component {
             response.json();
             console.log('info', response);
             if (response.status === 400) {
-                this.setState({
-                    errors: this.validator.validate(this.state),
-                });
                 alert('Mời nhập đầy đủ thông tin');
             }
             if (response.status === 404) {
@@ -58,13 +57,12 @@ class InputEmailForgetPassFeature extends Component {
             if (response.status === 500) {
               alert('Xin thử lại email');
             }
-            if (response.status === 200) {
-                this.props.history.push('/forgetpass');
+            else {
+              this.props.history.push('/forgetpass');
             }
           })
           .catch(error => {
             console.log('error', error);
-            alert('The email is not existed');
           })
     }
 
@@ -72,7 +70,7 @@ class InputEmailForgetPassFeature extends Component {
         const {errors} = this.state;
         return (
             <div className='forgetpassemail-body'>
-                <input type='email' className='emailtxt' name='email' value={this.state.value} onChange={this.handleChange} placeholder='Email address' required/>
+                <input type='email' className='emailtxt' name='email' onChange={this.handleChange} placeholder='Email address' required/>
                 {errors.email && <div className="validationemail" style={{display: 'block'}}>{errors.email}</div>}
                 <button className='emailsubmit' onClick={this.handleSubmit}>Next</button>
             </div>

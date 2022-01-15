@@ -76,3 +76,10 @@
     height: 30px;
     font-size: 15px;
   }
+
+  .outgr {
+    border: none;
+    width: 35px;
+    height: 35px;
+    background: none;
+  }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './style.css';
 import Validator from '../../../utils/validator.js';
 import { matchPath } from 'react-router';
+import jwt from 'jwt-decode';
 
 class ChangeComponent extends Component {
     constructor(props) {
@@ -19,12 +20,24 @@ class ChangeComponent extends Component {
 
     handleChange(e) {
         this.setState({[e.target.name]: e.target.value})
+
+        const userId = this.props.userId;
+        console.log(userId);
+        this.setState({userId: userId});
     }
 
     componentDidMount() {
         const role = this.props.role;
         console.log(role);
-
+        const token = localStorage.getItem('access_token');
+        const roleadm = jwt(token);
+        console.log('role', roleadm);
+        if (roleadm.roles[0] !== 'ROLE_ADMIN') {
+            this.setState({showLead: false});
+        }
+        else {
+            this.setState({showLead: true});
+        }
         if (role === 'ROLE_LEADER') {
             this.setState({showLead: false});
         }
@@ -43,24 +56,45 @@ class ChangeComponent extends Component {
         const id = this.props.clubId;
         console.log(id);
 
-        const userId = this.props.userId;
-        console.log(userId);
-        this.setState({userId: userId})
-
-        fetch('http://localhost:8080/admin/club-management/' + `${id}` + '/change-role', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
+        const roleadm = jwt(token);
+        console.log('role', roleadm);
+        if (window.confirm('Bạn chắc chắn muốn thay đổi?') == true) {
+            if (roleadm.roles[0] === 'ROLE_ADMIN') {
+            fetch('http://localhost:8080/admin/club-management/' + `${id}` + '/change-role', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(this.state),
             },
-            body: JSON.stringify(this.state),
-        },
-        {withCredentials: false}
-        )
-            .then((response) => {
-                response.json();
-            })
-            .catch((error) => console.log('error', error))
+            {withCredentials: false}
+            )
+                .then((response) => {
+                    response.json();
+                })
+                .catch((error) => console.log('error', error))
+            }
+            else {
+                fetch('http://localhost:8080/club-management/' + `${id}` + '/change-role', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(this.state),
+            },
+            {withCredentials: false}
+            )
+                .then((response) => {
+                    response.json();
+                })
+                .catch((error) => console.log('error', error))
+            }
+        }
+        else {
+            return;
+        }
     };
 
     render() {

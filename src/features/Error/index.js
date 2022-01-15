@@ -17,7 +17,7 @@ function ErrorFeature(props) {
                 <div className="notfound-top">
                 <h1>404</h1>
                 </div>
-                <div className="content">
+                <div className="conten">
                 <img src={BG} alt="" title />
                 <h3>Tiếc quá! Trang bạn muốn đến không tồn tại, hãy đăng nhập để tiếp tục</h3>
                 <form>

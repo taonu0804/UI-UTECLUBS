@@ -1,85 +1,110 @@
-.avatar, .frame {
-  position: absolute;
-}
-
 .avatar {
-  z-index: 1;
+  position: absolute;
+  margin-top: 8%;
+  margin-left:30%;
   width: 300px;
-  height: 300px;
-  border-radius: 200px;
-  -webkit-border-radius: 200px;
-  -moz-border-radius: 200px;
-  -ms-border-radius: 200px;
-  -o-border-radius: 200px;
-  margin-left: 12%;
-  margin-top: 7%;
+  height: 350px;
   border: solid 2px gray;
 }
 
-.frame {
-  z-index: 0;
-  border: solid 3px gray;
-  width: 770px;
-  height: 350px;
-  margin-left: 40%;
-  margin-top: 9%;
+.decos {
+  position: absolute;
+  background-color: rgb(255, 232, 203);
+  width: 25%;
+  height: 640px;
+}
+
+.decos .helo {
+  margin-top: 30%;
+  font-size: 60px;
+}
+
+.label {
+  position: absolute;
+  font-size: 25px;
+  margin-top: 4%;
+  margin-left: 28%;
+}
+
+.name {
+  color: white;
+  font-size: 35px;
+  text-align: center;
+  -webkit-text-stroke: 1px gray;
 }
 
 .pass-group, .newpass-group, .repass-group, .change-group, .logout, .ava, .changeava, .fullName-group, .gender-group, .dob-group, .gender-group {
-  position: absolute;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.fullName-group {
-  margin-top: 10%;
-  margin-left: 42%;
-}
-
-.gender-group {
+.info-form .fullName-group {
+  position: absolute;
   margin-top: 13%;
-  margin-left: 42%;
+  margin-left: 59.5%;
 }
 
-.dob-group {
+.info-form .gender-group {
+  position: absolute;
   margin-top: 16%;
-  margin-left: 42%;
+  margin-left: 58.5%;
 }
 
-.pass-group {
-  z-index: 0;
-  margin-left: 42%;
+.info-form .dob-group {
+  position: absolute;
+  margin-top: 16%;
+  margin-left: 53%;
+}
+
+.info-form .pass-group {
+  position: absolute;
+  margin-left: 53%;
   margin-top: 19%;
 }
 
-.newpass-group {
-  z-index: 1;
-  margin-left: 42%;
+.info-form .sex {
+  position: absolute;
+  width: 50px;
+  margin-left: 13.5%;
+  border-radius: 10px;
+  margin-top: 0.5%;
+  background-color: white;
+}
+
+.info-form .newpass-group {
+  position: absolute;
+  margin-left: 53%;
   margin-top: 22%;
 }
 
-.repass-group {
-  z-index: 2;
-  margin-left: 42%;
+.info-form .repass-group {
+  position: absolute;
+  margin-left: 53%;
   margin-top: 25%;
 }
 
-.change-group {
+.info-form .change-group {
   z-index: 3;
   margin-left: 55%;
   margin-top: 29%;
 }
 
-.fullName-label {
+.fullName-group .fullName-label {
+  font-size: 20px;
+  position: absolute;
+  margin-left: -16.5%;
+  margin-top: 0%;
+  color: rgb(116, 21, 21);
+}
+
+.info-form .gender-label {
+  position: absolute;
+  margin-left: -13.5%;
+  margin-top: 0%;
   font-size: 20px;
   color: rgb(116, 21, 21);
 }
 
-.gender-label {
-  font-size: 20px;
-  color: rgb(116, 21, 21);
-}
-
-.dob-label {
+.info-form .dob-label {
   font-size: 20px;
   color: rgb(116, 21, 21);
 }
@@ -132,7 +157,7 @@
   -o-border-radius: 15px;
 }
 
-.fullName {
+.fullName-group .fullName {
   width: 550px;
   height: 30px;
   margin-left: 66px;
@@ -167,9 +192,10 @@
   -o-border-radius: 15px;
 }
 
-.change-link {
-  margin-left: 40px;
-  margin-top: -20px;
+.info-form  .change-link {
+  width: 250px;
+  margin-left: 200px;
+  margin-top: -90px;
   font-size: 20px;
   color: black;
   background: yellow;
@@ -186,7 +212,7 @@
 }
 
 .logout {
-  z-index: 4;
+  position: absolute;
   border: 0;
   background-color: rgb(241, 167, 161);
   width: 100%;
@@ -194,7 +220,7 @@
   color: white;
   font-weight: bold;
   font-size: 20px;
-  margin-top: -0.9%;
+  margin-top: -0.7%;
 }
 
 .logout:hover {
@@ -202,8 +228,9 @@
 }
 
 .changeava, .ava {
-  margin-top: 28%;
-  margin-left: 18%;
+  position: absolute;
+  margin-top: 32%;
+  margin-left: 37%;
 }
 
 .ava {
@@ -221,6 +248,6 @@
     background-color: wheat;
 }
 
-.fullName-group .validation, .newpass-group .validation, .repass-group .validation {
+.info-form .validation {
   margin-top: -1%;
 }

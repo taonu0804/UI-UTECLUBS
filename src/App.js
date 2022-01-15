@@ -11,11 +11,10 @@ import SignupFeature from './features/Signup';
 import InfochangeFeature from './features/Infochange';
 import NewFeedFeature from './features/Newfeed';
 import ClubDetailFeature from './features/ClubDetail';
-import ClubManagementFeature from './features/ClubManagement';
 import SignupConfirmFeature from './features/SignupConfirm';
 import LOGO from './image/UTE-CLUBS.png';
 import { Route } from 'react-router-dom/cjs/react-router-dom.min';
-import { Link, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import JoinedCLBFeature from './features/JoinedCLB';
 import NotJoinedCLBFeature from './features/NotJoinedCLB';
 import ErrorFeature from './features/Error';
@@ -25,6 +24,7 @@ import { useHistory } from 'react-router-dom';
 import ClbMembersFeature from './features/ClbMembers';
 import AddClbFeature from './features/AddClb';
 import ForgetPassFeature from './features/ForgetPassword';
+import UserDetailFeature from './features/UserDetail';
 import InputEmailForgetPassFeature from './features/InputEmailForgetPass';
 
 function App() {
@@ -69,7 +69,6 @@ function App() {
         <Route path='/infochange/:userId' component={ InfochangeFeature } exact/>
         <Route path='/newfeed/:clubId' component={ NewFeedFeature } exact/>
         <Route path='/clubdetail/:clubId' component={ ClubDetailFeature } exact/>
-        <Route path='/clubmanage' component={ ClubManagementFeature } exact/>
         <Route path='/signupconfirm' component={ SignupConfirmFeature } exact/>
         <Route path='/joinedclb' component={ JoinedCLBFeature } exact/>
         <Route path='/notjoinedclb' component={ NotJoinedCLBFeature } exact/>
@@ -82,6 +81,7 @@ function App() {
         <Route path='/addclb' component={ AddClbFeature } exact/>
         <Route path='/inputemail' component={ InputEmailForgetPassFeature } exact/>
         <Route path='/forgetpass' component={ ForgetPassFeature } exact/>
+        <Route path='/userdetail/:userId' component={ UserDetailFeature } exact/>
         <Route path='/error' component={ ErrorFeature } exact/>
       </Switch>
       </div>

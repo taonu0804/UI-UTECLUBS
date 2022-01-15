@@ -67,7 +67,7 @@ function LoginFeature() {
                 <p className='text'><b>ĐĂNG NHẬP</b></p>
                 <form method="POST" className="login-form-area" style={{padding: '0px'}}>
                     <div className="email">
-                        <input type="text" placeholder="Nhập email của bạn" className="email" onChange={e => setUsername(e.target.value)} required />
+                        <input type="text" placeholder="Nhập tên đăng nhập của bạn" className="email" onChange={e => setUsername(e.target.value)} required />
                     </div>
                     <div className="password">
                         <input type="password" placeholder="Nhập mật khẩu của bạn" id="password" name="password" className="password" onChange={e => setPassword(e.target.value)} required />

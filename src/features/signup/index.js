@@ -11,19 +11,9 @@ class SignupFeature extends Component {
     this.state = {
       image: null,
       progress: 0,
-      url:'',
+      url: '',
       errors: {},
-      fullName: '',
-      email: '',
-      studentId: '',
-      gender: '',
-      major: '',
-      faculty: '',
-      password: '',
-      confirmedPassword: '',
-      username:'',
-      dob: '',
-      avatarUrl: '',
+      info: [],
     }
 
     const requiredWith = (value, field, state) => (!state[field] && !value) || !!value;
@@ -109,7 +99,7 @@ class SignupFeature extends Component {
         message: 'The password must be at least 8 characters, one upper letter, one lower letter, one special character.',
       },
       {
-        field: 'confirmedpassword',
+        field: 'confirmedPassword',
         method: this.passwordMatch,
         validWhen: true,
         message: 'Password and password confirmation do not match.'
@@ -123,17 +113,19 @@ class SignupFeature extends Component {
     this.register = this.register.bind(this);
   }
 
+  passwordMatch = (confirmation, state) => (state.password === confirmation)
+    handleChange = event => {
+    event.preventDefault();
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  }
+
   handleInput(e) {
     if (e.target.files[0]) {
       const image = e.target.files[0];
       this.setState(() => ({image}));
     }}
-
-  handleChange(e) {
-    this.setState({
-      [this.state.name]: this.state.value
-    });
-  }
 
   handleUpload = () => {
     const {image} = this.state;
@@ -153,48 +145,51 @@ class SignupFeature extends Component {
       storage.ref('images').child(image.name).getDownloadURL().then(url => {
         console.log(url);
         this.setState({url});
-        this.setState({avatarUrl: url});
+        this.setState({
+          avatarUrl: url,
+        });
       });
     });
   };
 
-  passwordMatch = (confirmation, state) => (state.password === confirmation)
-    handleChange = event => {
-    event.preventDefault();
+  handleChange(e) {
     this.setState({
-      [event.target.name]: event.target.value,
+      [e.target.name]: e.target.value
     });
   }
-  
-  register(e) {
+
+  register() {
+    this.setState({
+      errors: this.validator.validate(this.state),
+    });
    fetch('http://localhost:8080/users/signup', {
-        mode: 'cors',
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify(this.state),
    },
    {withCredentials: false}
   )
       .then(response => {
-        response.json();
-        console.log('info', response);
-        if (response.status === 400) {
-          this.setState({
-            errors: this.validator.validate(this.state),
-          });
+        console.log(response);
+        if (response.status === 409) {
+          return response.json();
         }
-        if (response.status === 500) {
-          alert('Xin thử lại lần khác');
-        }
+        return response.json();
+      })
+      .then(obj => {
+        console.log(obj.message);
+        if (obj.message === undefined) {
+        this.props.history.push('/signupconfirm');
+        localStorage.setItem('info', JSON.stringify(obj));
+        localStorage.setItem('pass', JSON.stringify(this.state.password));}
         else {
-          this.props.history.push('/signupconfirm', {email: this.state.email});}
+          alert(obj.message);
+        }
       })
       .catch(error => {
         console.log('registration error', error);
-        alert('Can not register. The email or studentID is existed');
       })
 }
 
@@ -209,23 +204,22 @@ render() {
         </div>
 
         <div className='signup-area'>
-          <form method="POST" className="signup-form" source="custom" style={{padding: '10px'}}>
+          <div className="signup-form">
               <div className="name-area">
-                <input type="text" name='fullName' value={this.state.fullName} onChange={this.handleChange} placeholder="Nhập tên của bạn" className="name-text" required />
+                <input type="text" name='fullName' onChange={this.handleChange} placeholder="Nhập tên của bạn" className="name-text" required />
                 {errors.fullName && <div className="validation" style={{display: 'block'}}>{errors.fullName}</div>}
               </div>
               <div className="email-area">
-                <input type="email" name='email' value={this.state.email} onChange={this.handleChange} placeholder="Nhập email" className="email-text" required />
+                <input type="email" name='email' onChange={this.handleChange} placeholder="Nhập email" className="email-text" required />
                 {errors.email && <div className="validation" style={{display: 'block'}}>{errors.email}</div>}
               </div>
               <div className="id-area">
-                <input type="number" name='studentId' value={this.state.studentId} onChange={this.handleChange} placeholder="Nhập mã số sinh viên" className="id-text" required />
+                <input type="number" name='studentId' onChange={this.handleChange} placeholder="Nhập mã số sinh viên" className="id-text" required />
                 {errors.studentId && <div className="validation" style={{display: 'block'}}>{errors.studentId}</div>}
               </div>
               <div className="gender-area">
-                <select 
+                <select
                     className='gender-text'
-                    value={this.state.gender}
                     onChange={this.handleChange}
                     name='gender'
                     required
@@ -235,40 +229,39 @@ render() {
                 </select>
               </div>
               <div className="major-area">
-                <input type="text" name='major' value={this.state.major} onChange={this.handleChange} placeholder="Nhập chuyên ngành học" className="major-text" required />
+                <input type="text" name='major' onChange={this.handleChange} placeholder="Nhập chuyên ngành học" className="major-text" required />
                 {errors.major && <div className="validation" style={{display: 'block'}}>{errors.major}</div>}
               </div>
               <div className="faculty-area">
-                <select 
+                <select
                     className='faculty-text'
-                    value={this.state.faculty}
                     onChange={this.handleChange}
                     name='faculty'
                     required
                 >
-                    <option value="fit">Công nghệ thông tin</option>
-                    <option value="kt">Kinh tế</option>
-                    <option value="ddt">Điện - Điện tử</option>
-                    <option value="ck">Cơ khí</option>
+                    <option value="Công nghệ thông tin">Công nghệ thông tin</option>
+                    <option value="Kinh tế">Kinh tế</option>
+                    <option value="Điện - Điện tử">Điện - Điện tử</option>
+                    <option value="Cơ khí">Cơ khí</option>
                 </select>
               </div>
               <div className="date-area">
-                <input type="date" name='dob' value={this.state.dob} onChange={this.handleChange} placeholder="Ngày tháng năm sinh" className="date-text" required />
+                <input type="date" name='dob' onChange={this.handleChange} placeholder="Ngày tháng năm sinh" className="date-text" required />
                 {errors.dob && <div className="validation" style={{display: 'block'}}>{errors.dob}</div>}
               </div>
               <div className="pass-area">
-                <input type="password" name='password' value={this.state.password} onChange={this.handleChange} placeholder="Mật khẩu" className="pass-text" required/>
+                <input type="password" name='password' onChange={this.handleChange} placeholder="Mật khẩu" className="pass-text" required/>
                 {errors.password && <div className="validation" style={{display: 'block'}}>{errors.password}</div>}
               </div>
               <div className="repass-area">
-                <input type="password" name='confirmedPassword' value={this.state.confirmedPassword} onChange={this.handleChange} placeholder="Nhập lại mật khẩu" className="repass-text" required/>
+                <input type="password" name='confirmedPassword' onChange={this.handleChange} placeholder="Nhập lại mật khẩu" className="repass-text" required/>
                 {errors.confirmedPassword && <div className="validation" style={{display: 'block'}}>{errors.confirmedPassword}</div>}
               </div>
               <div className="username-area">
-                <input type="text" name='username' value={this.state.username} onChange={this.handleChange} placeholder="Nhập tên đăng nhập" className="username-text" required/>
+                <input type="text" name='username' onChange={this.handleChange} placeholder="Nhập tên đăng nhập" className="username-text" required/>
                 {errors.username && <div className="validation" style={{display: 'block'}}>{errors.username}</div>}
               </div>
-            </form>
+            </div>
             <div className='newavatar-group'>
               <progress value={this.state.progress} max="100" hidden={true}/>
               <label htmlFor="files" className='uploadbtn'>Tải ảnh lên</label>
