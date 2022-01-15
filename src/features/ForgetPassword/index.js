@@ -9,33 +9,31 @@ class ForgetPassFeature extends Component {
     super(props);
     this.state = {
       errors: {},
-      username: '',
-      otp: '',
-      newPassword: '',
-      confirmedPassword: '',
+      forgetpass: [],
     }
 
     const requiredWith = (value, field, state) => (!state[field] && !value) || !!value;
 
     const rules = [
       {
-        field: 'uname',
+        field: 'username',
         method: 'isEmpty',
         validWhen: false,
         message: 'The username is required.',
       },
       {
-        field: 'oldPassword',
+        field: 'otp',
         method: 'isEmpty',
         validWhen: false,
         message: 'The otp is required.',
       },
       {
-        field: 'oldPassword',
+        field: 'otp',
         method: 'isLength',
         args: [{min: 6}],
+        args: [{max: 6}],
         validWhen: true,
-        message: 'The password must be at least 6 characters.',
+        message: 'The OTP must be 6 characters.',
       },
       {
         field: 'newPassword',
@@ -54,7 +52,7 @@ class ForgetPassFeature extends Component {
         method: 'isLength',
         args: [{min: 8}],
         validWhen: true,
-        message: 'The password must be at least 8 characters, one upper letter, one special character.',
+        message: 'The password must be at least 8 characters, one upper letter, one lower letter, one special character.',
       },
       {
         field: 'confirmedPassword',
@@ -79,12 +77,14 @@ class ForgetPassFeature extends Component {
   
   handleChange(e) {
     this.setState({
-      [this.state.name]: this.state.value,
+      [e.target.name]: e.target.value,
     });
-    console.log('event', this.state);
   }
 
   handleSubmit(e)  {
+    this.setState({
+        errors: this.validator.validate(this.state),
+    });
     fetch('http://localhost:8080/users/reset-password/input-new-password', {
             method: 'PUT',
             headers: {
@@ -98,10 +98,7 @@ class ForgetPassFeature extends Component {
             response.json();
             console.log('info', response);
             if (response.status === 400) {
-                this.setState({
-                    errors: this.validator.validate(this.state),
-                });
-                alert('Mã OTP đã hết hạn');
+                alert('Mã OTP chưa đúng');
             }
             if (response.status === 404) {
                 alert('Người dùng không tồn tại')
@@ -109,8 +106,9 @@ class ForgetPassFeature extends Component {
             if (response.status === 500) {
               alert('Xin thử lại');
             }
-            if (response.status === 200) {
-                alert('Thay đổi thông tin thành công');
+            else {
+              alert('Đổi mật khẩu thành công');
+              this.props.history.push('/login');
             }
           })
           .catch(error => {
@@ -130,22 +128,22 @@ class ForgetPassFeature extends Component {
           <form className="forgetpass-form" style={{padding: 0}}>
               <div className="username-group">
                   <label className="username-label">Tên người dùng</label>
-                  <input type='text' name='username' value={this.state.username} onChange={this.handleChange} placeholder="Vui lòng nhập tên người dùng" className='uname' required />
-                  {errors.uname && <div className="validation" style={{display: 'block'}}>{errors.uname}</div>}
+                  <input type='text' name='username' onChange={this.handleChange} placeholder="Vui lòng nhập tên người dùng" className='uname' required />
+                  {errors.username && <div className="validation" style={{display: 'block'}}>{errors.username}</div>}
               </div>
               <div className="pass-group">
                   <label className="pass-label">OTP</label>
-                  <input type="number" name='otp' value={this.state.otp} onChange={this.handleChange} placeholder="Vui lòng nhập mã OTP" className="oldPassword" required />
-                  {errors.oldPassword && <div className="validation" style={{display: 'block'}}>{errors.oldPassword}</div>}
+                  <input type="number" name='otp' onChange={this.handleChange} placeholder="Vui lòng nhập mã OTP" className="oldPassword" required />
+                  {errors.otp && <div className="validation" style={{display: 'block'}}>{errors.otp}</div>}
               </div>
               <div className="newpass-group">
                   <label className="newpass-label">Mật khẩu mới</label>
-                  <input type="password" name='newPassword' value={this.state.newPassword} onChange={this.handleChange} placeholder="Vui lòng nhập mật khẩu mới" className="newPassword" required />
+                  <input type="password" name='newPassword' onChange={this.handleChange} placeholder="Vui lòng nhập mật khẩu mới" className="newPassword" required />
                   {errors.newPassword && <div className="validation" style={{display: 'block'}}>{errors.newPassword}</div>}
               </div>
               <div className="repass-group">
                   <label className="repass-label" wfd-invisible="true">Nhập lại mật khẩu mới</label>
-                  <input type="password" name='confirmedPassword' value={this.state.confirmedPassword} onChange={this.handleChange} placeholder="Vui lòng nhập lại mật khẩu mới" className="renewPassword" required />
+                  <input type="password" name='confirmedPassword' onChange={this.handleChange} placeholder="Vui lòng nhập lại mật khẩu mới" className="renewPassword" required />
                   {errors.confirmedPassword && <div className="validation" style={{display: 'block'}}>{errors.confirmedPassword}</div>}
               </div>
               <div className="change-group">

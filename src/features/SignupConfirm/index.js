@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './style.css';
 import { Redirect } from "react-router-dom";
 import Validator from '../../utils/validator.js';
+import Moment from 'moment';
 
 class SignupConfirmFeature extends Component {
   constructor(props) {
@@ -29,35 +30,57 @@ class SignupConfirmFeature extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  performVerify = async event => {
+  performVerify = event => {
     event.preventDefault();
     this.setState({
       errors: this.validator.validate(this.state),
     });
 
+    var info = JSON.parse(localStorage.getItem('info'));
+    var pass = JSON.parse(localStorage.getItem('pass'));
+
+    Moment.locale('en');
     var data = {
-      email: this.props.email,
-      otp: this.state.otpCache
+      avatarUrl: info.avatarUrl,
+      fullName: info.fullName,
+      studentId: info.studentId,
+      gender: info.gender,
+      dob: Moment(info.dob).format('yyyy-MM-DD'),
+      faculty: info.faculty,
+      major: info.major,
+      email: info.email,
+      username: info.username,
+      password: pass,
+      otp: this.state.otp
     };
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify(data)
-    };
-    const url = "/users/signup/verify";
-    try {
-      const response = await fetch(url, options);
-      const result = await response.json();
-      console.log(result);
-      if (result.data === "verified") {
-        this.props.history.push('/login');
-      }
-    } catch (error) {
-      console.error(error);
-    }
+    console.log(data);
+    fetch('http://localhost:8080/users/signup/verify', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+   },
+   {withCredentials: false}
+  )
+      .then(response => {
+        if (response.status === 409) {
+          return response.json();
+        }
+        return response.json();
+      })
+      .then(obj => {
+        if (obj.message === undefined) {
+          alert('Đăng ký thành công');
+          this.props.history.push('/login');
+        }
+        else {
+          alert(obj.message);
+        }
+      })
+      .catch(error => {
+        console.log('registration error', error);
+      })
   };
 
   render() {
@@ -66,7 +89,7 @@ class SignupConfirmFeature extends Component {
         <div className='signupConfirm-area'>
           <form method="POST" className="signupConfirm-form" source="custom" style={{padding: '10px'}}>
               <div className="code-area">
-                <input type="text" name='otp' value={this.state.otp} placeholder="Nhập mã xác thực ở đây" onChange={this.onchange} className="code-text" required />
+                <input type="text" name='otp' placeholder="Nhập mã xác thực ở đây" onChange={this.onchange} className="code-text" required />
                   {errors.otp && <div className="validation" style={{display: 'block'}}>{errors.otp}</div>}
               </div>
               <button className='confirmbtn' onClick={this.performVerify}><b>Xác nhận</b></button>
