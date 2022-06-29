@@ -1,0 +1,46 @@
+.newava {
+    width: 200px;
+    height: 200px;
+    border-radius: 200px;
+    -webkit-border-radius: 200px;
+    -moz-border-radius: 200px;
+    -ms-border-radius: 200px;
+    -o-border-radius: 200px;
+    margin-left: 35%;
+}
+
+.upbtn {
+    border: solid 1px gray;
+    background: yellow;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    margin-top: 3%;
+    margin-left: 60%;
+}
+
+.eventname-text {
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    width: 650px;
+    height: 50px;
+    margin-left: 23%;
+    margin-top: 8%;
+}
+
+.detail-text {
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    width: 650px;
+    height: 100px;
+    margin-left: 23%;
+    margin-top: 3%;
+}

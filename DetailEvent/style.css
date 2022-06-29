@@ -1,0 +1,182 @@
+.body-main {
+    border: solid 2px gray;
+    width: 80%;
+    margin-left: 15%;
+    background-color:beige;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+
+.ava-main {
+    height: 250px;
+    width: 250px;
+    border-radius: 250px;
+    -webkit-border-radius: 250px;
+    -moz-border-radius: 250px;
+    -ms-border-radius: 250px;
+    -o-border-radius: 250px;
+    margin-left: 18%;
+    margin-top: 3%;
+}
+
+.ava-main, .event-name {
+    position: absolute;
+}
+
+.event-name {
+    font-size: 50px;
+    margin-left: 43%;
+    margin-top: 10%;
+}
+
+.line {
+    width: 80%;
+    margin-left: 20%;
+    margin-top: 25%;
+}
+
+.body-main, .buttongr {
+    position: absolute;
+}
+
+.buttongr {
+    width: 3%;
+    margin-top: 2%;
+    margin-left: 11%;
+}
+
+.add1, .edit1, .del1, .join1, .leave1, .follow1, .unfollow1 {
+    width: 140px;
+    height: 35px;
+    margin-top: 18%;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    background-color: rgb(89, 179, 248);
+    color: white;
+    border: none;
+}
+
+.add1:hover, .edit1:hover, .del1:hover, .join1:hover, .leave1:hover, .follow1:hover, .unfollow1:hover {
+    background-color: aquamarine;
+}
+
+.body-one {
+    background-color: white;
+    width: 60%;
+    height: 300px;
+    margin-left: 10%;
+    margin-top: 3%;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.title1, .begin-time, .end-time {
+    margin-left: 3%;
+    margin-top: 3%;
+}
+
+.detailed {
+    width: 90%;
+    height: fit-content;
+    margin-left: 6%;
+}
+
+.begin {
+    background-color: rgb(179, 179, 179);
+    width: fit-content;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5x;
+    margin-left: 50%;
+    margin-top: -6%;
+}
+.end {
+    background-color: rgb(179, 179, 179);
+    width: fit-content;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5x;
+    margin-left: 50%;
+    margin-top: -6%;
+}
+
+.body-two {
+    background-color: white;
+    width: 20%;
+    height: 120px;
+    border-radius: 10px;
+    margin-left: 75%;
+    margin-top: -24.5%;
+    padding-left: 3%;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.ava-two {
+    width: 50px;
+    height: 50px;
+    border-radius: 250px;
+    margin-left: 3%;
+    margin-top: 8%;
+}
+
+.amount {
+    margin-top: 5%;
+}
+
+.body-three {
+    background-color: white;
+    width: 20%;
+    height: 170px;
+    margin-left: 75%;
+    margin-top: 1%;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.ava-three {
+    width: 50px;
+    height: 50px;
+    border-radius: 250px;
+    margin-top: 3%;
+    margin-left: 20px;
+    -webkit-border-radius: 250px;
+    -moz-border-radius: 250px;
+    -ms-border-radius: 250px;
+    -o-border-radius: 250px;
+}
+
+.title-rela {
+    margin-left: 5px;
+}
+
+.name1 {
+    margin-left: 38%;
+    width: 130px;
+    background-color: rgb(158, 158, 158);
+    border-radius: 5px;
+    margin-top: -15%;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
