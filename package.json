@@ -26,6 +26,7 @@
     "react-scripts": "4.0.3",
     "react-table": "^6.11.5",
     "reactjs-popup": "^2.0.5",
+    "recharts": "^2.1.11",
     "reducers": "^3.0.0-alpha",
     "redux": "^4.1.2",
     "redux-saga": "^1.1.3",
