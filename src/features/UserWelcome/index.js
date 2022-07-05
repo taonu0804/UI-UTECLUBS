@@ -58,7 +58,7 @@ class UserWelcomeFeature extends Component {
         const {user} = this.state;
         console.log(this.state);
         const clubId = userclubs.map((item) => ( item.clubId ));
-        const link = clubId.length ? `/newfeed/${clubId}` : '/notjoinedclb';
+        const link = clubId.length ? `/newfeed/${clubId}` : `/infochange/${user.userId}`;
     return (
         <div className='welcome-form'>
             <img className='bg-area' src={BG}/>

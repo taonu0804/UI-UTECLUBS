@@ -26,6 +26,10 @@ import AddClbFeature from './features/AddClb';
 import ForgetPassFeature from './features/ForgetPassword';
 import UserDetailFeature from './features/UserDetail';
 import InputEmailForgetPassFeature from './features/InputEmailForgetPass';
+import DetailedEventFeature from './features/EventList';
+import EventListFeature from './features/EventList';
+import StatisticFeature from './features/Statistic';
+import AddEventFeature from './features/AddEvent';
 
 function App() {
   const history = useHistory();
@@ -83,6 +87,10 @@ function App() {
         <Route path='/forgetpass' component={ ForgetPassFeature } exact/>
         <Route path='/userdetail/:userId' component={ UserDetailFeature } exact/>
         <Route path='/error' component={ ErrorFeature } exact/>
+        <Route path='/detailevent' component={ DetailedEventFeature } exact/>
+        <Route path='/eventlist' component={ EventListFeature } exact/>
+        <Route path='/statistic' component={ StatisticFeature } exact/>
+        <Route path='/addevent' component={ AddEventFeature } exact/>
       </Switch>
       </div>
     </div>

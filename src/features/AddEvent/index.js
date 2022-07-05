@@ -1,24 +1,31 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './style.css';
 import DOT from '../../image/dot.png';
 import AVA from '../../image/1.png';
 import GAME from '../../image/puzzle.jpg';
 import AddClbFeature from '../AddClb';
 import AddEventSmallFeature from '../Component/AddEvent';
+import AddEvent2Component from '../Component/AddEvent2';
 
 AddEventFeature.propTypes = {
     
 };
 
 function AddEventFeature(props) {
-    var add1 = 
+    const [isShown, setIsShown] = useState(false);
+
+    const handleClick1 = event => {
+        setIsShown(true);
+      };
+
     return (
         <div className='fullbody'>
             <div className='add-sk'>
-                {<AddEventSmallFeature/>}
-                <button className='add1' onClick={}><img className='add1' src={DOT}/></button>
+                <button className='add1' onClick={handleClick1}><img className='add1' src={DOT}/></button>
+                    {isShown &&
+                        <AddEventSmallFeature/>}
                 <button className='add2'><img className='add2' src={DOT}/></button>
-                <button className='add3'><img className='add3' src={DOT}/></button>
+                <button className='complete'><p className='comp-txt'><b>Tạo sự kiện</b></p></button>
             </div>
 
             <div className='sample1'>

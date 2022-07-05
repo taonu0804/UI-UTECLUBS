@@ -61,6 +61,7 @@ class NotiFeature extends Component {
    const body = {
       userId: userId,
    }
+   if (window.confirm('Bạn muốn chấp nhận yêu cầu này?') == true) {
    fetch(`http://localhost:8080/club-management/${id}/member-requests`, {
        method: 'PUT',
        headers: {
@@ -77,6 +78,10 @@ class NotiFeature extends Component {
        .catch((e) => {
            console.log('error', e);
        })
+      }
+      else {
+         return;
+      }
   }
 
   handleRej(userId) {

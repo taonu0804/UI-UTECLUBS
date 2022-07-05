@@ -1,0 +1,136 @@
+.fullbody {
+    height: 2200%;
+}
+
+.add1, .add2, .add3 {
+    width: 10px;
+    height: 10px;
+    border-radius: 200px;
+    border: none;
+    background: none;
+    -webkit-border-radius: 200px;
+    -moz-border-radius: 200px;
+    -ms-border-radius: 200px;
+    -o-border-radius: 200px;
+    margin-left: 1%;
+}
+
+.complete:hover {
+    background-color: rgb(248, 248, 161);
+}
+
+.complete {
+    background: yellow;
+    height: 35px;
+    border-radius: 10px;
+    margin-left: 40%;
+    margin-top: 1%;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.comp-txt {
+    color: gray;
+    font-size: 17px;
+}
+
+.add1 {
+    margin-left: 45%;
+}
+
+.add-sk {
+    border: solid 2px gray;
+    border-radius: 10px;
+    width: 150%;
+    height: fit-content;
+    padding-bottom: 3%;
+    background: rgb(242, 253, 255);
+    margin-left: 28%;
+    margin-top: 5%;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.sample1 {
+    border: solid 2px gray;
+    border-radius: 10px;
+    width: 110%;
+    margin-top: 1%;
+    margin-left: 28%;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.sample-title {
+    font-size: 12px;
+    margin-left: 1%;
+    color: gray;
+}
+
+.sampleava {
+    width: 150px;
+    height: 150px;
+    border: solid 1px gray;
+    border-radius: 200px;
+    margin-left: 4%;
+    -webkit-border-radius: 200px;
+    -moz-border-radius: 200px;
+    -ms-border-radius: 200px;
+    -o-border-radius: 200px;
+}
+
+.samplename {
+    font-size: 50px;
+    margin-left: 30%;
+    margin-top: -18%;
+}
+
+.sampledetail {
+    margin-left: 30%;
+}
+
+.game {
+    width: 50%;
+    margin-top: 2%;
+    margin-left: 30%;
+}
+
+.sample2 {
+    width: 38%;
+    height: fit-content;
+    padding-bottom: 3%;
+    border: solid 2px gray;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    margin-left: 140%;
+    margin-top: -65.2%;
+}
+
+.skava {
+    width: 80px;
+    height: 80px;
+    border-radius: 200px;
+    -webkit-border-radius: 200px;
+    -moz-border-radius: 200px;
+    -ms-border-radius: 200px;
+    -o-border-radius: 200px;
+    border: solid 1px gray;
+    margin-left: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.skname {
+    font-size: 23px;
+    margin-left: 50%;
+    margin-top: -20%;
+}

@@ -46,19 +46,17 @@ class InputEmailForgetPassFeature extends Component {
        {withCredentials: false}
       )
           .then(response => {
-            response.json();
-            console.log('info', response);
-            if (response.status === 400) {
-                alert('Mời nhập đầy đủ thông tin');
-            }
             if (response.status === 404) {
-                alert('Người dùng không tồn tại')
+                return response.json();
             }
-            if (response.status === 500) {
-              alert('Xin thử lại email');
+            return response.json();
+          })
+          .then(obj => {
+            if (obj.message === undefined) {
+              this.props.history.push('/forgetpass');
             }
             else {
-              this.props.history.push('/forgetpass');
+              alert('Người dùng không tồn tại');
             }
           })
           .catch(error => {
