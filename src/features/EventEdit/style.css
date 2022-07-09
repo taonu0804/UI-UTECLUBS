@@ -1,0 +1,68 @@
+.ename {
+    margin-left: 10%;
+    width: 250px;
+    margin-top: 4%;
+    margin-bottom: 1%;
+    height: 45px;
+    font-size: 25px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.eimg-area {
+    margin-left: -5%;
+    margin-top: 3%;
+}
+
+.edesc-area {
+    margin-left: 45%;
+}
+
+.edesc-detail {
+    width: 450px;
+    height: 100px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.begtime-area, .begtime-title {
+    margin-left: 45%;
+    margin-top: 1%;
+}
+
+.endtime-area {
+    margin-left:73%;
+    margin-top: -7.9%;
+}
+
+.maxp-area {
+    margin-left: 27%;
+    margin-top: 7%;
+}
+
+.ebutton{
+    background-color: #f7f321;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    width: 100%;
+    border:0;
+    padding: 17px 25px;
+    border-radius: 0px 0px 25px 25px;
+    cursor: pointer;
+    margin-top: 4%;
+    font-size: 18px;
+    -webkit-border-radius: 0px 0px 25px 25px;
+    -moz-border-radius: 0px 0px 25px 25px;
+    -ms-border-radius: 0px 0px 25px 25px;
+    -o-border-radius: 0px 0px 25px 25px;
+}
+
+.ebutton:hover {
+    background-color: wheat;
+}
