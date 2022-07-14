@@ -56,15 +56,15 @@
     margin-top: 2%;
 }
 
-.begtime-title {
+.begtime-title1 {
     margin-left: 5%;
     margin-top: -2%;
 }
-.endtime-title {
+.endtime-title1 {
     margin-left: 5%;
 }
 
-.begtime-area {
+.begtime-area1 {
     margin-left: 5%;
     margin-top: -1%;
 }
@@ -75,15 +75,27 @@
     width: 200px;
 }
 
-.begtime-text {
+.begtime-text1 {
     width: 200px;
 }
 
-.maxp-area {
+.maxp-area1 {
     margin-left: 25%;
     margin-top: -6%;
 }
 
 .max-text {
     width: 50px;
+}
+
+.submitevent {
+    border: none;
+    margin-top: 1%;
+    width: 150px;
+    height: 40px;
+    margin-left: 84%;
+}
+
+.submitevent:hover {
+    background: gray;
 }

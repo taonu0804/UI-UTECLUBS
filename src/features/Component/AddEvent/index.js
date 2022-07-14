@@ -27,20 +27,22 @@ function AddEventSmallFeature(props) {
                 <input type="text" name='detail' onChange='' placeholder="Nhập chi tiết sự kiện" className="detail-text" required/>
             </div>
 
-            <p className='begtime-title'><b>Thời gian: Từ</b></p>
-            <div className="begtime-area">
-                <input type="date" name='begin-date' onChange='' placeholder="dd/mm/yyyy" className="begtime-text" required/>
+            <p className='begtime-title1'><b>Thời gian: Từ</b></p>
+            <div className="begtime-area1">
+                <input type="date" name='begin-date' onChange='' placeholder="dd/mm/yyyy" className="begtime-text1" required/>
             </div>
 
-            <div className="endtime-area">
-                <p className='endtime-title'><b>đến</b></p>
+            <div className="endtime-area1">
+                <p className='endtime-title1'><b>đến</b></p>
                 <input type="date" name='end-date' onChange='' placeholder="dd/mm/yyyy" className="endtime-text" required/>
             </div>
 
-            <div className="maxp-area">
+            <div className="maxp-area1">
                 <p className='maxp-title'><b>Số lượng người tham gia:</b></p>
                 <input type="number" name='maxparti' onChange='' placeholder="" className="max-text" required/>
             </div>
+
+            <button className='submitevent'>Tạo sự kiện</button>
         </div>
     );
 }

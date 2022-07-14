@@ -33,6 +33,7 @@ import AddEventFeature from './features/AddEvent';
 import ParticipantListFeature from './features/Participantlist';
 import ManageCLBFeature from './features/ManageCLB';
 import MyEventFeature from './features/MyEvent';
+import EventEditFeature from './features/EventEdit';
 
 function App() {
   const history = useHistory();
@@ -116,6 +117,7 @@ function App() {
         <Route path='/addevent' component={ AddEventFeature } exact/>
         <Route path='/participant' component={ ParticipantListFeature } exact/>
         <Route path='/myevent' component={ MyEventFeature } exact/>
+        <Route path='/eventedit' component={ EventEditFeature } exact/>
       </Switch>
       </div>
     </div>

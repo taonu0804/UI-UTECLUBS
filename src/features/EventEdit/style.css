@@ -1,68 +1,60 @@
-.ename {
-    margin-left: 10%;
+.namearea {
+    background: rgb(218, 218, 218);
     width: 250px;
-    margin-top: 4%;
-    margin-bottom: 1%;
-    height: 45px;
-    font-size: 25px;
-    border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
+    padding: 25px;
+    margin-left: 35%;margin-top: 10%;
+    position: relative;
+}
+.begtimetitle {
+    margin-top: 5%;
+}
+.begdatetext, .enddatetext {
+    width: 190px;
+}
+.endtimetitle {
+    margin-top: 5%;
+}
+.enametitle {
+    margin-top: 35%;
+}
+.maxptitle {
+    margin-top: 5%;
+}
+.e-button {
+    width: 190px;
+    border: none;
+    background: yellow;
+    margin-top: 15%;
+}
+.e-button:hover {
+    background: rgb(255, 255, 193);
 }
 
-.eimg-area {
-    margin-left: -5%;
-    margin-top: 3%;
+.avaarea {
+    border: solid 1px rgb(199, 199, 199);
+    width: 800px;
+    height: 485px;
+    margin-left: 66.3%;
+    margin-top: -60.6%;
 }
 
-.edesc-area {
-    margin-left: 45%;
+.eventdetail1 {
+    height: 1000px;
 }
-
-.edesc-detail {
-    width: 450px;
-    height: 100px;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
+.eve-img {
+    width: 800px;
+    height: 300px;
 }
-
-.begtime-area, .begtime-title {
-    margin-left: 45%;
+.avaarea .img {
+    margin-top: -2%;
+    margin-left: 10px;
+}
+.edesc1 {
+    margin-left: 1%;
     margin-top: 1%;
 }
-
-.endtime-area {
-    margin-left:73%;
-    margin-top: -7.9%;
-}
-
-.maxp-area {
-    margin-left: 27%;
-    margin-top: 7%;
-}
-
-.ebutton{
-    background-color: #f7f321;
-    color: rgb(0, 0, 0);
-    text-align: center;
-    width: 100%;
-    border:0;
-    padding: 17px 25px;
-    border-radius: 0px 0px 25px 25px;
-    cursor: pointer;
-    margin-top: 4%;
-    font-size: 18px;
-    -webkit-border-radius: 0px 0px 25px 25px;
-    -moz-border-radius: 0px 0px 25px 25px;
-    -ms-border-radius: 0px 0px 25px 25px;
-    -o-border-radius: 0px 0px 25px 25px;
-}
-
-.ebutton:hover {
-    background-color: wheat;
+.edescdetail {
+    margin-left: 2%;
+    width: 700px;
+    height: 120px;
 }
