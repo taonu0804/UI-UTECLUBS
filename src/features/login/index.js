@@ -27,7 +27,7 @@ function LoginFeature() {
         }
         formBody = formBody.join("&");
         
-        fetch("http://localhost:8080/users/login", {
+        fetch("https://uteclubs.herokuapp.com/users/login", {
             method: "POST",
             headers: {
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'

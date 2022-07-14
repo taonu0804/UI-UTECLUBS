@@ -24,7 +24,7 @@ class UserDetailFeature extends Component {
         const token = localStorage.getItem('access_token');
         console.log(token);
 
-        fetch(`http://localhost:8080/users/${id}`, {
+        fetch(`https://uteclubs.herokuapp.com/users/${id}`, {
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${token}`,

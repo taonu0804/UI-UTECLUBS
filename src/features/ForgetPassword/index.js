@@ -85,7 +85,7 @@ class ForgetPassFeature extends Component {
     this.setState({
         errors: this.validator.validate(this.state),
     });
-    fetch('http://localhost:8080/users/reset-password/input-new-password', {
+    fetch('https://uteclubs.herokuapp.com/users/reset-password/input-new-password', {
             method: 'PUT',
             headers: {
               "Content-Type": "application/json",

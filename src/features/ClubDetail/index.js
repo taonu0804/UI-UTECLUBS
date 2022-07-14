@@ -60,7 +60,7 @@ class ClubDetailFeature extends Component {
     const access_token = localStorage.getItem('access_token');
     console.log('token', access_token);
 
-    fetch('http://localhost:8080/admin/club-management/' + `${id}`, {
+    fetch('https://uteclubs.herokuapp.com/admin/club-management/' + `${id}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${access_token}`,
@@ -120,7 +120,7 @@ class ClubDetailFeature extends Component {
     console.log(body);
     if (window.confirm('Bạn chắc chắc muốn cập nhật?') == true) {
 
-    fetch('http://localhost:8080/admin/club-management/' + `${id}` + '/update-info', {
+    fetch('https://uteclubs.herokuapp.com/admin/club-management/' + `${id}` + '/update-info', {
             method: 'PUT',
             headers: {
               "Content-Type": "application/json",

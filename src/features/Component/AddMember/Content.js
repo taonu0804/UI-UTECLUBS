@@ -57,7 +57,7 @@ class ContentComponent extends Component {
         const roleadm = jwt(token);
         console.log('role', roleadm);
         if (roleadm.roles[0] === 'ROLE_ADMIN') {
-        fetch('http://localhost:8080/admin/club-management/' + `${id}` + '/add-person', {
+        fetch('https://uteclubs.herokuapp.com/admin/club-management/' + `${id}` + '/add-person', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ class ContentComponent extends Component {
             .catch((error) => console.log('error', error))
         }
         else {
-            fetch('http://localhost:8080/club-management/' + `${id}` + '/add-members', {
+            fetch('https://uteclubs.herokuapp.com/club-management/' + `${id}` + '/add-members', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

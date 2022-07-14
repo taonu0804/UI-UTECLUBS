@@ -33,7 +33,7 @@ class UserClubDetailFeature extends Component {
     const id = (condition[1].split('/notjoin'))[0];
     console.log('id', id);
 
-    fetch('http://localhost:8080/clubs/' + `${id}`, {
+    fetch('https://uteclubs.herokuapp.com/clubs/' + `${id}`, {
       method: 'GET',
       headers: {
       },
@@ -56,7 +56,7 @@ class UserClubDetailFeature extends Component {
     const id = (condition[1].split('/notjoin'))[0];
     console.log('id', id);
 
-    fetch('http://localhost:8080/users/register-to-club', {
+    fetch('https://uteclubs.herokuapp.com/users/register-to-club', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,
@@ -91,7 +91,7 @@ class UserClubDetailFeature extends Component {
     const id = (condition[1].split('/notjoin'))[0];
     console.log('id', id);
     if (window.confirm('Bạn muốn hủy yêu cầu?') == true) {
-      fetch(`http://localhost:8080/users/cancel-request/${id}`, {
+      fetch(`https://uteclubs.herokuapp.com/users/cancel-request/${id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,

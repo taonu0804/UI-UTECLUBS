@@ -3,23 +3,23 @@
   padding: 8px;
 }
 
-.table tr:nth-child(even){background-color: #666161;}
+.table tr:nth-child(even){background-color: #ffff73;}
 
-.table tr:hover {background-color: #ddd;}
+.table tr:hover {background-color: rgb(255, 254, 176);}
 
 .table th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: center;
-  background-color: #000;
-  color: #fff;
+  background-color: yellow;
+  color: rgb(0, 0, 0);
 }
 
 .table {
   text-align: center;
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  border: 3px solid #ddd;
+  border: 3px solid rgb(0, 0, 0);
   width: 100%;
 }
 

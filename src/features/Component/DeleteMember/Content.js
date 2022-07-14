@@ -25,7 +25,7 @@ class DeleteMemberComponent extends Component {
         const userId = this.props.userId;
         console.log(userId);
 
-        fetch('http://localhost:8080/admin/club-management/' + `${id}` + '/remove-member/' + `${userId}`, {
+        fetch('https://uteclubs.herokuapp.com/admin/club-management/' + `${id}` + '/remove-member/' + `${userId}`, {
             method: 'DELETE',
             headers: {
                 Authorization: `Bearer ${token}`,

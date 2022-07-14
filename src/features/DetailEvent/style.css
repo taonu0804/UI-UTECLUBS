@@ -2,6 +2,7 @@
     border: solid 2px gray;
     width: 80%;
     margin-left: 15%;
+    margin-bottom: 5%;
     background-color:beige;
     border-radius: 15px;
     -webkit-border-radius: 15px;
@@ -48,7 +49,7 @@
     margin-left: 11%;
 }
 
-.add1, .edit1, .del1, .join1, .leave1, .follow1, .unfollow1 {
+.edit1, .del1, .join1, .leave1, .follow1, .unfollow1 {
     width: 140px;
     height: 35px;
     margin-top: 18%;
@@ -62,6 +63,12 @@
     border: none;
 }
 
+.add1 {
+    background-color: rgb(89, 179, 248);
+    color: white;
+    text-decoration: none;
+}
+
 .add1:hover, .edit1:hover, .del1:hover, .join1:hover, .leave1:hover, .follow1:hover, .unfollow1:hover {
     background-color: aquamarine;
 }
@@ -70,16 +77,17 @@
     background-color: white;
     width: 60%;
     height: 300px;
-    margin-left: 10%;
+    margin-left: 5%;
     margin-top: 3%;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
+    margin-bottom: 2%;
 }
 
-.title1, .begin-time, .end-time {
+.title11, .begin-time, .end-time {
     margin-left: 3%;
     margin-top: 3%;
 }
@@ -119,7 +127,7 @@
     height: 120px;
     border-radius: 10px;
     margin-left: 75%;
-    margin-top: -24.5%;
+    margin-top: -26.5%;
     padding-left: 3%;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -137,6 +145,8 @@
 
 .amount {
     margin-top: 5%;
+    text-decoration: none;
+    padding-left: 10%;
 }
 
 .body-three {
@@ -150,6 +160,7 @@
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
+    margin-bottom: 2%;
 }
 
 .ava-three {
@@ -179,4 +190,3 @@
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
 }
-

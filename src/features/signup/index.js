@@ -162,7 +162,7 @@ class SignupFeature extends Component {
     this.setState({
       errors: this.validator.validate(this.state),
     });
-   fetch('http://localhost:8080/users/signup', {
+   fetch('https://uteclubs.herokuapp.com/users/signup', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",

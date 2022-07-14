@@ -26,10 +26,13 @@ import AddClbFeature from './features/AddClb';
 import ForgetPassFeature from './features/ForgetPassword';
 import UserDetailFeature from './features/UserDetail';
 import InputEmailForgetPassFeature from './features/InputEmailForgetPass';
-import DetailedEventFeature from './features/EventList';
+import DetailedEventFeature from './features/DetailEvent';
 import EventListFeature from './features/EventList';
 import StatisticFeature from './features/Statistic';
 import AddEventFeature from './features/AddEvent';
+import ParticipantListFeature from './features/Participantlist';
+import ManageCLBFeature from './features/ManageCLB';
+import MyEventFeature from './features/MyEvent';
 
 function App() {
   const history = useHistory();
@@ -51,6 +54,24 @@ function App() {
     }
   }
 
+  const handleEvent = () => {
+    try {
+      const user = localStorage.getItem('user');
+      const ava = user.avatarUrl;
+      const access_token = localStorage.getItem('access_token');
+      const role = (jwt(access_token)).roles[0];
+      if (role === 'ROLE_ADMIN') {
+        history.push('/eventlist');
+      }
+      else {
+        history.push('/eventlist');
+      }
+    } catch(error) {
+      console.log(error);
+      history.push('/error');
+    }
+  }
+
   const contactPage = () => {
     history.push('/contact');
   }
@@ -59,6 +80,7 @@ function App() {
       <div className="Header">
         <img className='Logo' src={LOGO}/>
         <button className='home-link' onClick={handleMoving}><b>HOME</b></button>
+        <button className='event-link' onClick={handleEvent}><b>SỰ KIỆN</b></button>
         <button className='contact-link' onClick={contactPage}><b>LIÊN HỆ</b></button>
       </div>
 
@@ -81,16 +103,19 @@ function App() {
             <Route path='/userclubdetail/:clubId/notjoin' component={ UserClubDetailFeature } exact/>
         </Route>
         <Route path='/userwelcome' component={ UserWelcomeFeature } exact/>
+        <Route path='/manageclb' component={ ManageCLBFeature } exact/>
         <Route path='/clbmember/:clubId' component={ ClbMembersFeature } exact/>
         <Route path='/addclb' component={ AddClbFeature } exact/>
         <Route path='/inputemail' component={ InputEmailForgetPassFeature } exact/>
         <Route path='/forgetpass' component={ ForgetPassFeature } exact/>
         <Route path='/userdetail/:userId' component={ UserDetailFeature } exact/>
         <Route path='/error' component={ ErrorFeature } exact/>
-        <Route path='/detailevent' component={ DetailedEventFeature } exact/>
+        <Route path='/detailevent/:eventId' component={ DetailedEventFeature } exact/>
         <Route path='/eventlist' component={ EventListFeature } exact/>
         <Route path='/statistic' component={ StatisticFeature } exact/>
         <Route path='/addevent' component={ AddEventFeature } exact/>
+        <Route path='/participant' component={ ParticipantListFeature } exact/>
+        <Route path='/myevent' component={ MyEventFeature } exact/>
       </Switch>
       </div>
     </div>

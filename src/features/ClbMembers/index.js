@@ -49,7 +49,7 @@ class ClbMembersFeature extends Component {
         this.setState({showBtn: true});
     }
     else {
-        fetch(`http://localhost:8080/clubs/${id}/get-role`, {
+        fetch(`https://uteclubs.herokuapp.com/clubs/${id}/get-role`, {
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -127,7 +127,7 @@ class ClbMembersFeature extends Component {
             this.setState({showBtn: true});
         }
 
-    fetch(`http://localhost:8080/clubs/${id}/members?role=${role}`, {
+    fetch(`https://uteclubs.herokuapp.com/clubs/${id}/members?role=${role}`, {
         headers: {
             Accept: 'application/json',
         }
@@ -160,7 +160,7 @@ class ClbMembersFeature extends Component {
 
     const token = localStorage.getItem('access_token');
 
-    fetch(`http://localhost:8080/club-management/${id}/remove-member/${userId}`, {
+    fetch(`https://uteclubs.herokuapp.com/club-management/${id}/remove-member/${userId}`, {
         headers: {
             Accept: 'application/json',
             Authorization: `Bearer ${token}`,

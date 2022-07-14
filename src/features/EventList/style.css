@@ -1,106 +1,113 @@
-.body1 {
-    background: rgb(255, 255, 203);
-    width: 120%;
-    height: 1200px;
+.body {
+    font-family: 'Raleway', sans-serif;
 }
 
-.detail-body {
-    background: rgb(255, 255, 203);
+.bodymain {
+    height: 3500px;
 }
 
-.unit-area {
-    margin-left: 80%;
+.nav-bar {
+    z-index: 3;
+    width: 300px;
+    margin-left: 10px;
 }
 
-.unit {
-    width: 200px;
-    height: 40px;
-    border-radius: 20px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
-    -o-border-radius: 20px;
-}
-
-.body-one {
-    background: rgb(255, 255, 229);
-    border: solid 3px gray;
-    width: 1200px;
-    height: fit-content;
-    padding-bottom: 3%;
-    margin-left: 15%;
-    margin-top: 15px;
-    box-shadow: 4px 4px 4px gray;
-
-}
-
-.event-img {
-    width: 100px;
-    height: 100px;
-    border-radius: 500px;
-    -webkit-border-radius: 500px;
-    -moz-border-radius: 500px;
-    -ms-border-radius: 500px;
-    -o-border-radius: 500px;
-    margin-left: 6%;
-    margin-top: 5%;
-}
-
-.view {
-    height: 40px;
-    width: 40px;
-    border: none;
-    background: none;
-    margin-top: 8%;
-}
-
-.delete {
-    height: 40px;
-    width: 40px;
-    border: none;
-    background: none;
-    margin-top: 40%;
-    margin-left: -1px;
-}
-
-.event-one {
-    width: 450px;
+.people-ava {
+    width: 150px;
     height: 150px;
-    border: solid 1px gray;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
-    margin-top: 3%;
-    margin-left: 7%;
-    background: white;
 }
 
-.button-area {
-    width: 50px;
-    height: 125px;
-    margin-left: 86%;
-    margin-top: -24%;
-    border: solid 2px rgb(67, 140, 223);
-    border-radius: 200px;
-    background:rgb(153, 198, 250);
-    -webkit-border-radius: 200px;
-    -moz-border-radius: 200px;
-    -ms-border-radius: 200px;
-    -o-border-radius: 200px;
+.people-name {
+    margin-top: 10px;
 }
 
-.event-name {
-    font-size: 20px;
-    margin-left: 5%;
+.people-dept {
+    margin-top: 20px;
 }
 
-.chi-tiết {
-    margin-left: 33%;
-    margin-top: -10%;
+.person {
+    width: 20px;
+    margin-top: -3px;
 }
 
-.chi-tiết,.event-name {
+.nav-btn {
     text-decoration: none;
+    color: black;
+    margin-left: 5px;
+}
+
+.w3-bar-block {
+    margin-top: 30px;
+}
+
+.w3-main {
+    background: rgb(243, 243, 243);
+    margin-left: 300px;
+    margin-top: -20%;
+    width: 1250px;
+    padding-left: 25px;
+}
+
+.w3-margin-right {
+    color: gray;
+    font-size: 20px;
+    margin-left: -15px;
+}
+
+.evename-search {
+    border: none;
+    margin-left: 10px;
+    height: 35px;
+}
+.evebeg-search {
+    border: none;
+    margin-left: 20px;
+    height: 35px;
+}
+.eveend-search {
+    border: none;
+    margin-left: 20px;
+    height: 35px;
+}
+
+.w3-button-w3-white-w3-hide-small {
+    margin-left: 40px;
+    width: 130px;
+    padding-left: 5px;
+}
+.w3-button-w3-white-w3-hide-small:hover {
+    background: gray;
+}
+
+.endline {
+    border: solid 3px rgb(226, 226, 226);
+}
+
+.item {
+    position: relative;
+    background:white;
+    width: 350px;
+    height: 500px;
+    margin-bottom: 5%;
+    margin-left: 3%;
+}
+.w3-row-padding {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.w3-hover-opacity {
+    width: 350px;
+    height: 300px;
+}
+
+.w3-container-w3-white {
+    margin-left: 15px;
+    margin-top: 15px;
 }

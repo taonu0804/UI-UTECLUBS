@@ -68,7 +68,7 @@ class InfoChangeFeature extends Component {
     const id = match.params.userId;
     console.log('id', id);
 
-    fetch('http://localhost:8080/users/' + `${id}`, {
+    fetch('https://uteclubs.herokuapp.com/users/' + `${id}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`,
@@ -138,7 +138,7 @@ class InfoChangeFeature extends Component {
 
     console.log(body);
 
-    fetch('http://localhost:8080/users/update-info', {
+    fetch('https://uteclubs.herokuapp.com/users/update-info', {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -162,7 +162,7 @@ class InfoChangeFeature extends Component {
           })
 
       if (this.state.oldPassword !== undefined) {
-        fetch('http://localhost:8080/users/change-password', {
+        fetch('https://uteclubs.herokuapp.com/users/change-password', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

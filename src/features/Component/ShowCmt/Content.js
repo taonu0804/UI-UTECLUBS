@@ -15,7 +15,7 @@ class ShowCmtComponent extends Component {
         console.log(token);
         const postId = this.props.postId;
 
-        fetch(`http://localhost:8080/comments/get-by-post/${postId}`, {
+        fetch(`https://uteclubs.herokuapp.com/comments/get-by-post/${postId}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 },
@@ -40,7 +40,7 @@ class ShowCmtComponent extends Component {
     handleDel(cmtId, postId, content) {
         const token = localStorage.getItem('access_token');
          if (window.confirm('Bạn chắc chắn muốn xóa bình luận này?') == true) {
-           fetch(`http://localhost:8080/comments/${cmtId}`, {
+           fetch(`https://uteclubs.herokuapp.com/comments/${cmtId}`, {
               method: 'DELETE',
               headers: {
                   'Content-Type': 'application/json',

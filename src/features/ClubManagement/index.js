@@ -14,7 +14,7 @@ class ClubManagementFeature extends Component {
     componentDidMount(){
       const token = localStorage.getItem('access_token');
       console.log('userId', token);
-      fetch('http://localhost:8080/admin/club-management?page=0', {
+      fetch('https://uteclubs.herokuapp.com/admin/club-management?page=0', {
          headers: {
             Authorization: `Bearer ${token}`,
             Accept: 'application/json',

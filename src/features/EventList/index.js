@@ -1,45 +1,140 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './style.css';
-import DEL from '../../image/trashbin.png';
-import CHANGE from '../../image/edit.png';
-import IMG from '../../image/ctxh.jpg';
+import AVA from '../../image/1.png';
+import PERSON from '../../image/person.png';
 
-EventListFeature.propTypes = {
-    
-};
+class EventListFeature extends Component {
+    constructor(props) {
+       super(props)
+       this.state = {
+          events: [],
+          loading: true
+       };
+    }
 
-function EventListFeature(props) {
-    return (
-        <div className='body1'>
-            <div className='detail-body'>
-                <div className='unit-area'>
-                    <select 
-                        className='unit'
-                        value='unit'
-                        onChange='unit'
-                        name='unit'
-                    >
-                        <option value="">Đơn vị tổ chức</option>
-                    </select>
-                </div>
+    handleSearch() {
+        const token = localStorage.getItem('access_token');
+        const body ={
+            name: this.state.name,
+            date: this.state.begdate + this.state.enddate,
+        }
+        fetch('https://uteclubs.herokuapp.com/events/search', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(body),
+        })
+            .then(response => {
+                console.log(response.statusText);
+                return (response.text());
+            }).then(events => {
+                console.log(events);
+                if (events !== '') {
+                    const arr = JSON.parse(events);
+                    console.log(arr);
+                    var details = [];
 
-                <div className='body-one'>
-                    <div className='event-one'>
-                        <Link className='event-link'>
-                            <img src={IMG} className='event-img'/>
-                            <Link className='event-name'><b>Tên sự kiện</b></Link>
-                            <p className='chi-tiết'>Chi tiết sự kiện</p>
-                        </Link>
-                        <div className='button-area'>
-                            <button className='view'><img src={CHANGE} className='view' /></button>
-                            <button className='delete'><img src={DEL} className='delete'/></button>
+                    for (var i in arr)
+                    {
+                        details.push({name: i, value: arr[i]})
+                    }
+
+                    this.setState({events: details});
+                }
+                else {
+                    alert('Không có kết quả');
+                }
+            })
+            .catch((e) => {
+                alert('Không có kết quả');
+                console.log('error', e);
+            })
+    }
+
+    componentDidMount() {
+        const token = localStorage.getItem('access_token');
+        console.log('userId', token);
+        fetch('https://uteclubs.herokuapp.com/events?page=0', {
+         headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          }
+      })
+            .then(response => response.json())
+            .then(events => {
+               let details = [];
+
+               for (var i in events.content) {
+                   details.push({ name: i, value: events.content[i] })
+               }
+   
+                this.setState({
+                    events: details,
+                    loading: true,
+                })
+            })
+         .catch(error => console.log(error))
+    }
+
+    render() {
+        console.log(this.state.events);
+        var value = this.state.events.map((item) => {
+            return (
+                <div className='item'>
+                    <div className="w3-third-w3-container-w3-margin-bottom">
+                        <img src={item.value.imageUrl} alt="Norway" className="w3-hover-opacity"/>
+                        <div className="w3-container-w3-white">
+                            <Link to={`/detailevent/${item.value.id}`}><b>{item.value.name}</b></Link>
+                            <p>{item.value.description}</p>
                         </div>
                     </div>
                 </div>
+            )
+        });
+    return (
+        <div className='bodymain'>
+            <div className='detail-body'>
+                <nav className="nav-bar"><br/>
+                    <div className="w3-container">
+                        <a href="#" className="close-a" title="close menu">
+                        </a>
+                        <img src={AVA} className="people-ava"/><br/><br/>
+                    </div>
+                    <div className="w3-bar-block">
+                        <Link className="nav-btn" to='/myevent'><img className='person' src={PERSON} />Sự kiện của tôi</Link>
+                    </div>
+                </nav>
+
+                <div className="w3-main">
+                    <header>
+                        <span className="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey"></span>
+                        <div className="w3-container">
+                            <h2><b>Các sự kiện đang diễn ra</b></h2>
+                            <div className="w3-section w3-bottombar w3-padding-16">
+                                <span className="w3-margin-right">Tên sự kiện</span>
+                                <input type='text' className='evename-search' name='name' onChange={this.handleInput}></input>
+                                <span className="w3-margin-right">Thời gian: Từ</span>
+                                <input type='date' className='evebeg-search' name='begdate' onChange={this.handleInput}></input>
+                                <span className="w3-margin-right">đến</span>
+                                <input type='date' className='eveend-search' name='enddate' onChange={this.handleInput}></input>
+                                <button className="w3-button-w3-white-w3-hide-small" onClick={() => {this.handleSearch()}}>Tìm kiếm</button>
+                            </div>
+                        </div>
+                    </header>
+                <hr className='endline'/>
+                
+                <div className="w3-row-padding">
+                    {value}
+                </div>
             </div>
         </div>
+    </div>
     );
+    }
 }
 
 export default EventListFeature;

@@ -60,7 +60,7 @@ class ChangeComponent extends Component {
         console.log('role', roleadm);
         if (window.confirm('Bạn chắc chắn muốn thay đổi?') == true) {
             if (roleadm.roles[0] === 'ROLE_ADMIN') {
-            fetch('http://localhost:8080/admin/club-management/' + `${id}` + '/change-role', {
+            fetch('https://uteclubs.herokuapp.com/admin/club-management/' + `${id}` + '/change-role', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ class ChangeComponent extends Component {
                 .catch((error) => console.log('error', error))
             }
             else {
-                fetch('http://localhost:8080/club-management/' + `${id}` + '/change-role', {
+                fetch('https://uteclubs.herokuapp.com/club-management/' + `${id}` + '/change-role', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

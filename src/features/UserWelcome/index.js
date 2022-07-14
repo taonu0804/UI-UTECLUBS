@@ -20,7 +20,7 @@ class UserWelcomeFeature extends Component {
         const token = localStorage.getItem('access_token');
         console.log('userId', token);
 
-       fetch('http://localhost:8080/club-management', {
+       fetch('https://uteclubs.herokuapp.com/club-management', {
           headers: {
             Authorization: `Bearer ${token}`,
             Accept: 'application/json',
@@ -37,7 +37,7 @@ class UserWelcomeFeature extends Component {
              })
           .catch(error => console.log(error))
 
-          fetch('http://localhost:8080/users/current-user', {
+          fetch('https://uteclubs.herokuapp.com/users/current-user', {
           headers: {
             Authorization: `Bearer ${token}`,
           }
@@ -58,7 +58,7 @@ class UserWelcomeFeature extends Component {
         const {user} = this.state;
         console.log(this.state);
         const clubId = userclubs.map((item) => ( item.clubId ));
-        const link = clubId.length ? `/newfeed/${clubId}` : `/infochange/${user.userId}`;
+        const link = clubId.length ? `/manageclb` : `/infochange/${user.userId}`;
     return (
         <div className='welcome-form'>
             <img className='bg-area' src={BG}/>

@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.css';
 import AVA from '../../image/spkt.jpg';
+import { Link } from 'react-router-dom';
 
 DetailEventFeature.propTypes = {
     
@@ -15,7 +16,7 @@ function DetailEventFeature(props) {
                 <hr className='line'/>
 
                 <div className='body-one'>
-                    <p className='title1'><b>Chi tiết sự kiện:</b></p>
+                    <p className='title11'><b>Chi tiết sự kiện:</b></p>
                     <p className='detailed'>Sự kiện được dựa trên cơ sở...
                     Sự kiện được dựa trên cơ sở...Sự kiện được dựa trên cơ sở...
                     Sự kiện được dựa trên cơ sở...Sự kiện được dựa trên cơ sở...</p>
@@ -29,7 +30,7 @@ function DetailEventFeature(props) {
                     <img className='ava-two' src={AVA}/>
                     <img className='ava-two' src={AVA}/>
                     <img className='ava-two' src={AVA}/>
-                    <p className='amount'>45 người tham gia</p>
+                    <Link className='amount' to='/participant'><p>45 người tham gia</p></Link>
                 </div>
                 
                 <div className='body-three'>
@@ -40,13 +41,13 @@ function DetailEventFeature(props) {
             </div>
 
             <div className='buttongr'>
-                <button className='add1'><b>Add</b></button>
+                <Link className='add1' to='/addevent'><b>Add</b></Link>
                 <button className='edit1'><b>Edit</b></button>
                 <button className='del1'><b>Delete</b></button>
                 <button className='join1'><b>Join</b></button>
                 <button className='leave1'><b>Leave</b></button>
                 <button className='follow1'><b>Follow</b></button>
-                <button className='unfollow1'><b>Unfollow</b></button>
+                <button className='unfollow1' hidden='true'><b>Unfollow</b></button>
             </div>
         </div>
     );

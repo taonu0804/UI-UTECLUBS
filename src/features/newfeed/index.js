@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import './style.css';
-import NOTJOIN from '../../image/group.png';
-import JOINED from '../../image/home.jpg';
-import NOTI from '../../image/chuong.png';
+import EDIT from '../../image/edit1.png';
+import MAJOR from '../../image/major.png';
+import DOB from '../../image/dob.png';
+import EVENT from '../../image/event.png';
+import IN4 from '../../image/in4.png';
+import MEM from '../../image/mem.png';
+import ADD from '../../image/add-friend.png';
+import GDSC from '../../image/gdsc.png';
 import { Link } from "react-router-dom";
 import { storage } from '../../firebase';
 import { matchPath } from 'react-router-dom/cjs/react-router-dom.min';
@@ -52,7 +57,7 @@ class NewFeedFeature extends Component {
        console.log('id', id);
        this.setState({clubId: id});
    
-        fetch(`http://localhost:8080/clubs/${id}/get-role`, {
+        fetch(`https://uteclubs.herokuapp.com/clubs/${id}/get-role`, {
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -81,7 +86,7 @@ class NewFeedFeature extends Component {
             }
         })
 
-        fetch('http://localhost:8080/users/current-user', {
+        fetch('https://uteclubs.herokuapp.com/users/current-user', {
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -93,7 +98,7 @@ class NewFeedFeature extends Component {
             })
 
 
-        fetch(`http://localhost:8080/posts/get-by-club/${id}`, {
+        fetch(`https://uteclubs.herokuapp.com/posts/get-by-club/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 }
@@ -156,7 +161,7 @@ class NewFeedFeature extends Component {
         const token = localStorage.getItem('access_token');
         console.log('userId', token);
          if (window.confirm('Bạn chắc chắn muốn rời Câu lạc bộ?') == true) {
-           fetch(`http://localhost:8080/clubs/${clubId}/leave`, {
+           fetch(`https://uteclubs.herokuapp.com/clubs/${clubId}/leave`, {
               method: 'DELETE',
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -187,7 +192,7 @@ class NewFeedFeature extends Component {
             content: this.state.content,
             postId: postId,
         }
-        fetch('http://localhost:8080/comments', {
+        fetch('https://uteclubs.herokuapp.com/comments', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -224,7 +229,7 @@ class NewFeedFeature extends Component {
             clubId: id,
             imageUrl: this.state.url,
         }
-        fetch('http://localhost:8080/posts', {
+        fetch('https://uteclubs.herokuapp.com/posts', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -245,7 +250,7 @@ class NewFeedFeature extends Component {
     handleDel(postId) {
         const token = localStorage.getItem('access_token');
          if (window.confirm('Bạn chắc chắn muốn xóa bài viết?') == true) {
-           fetch(`http://localhost:8080/posts/${postId}`, {
+           fetch(`https://uteclubs.herokuapp.com/posts/${postId}`, {
               method: 'DELETE',
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -270,7 +275,7 @@ class NewFeedFeature extends Component {
             searchQuery: this.state.searchQuery,
             dateQuery: this.state.prefix + this.state.date,
         }
-        fetch('http://localhost:8080/posts/search', {
+        fetch('https://uteclubs.herokuapp.com/posts/search', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -308,6 +313,8 @@ class NewFeedFeature extends Component {
         const {userclubs} = this.state;
         const {posts} = this.state;
         const clubId = this.state.clubId;
+        Moment.locale('en');
+        const dob = Moment(userclubs.dob).format('yyyy/MM/DD')
         const post= posts.map((item) => {
             Moment.locale('en');
             const dt = Moment(item.value.createdDate).format('yyyy/MM/DD');
@@ -321,48 +328,67 @@ class NewFeedFeature extends Component {
                     <button className='delpost' style={{display: this.state.showUrl ? 'block' : 'none'}} onClick={() => {this.handleDel(item.value.postId)}}>...</button>
                     <h3 className='authorFullName'><img className='authorAvtUrl' src={ava}/> {fullName}</h3>
                     <p className='createdDate'>{dt}</p>
+                    <hr/>
                     <p className='content'>{content}</p>
                     <img src={img} className='imageUrl'/>
                     <Popup modal trigger={<button className='cmts'><img src={CMT} className='cmts'/></button>}>
                       {<ShowCmtComponent postId={item.value.postId} fullName={item.value.authorFullName}/>}
                   </Popup>
-                </div>
-                <div className='cmt'>
-                    <textarea type='text' className='cmttxt' name='content' onChange={this.handleInput}/><button className='send' onClick={() => {this.handleCmt(item.value.postId)}}><img className='send' src={SEND}/></button>
+                    <div className='cmt'>
+                        <textarea type='text' className='cmttxt' name='content' onChange={this.handleInput}/><button className='send' onClick={() => {this.handleCmt(item.value.postId)}}><img className='send' src={SEND}/></button>
+                    </div>
                 </div>
                 </div>
         )
     });
     return (
-        <div>
+        <div className='bodym'>
             <div className='content-border'>
                 <div className='home-page'>
-                    <div className='group-info'>
-                    <Link className='info-link' to={`/infochange/${userclubs.userId}`}>
-                        <img className='nf-avatar' src={userclubs.avatarUrl}/>
-                        <p className='nf-home'><b>Trang cá nhân</b></p>
-                    </Link>
-
-                    <Link className='joined-group' to={`/userclubdetail/${clubId}`}>
-                        <img className='nf-joined-gr' src={JOINED}/>
-                        <p className='nf-joined-txt'><b>Thông tin CLB</b></p>
-                    </Link>
-
-                    <Link className='not-joined-group' to={`/clbmember/${clubId}`}>
-                        <img className='nf-not-joined-gr' src={NOTJOIN}/>
-                        <p className='nf-not-joined-txt'><b>Thành viên CLB</b></p>
-                    </Link>
-
-                    <Link className='get-noti-group' to={`/noti/${clubId}`} style={{display: this.state.showLink ? 'block' : 'none'}}>
-                        <img className='nf-get-noti-gr' src={NOTI}/>
-                        <p className='nf-get-noti-txt'><b>Thêm thành viên</b></p>
-                    </Link>
-
-                    <button className='leave' onClick={() => {this.hanldeOut(clubId)}} style={{display: this.state.showBtn ? 'block' : 'none'}}><b>Rời câu lạc bộ</b></button>
+                    <div className="w3-row">
+                        <div className="w3-col-m3">
+                            <div className="w3-card w3-round w3-white">
+                                <div className="w3-container">
+                                    <Link to={`/infochange/${userclubs.userId}`}><h4 className="w3-center">{userclubs.fullName}</h4></Link>
+                                    <img src={userclubs.avatarUrl} className="w3-circle" alt="Avatar"/>
+                                    <hr/>
+                                    <p className='in4'><img className='idimg' src={EDIT}/>     {userclubs.studentId}</p>
+                                    <p className='in4'><img className='majorimg' src={MAJOR}/>     {userclubs.faculty}</p>
+                                    <p className='in4'><img className='dobimg' src={DOB}/>     {dob}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        
+                        <div className="w3-card-w3-round">
+                            <Link className="w3-button-w3-block-w3-theme-l1-w3-left-align" to={`/userclubdetail/${clubId}`}><img className='btnic1' src={IN4}/> Thông tin chung<br/></Link>
+                            <Link className="w3-button-w3-block-w3-theme-l1-w3-left-align" to={`/eventlist`}><img className='btnic2' src={EVENT}/> Các sự kiện<br/></Link>
+                            <Link className="w3-button-w3-block-w3-theme-l1-w3-left-align" to={`/clbmember/${clubId}`}><img className='btnic3' src={MEM}/> Các thành viên<br/></Link>
+                            <Link className="w3-button-w3-block-w3-theme-l1-w3-left-align" to={`/noti/${clubId}`}><img className='btnic4' src={ADD}/> Thêm thành viên<br/></Link>
+                            <button className='onleave' onClick={() => {this.hanldeOut(clubId)}} style={{display: this.state.showBtn ? 'block' : 'none'}}><b>Rời câu lạc bộ</b></button>
+                        </div>
+                        <br/>
+                        
+                        <div className="w3-card-w3-round-w3-white-w3-hide-small">
+                            <div className="w3-container">
+                                <p>Đáng chú ý</p>
+                                <p>
+                                    <span className="w3-tag-w3-small-w3-theme-d5">Mới</span>
+                                    <span className="w3-tag-w3-small-w3-theme-d4">Câu lạc bộ</span>
+                                    <span className="w3-tag-w3-small-w3-theme-d3">Sự kiện</span>
+                                    <span className="w3-tag-w3-small-w3-theme-d2">Thành viên</span>
+                                    <span className="w3-tag-w3-small-w3-theme-d1">Đăng ký</span>
+                                    <span className="w3-tag-w3-small-w3-theme-d">Đăng nhập</span>
+                                    <span className="w3-tag-w3-small-w3-theme-l1">Bài đăng</span>
+                                    <span className="w3-tag-w3-small-w3-theme-l2">Cá nhân</span>
+                                </p>
+                            </div>
+                        <br/>
                     </div>
+                </div>
 
                     <div className='newfeed'>
-                        <textarea className='stt-box' type='text' name='content' onChange={this.handleInput} placeholder='Hôm nay bạn thể nào?'></textarea>
+                        <textarea className='stt-box' type='text' name='content' onChange={this.handleInput} placeholder='Hôm nay bạn thế nào?'></textarea>
                         <div className='sttimg-box'>
                             <progress value={this.state.progress} max="100" hidden={true}/>
                             <label htmlFor="files" className='sttimg-btn'></label>
@@ -372,7 +398,9 @@ class NewFeedFeature extends Component {
                             <button className='delimg' onClick={this.handleDelete} style={{display: this.state.showDelBtn ? 'block' : 'none'}}>x</button>
                         </div>
                         <button className='postbtn' onClick={this.handlePost}><b>Đăng</b></button>
+                    </div>
 
+                    <div className='post'>
                         {post.length ? post : <p className='notible'>Chưa có bài viết nào. Hãy tạo bài viết mới để giao lưu nhé!</p>}
                     </div>
 
@@ -390,6 +418,12 @@ class NewFeedFeature extends Component {
                         </select>
                         <input className='date-search' type='date' name='date' onChange={this.handleInput} placeholder='Ngày tháng'/><br/>
                         <button className='search-txt' onClick={() => {this.handleSearch(clubId)}}><b>Tìm kiếm</b></button>
+                    </div>
+
+                    <div className='sample'>
+                        <p className='spname'><b>GDSC</b></p>
+                        <img className='spimg' src={GDSC}/>
+                        <button className='spbtn'>Thông tin</button>
                     </div>
                 </div>
             </div>

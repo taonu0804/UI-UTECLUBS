@@ -54,7 +54,7 @@ class SignupConfirmFeature extends Component {
       otp: this.state.otp
     };
     console.log(data);
-    fetch('http://localhost:8080/users/signup/verify', {
+    fetch('https://uteclubs.herokuapp.com/users/signup/verify', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",

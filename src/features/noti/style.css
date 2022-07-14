@@ -12,14 +12,14 @@
   padding-bottom: 12px;
   text-align: center;
   background-color: #000;
-  color: #fff;
+  color: rgb(0, 0, 0);
 }
 
 .table {
   text-align: center;
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  border: 3px solid #ddd;
+  border: 3px solid rgb(0, 0, 0);
   width: 100%;
 }
 

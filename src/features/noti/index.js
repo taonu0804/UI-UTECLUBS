@@ -28,7 +28,7 @@ class NotiFeature extends Component {
       const id = match.params.clubId;
       console.log('id', id);
 
-     fetch(`http://localhost:8080/club-management/${id}/member-requests?page=0`, {
+     fetch(`https://uteclubs.herokuapp.com/club-management/${id}/member-requests?page=0`, {
         headers: {
           Authorization: `Bearer ${token}`,
         }
@@ -62,7 +62,7 @@ class NotiFeature extends Component {
       userId: userId,
    }
    if (window.confirm('Bạn muốn chấp nhận yêu cầu này?') == true) {
-   fetch(`http://localhost:8080/club-management/${id}/member-requests`, {
+   fetch(`https://uteclubs.herokuapp.com/club-management/${id}/member-requests`, {
        method: 'PUT',
        headers: {
            'Content-Type': 'application/json',
@@ -94,7 +94,7 @@ class NotiFeature extends Component {
    const id = match.params.clubId;
    console.log('id', id);
    if (window.confirm('Bạn muốn từ chối yêu cầu này?') == true){
-   fetch(`http://localhost:8080/club-management/${id}/member-requests/${userId}`, {
+   fetch(`https://uteclubs.herokuapp.com/club-management/${id}/member-requests/${userId}`, {
        method: 'DELETE',
        headers: {
            Authorization: `Bearer ${token}`,

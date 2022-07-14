@@ -88,7 +88,7 @@ class AddClbFeature extends Component {
         const access_token = localStorage.getItem('access_token');
         console.log('token', access_token);
 
-        fetch('http://localhost:8080/admin/club-management', {
+        fetch('https://uteclubs.herokuapp.com/admin/club-management', {
             method: 'POST',
             headers: {
               "Content-Type": "application/json",

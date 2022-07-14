@@ -36,7 +36,7 @@ class InputEmailForgetPassFeature extends Component {
       this.setState({
           errors: this.validator.validate(this.state),
       });
-        fetch('http://localhost:8080/users/reset-password/input-email', {
+        fetch('https://uteclubs.herokuapp.com/users/reset-password/input-email', {
             method: 'POST',
             headers: {
               "Content-Type": "application/json",

@@ -1,10 +1,9 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import './style.css';
-import { Link } from 'react-router-dom';
-import IMG from '../../image/edit.png';
 import jwt from 'jwt-decode';
+import { Link } from 'react-router-dom';
 
-class NotJoinedCLBFeature extends Component {
+class ManageCLBFeature extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -16,7 +15,7 @@ class NotJoinedCLBFeature extends Component {
      componentDidMount(){
       const token = localStorage.getItem('access_token');
       console.log('userId', token);
-       fetch('https://uteclubs.herokuapp.com/users/not-joined-clubs', {
+       fetch('https://uteclubs.herokuapp.com/club-management', {
          headers: {
            Authorization: `Bearer ${token}`,
            Accept: 'application/json',
@@ -36,10 +35,9 @@ class NotJoinedCLBFeature extends Component {
         const notjoin = this.state.clubs.map((item) => {
            return (
              <tr>
-                <Link className='row-link' to={`/clbmember/${item.clubId}`}> <td>{item.clubId}</td></Link>
+                <Link className='row-link' to={`/newfeed/${item.clubId}`}> <td>{item.clubId}</td></Link>
                 <td>{item.clubName}</td>
                 <td>{item.affiliatedUnit}</td>
-                <Link className='row-link' to={`/userclubdetail/${item.clubId}/notjoin`}> <td><img className='delbtn' src={IMG}/></td></Link>
              </tr>)
         });
          return (
@@ -48,14 +46,13 @@ class NotJoinedCLBFeature extends Component {
                <table className='table'>
                    <thead>
                       <tr>
-                         <th>Club ID</th>
-                         <th>Club Name</th>
-                         <th>Unit</th>
-                         <th>Tham gia</th>
+                         <th>ID Câu lạc bộ</th>
+                         <th>Tên câu lạc bộ</th>
+                         <th>Đơn vị</th>
                       </tr>
                    </thead>
                    <tbody>
-                      {notjoin.length ? notjoin : <p>Bạn đã tham gia hết câu lạc bộ</p>}
+                      {notjoin.length ? notjoin : <p>Bạn không quản lý câu lạc bộ nào</p>}
                    </tbody>
                </table>
  
@@ -64,4 +61,4 @@ class NotJoinedCLBFeature extends Component {
     }
 }
 
-export default NotJoinedCLBFeature;
+export default ManageCLBFeature;

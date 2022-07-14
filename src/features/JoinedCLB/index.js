@@ -18,7 +18,7 @@ class JoinedCLBFeature extends Component {
         const token = localStorage.getItem('access_token');
         console.log('userId', token);
 
-       fetch('http://localhost:8080/users/joined-clubs', {
+       fetch('https://uteclubs.herokuapp.com/users/joined-clubs', {
           headers: {
             Authorization: `Bearer ${token}`,
             Accept: 'application/json',
@@ -40,7 +40,7 @@ class JoinedCLBFeature extends Component {
       const token = localStorage.getItem('access_token');
       console.log('userId', token);
        if (window.confirm('Bạn chắc chắn muốn rời Câu lạc bộ?') == true) {
-         fetch(`http://localhost:8080/clubs/${clubId}/leave`, {
+         fetch(`https://uteclubs.herokuapp.com/clubs/${clubId}/leave`, {
             method: 'DELETE',
             headers: {
               Authorization: `Bearer ${token}`,
