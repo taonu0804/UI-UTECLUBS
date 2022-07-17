@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
-import BG from '../../image/Dawn\ live\ wallpaper.gif';
+import BG from '../../image/bg.png';
 import NOTJOIN from '../../image/ingroup.png';
 import JOINED from '../../image/group.png';
 import LEAD from '../../image/leader.png';
@@ -62,7 +62,7 @@ class UserWelcomeFeature extends Component {
     return (
         <div className='welcome-form'>
             <img className='bg-area' src={BG}/>
-            <h3 className='welcome-txt'><b>Xin chào, {user.fullName}</b></h3>
+            <h3 className='welcome-txt'><b>Xin chào, <Link className='link' to={`/userdetail/${user.userId}`}>{user.fullName}</Link></b></h3>
             <div className='clbbtn-group'>
                 <div className='manageclb'>
                     <img className='logobtn' src={LEAD}/><br/>

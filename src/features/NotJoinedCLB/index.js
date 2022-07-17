@@ -35,30 +35,25 @@ class NotJoinedCLBFeature extends Component {
      render() {
         const notjoin = this.state.clubs.map((item) => {
            return (
-             <tr>
-                <Link className='row-link' to={`/clbmember/${item.clubId}`}> <td>{item.clubId}</td></Link>
-                <td>{item.clubName}</td>
-                <td>{item.affiliatedUnit}</td>
-                <Link className='row-link' to={`/userclubdetail/${item.clubId}/notjoin`}> <td><img className='delbtn' src={IMG}/></td></Link>
-             </tr>)
+               <div className='item1'>
+                  <div className="w3-third-w3-container-w3-margin-bottom">
+                     <img src={item.logoUrl} alt="Norway" className="logoimg"/>
+                           <Link className='row-link' to={`/userclubdetail/${item.clubId}/notjoin`}> <img className='delbtn' src={IMG}/></Link>
+                     <div className="w3-container-w3-white">
+                           <Link to={`/clbmember/${item.clubId}`}><b>{item.clubName}</b></Link>
+                           <p>{item.affiliatedUnit}</p>
+                           <p>{item.description}</p>
+                     </div>
+                  </div>
+               </div>
+            )
         });
          return (
-             <div className='club-form'>
-                <h3 className='table-name'><b>CÁC CÂU LẠC BỘ</b></h3>
-               <table className='table'>
-                   <thead>
-                      <tr>
-                         <th>Club ID</th>
-                         <th>Club Name</th>
-                         <th>Unit</th>
-                         <th>Tham gia</th>
-                      </tr>
-                   </thead>
-                   <tbody>
-                      {notjoin.length ? notjoin : <p>Bạn đã tham gia hết câu lạc bộ</p>}
-                   </tbody>
-               </table>
- 
+            <div className='joinbody'>
+                <h3 className='o-name'><b>CÁC CÂU LẠC BỘ</b></h3><hr className='line'/>
+                  <div className="w3-row">
+                     {notjoin.length ? notjoin : <p>Bạn đã tham gia hết câu lạc bộ</p>}
+                  </div>
              </div>
           );
     }

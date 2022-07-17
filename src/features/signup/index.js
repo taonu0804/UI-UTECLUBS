@@ -4,6 +4,7 @@ import './style.css';
 import BGDK from '../../image/bgdk.png';
 import Validator from '../../utils/validator.js';
 import { storage } from '../../firebase';
+import DAVA from '../../image/dava.jpg';
 
 class SignupFeature extends Component {
   constructor (props) {
@@ -14,6 +15,7 @@ class SignupFeature extends Component {
       url: '',
       errors: {},
       info: [],
+      img: null,
       showtxt: true,
     }
 
@@ -195,8 +197,6 @@ render() {
   const {errors} = this.state;
   return (
       <div>
-        <div className='square-signup'></div>
-        <button onClick={this.register}><h2 className='signuptext'>ĐĂNG KÝ</h2></button>
         <div className='BGDK-area'>
           <img alt='' className='BGDK' src={BGDK}/>
         </div>
@@ -263,14 +263,15 @@ render() {
                 {errors.username && <div className="validation" style={{display: 'block'}}>{errors.username}</div>}
               </div>
             </div>
+            <img className='avaAlt' src={DAVA} style={{display: this.state.showtxt ? 'block' : 'none'}}/>
             <div className='newavatar-group'>
               <progress value={this.state.progress} max="100" hidden={true}/>
               <label htmlFor="files" className='uploadbtn'>Tải ảnh lên</label>
               <input id='files' type='file' className='uploadbtn' onChange={this.handleInput} hidden={true} required/>
               <button className='uploadbtn' onClick={this.handleUpload}></button>
-              <img src={this.state.url} name='avatarUrl' value={this.state.avatarUrl} onChange={this.handleChange} className='newavatar' alt=" "/>
-              {errors.avatarUrl && <div className="validationava" style={{display: 'block'}}>{errors.avatarUrl}</div>}
+              <img src={this.state.url} name='avatarUrl' value={this.state.avatarUrl} onChange={this.handleChange} className='newavatar' alt="Ảnh đại diện"/>
             </div>
+        <button onClick={this.register} className='signupbtn'>ĐĂNG KÝ</button>
         </div>
       </div>
   );

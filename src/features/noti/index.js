@@ -118,21 +118,21 @@ class NotiFeature extends Component {
       const st = this.state.students.map((item) => {
          return (
             <tr>
-               <Link className='row-link' to={`/userdetail/${item.value.userId}`}> <td>{item.value.userId}</td></Link>
-               <td>{item.value.fullName}</td>
+               <Link className='row-link' to={`/userdetail/${item.value.userId}`}> <td>{item.value.fullName}</td></Link>
                <td>{item.value.studentId}</td>
+               <td>{item.value.faculty}</td>
                <td><button className='acc' onClick={() => {this.handleAcc(item.value.userId)}}><img src={ACC} className='acc'/></button><button className='rej' onClick={() => {this.handleRej(item.value.userId)}}><img src={REJ} className='rej'/></button></td>
             </tr>)
       });
         return (
-            <div className='club-form'>
+            <div className='club-form1'>
             <h3 className='table-name'><b>CÁC YÊU CẦU MỚI</b></h3>
                <table className='table'>
                    <thead>
                       <tr>
-                         <th>User ID</th>
-                         <th>User Name</th>
-                         <th>Student ID</th>
+                         <th>Họ và tên</th>
+                         <th>Mã số sinh viên</th>
+                         <th>Khoa</th>
                          <th>Thao tác</th>
                       </tr>
                    </thead>

@@ -46,9 +46,9 @@ class ClubManagementFeature extends Component {
               <table className='table'>
                   <thead>
                      <tr>
-                        <th>Club ID</th>
-                        <th>Club Name</th>
-                        <th>Unit</th>
+                        <th>Mã câu lạc bộ</th>
+                        <th>Tên câu lạc bộ</th>
+                        <th>Đơn vị trực thuộc</th>
                      </tr>
                   </thead>
                   <tbody>

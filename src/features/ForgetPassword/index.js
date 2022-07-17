@@ -113,7 +113,6 @@ class ForgetPassFeature extends Component {
           })
           .catch(error => {
             console.log('error', error);
-            alert('Somthing went wrong');
           })
   };
 

@@ -14,12 +14,11 @@
 
 .welcome-form .welcome-txt {
     z-index: 1;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: white;
-    margin-top: 5%;
-    margin-left: 26%;
+    color: rgb(133, 133, 133);
+    padding: 3%;
+    margin-top: 8%;
+    margin-left: 22%;
     font-size: 60px;
-    text-shadow: 2px 3px rgb(247, 228, 60);
 }
 
 .logobtn {
@@ -36,9 +35,8 @@
 
 .managebtn, .joinedbtn, .notjoinedbtn {
     text-decoration: none;
-    font-size: 25px;
+    font-size: 20px;
     color: white;
-    -webkit-text-stroke: 1px black;
 }
 
 .managebtn:hover, .joinedbtn:hover, .notjoinedbtn:hover {
@@ -48,22 +46,32 @@
 }
 
 .manageclb {
+    width: 300px;
     margin-top: 20%;
-    margin-left: 18%;
+    margin-left: 22.5%;
     border-right: solid 2px gray;
-    padding-right: 5%;
+    padding: 30px;
+    padding-left: 55px;
+    background: rgb(184, 184, 184);
 }
 
 .joinedclb {
+    width: 300px;
     margin-top: 20%;
-    margin-left: 41%;
+    margin-left: 42%;
     border-right: solid 2px gray;
-    padding-right: 5%;
+    padding: 30px;
+    padding-left: 45px;
+    background: rgb(184, 184, 184);
 }
 
 .notjoinedclb {
+    padding-left: 65px;
+    width: 305px;
+    padding: 29.3px;
     margin-top: 20%;
-    margin-left: 66%;
+    margin-left: 61.5%;
+    background: rgb(184, 184, 184);
 }
 
 .logobtn {
@@ -84,4 +92,8 @@
     color: black;
     margin-left: 87%;
     padding-inline: 5px;
+  }
+
+  .link {
+    color: rgb(133, 133, 133);
   }

@@ -11,28 +11,28 @@
 .emailtxt {
     position: absolute;
     border: solid 2px gray;
-    border-radius: 8px;
+    border-radius: 5px;
     width: 400px;
     margin-top: 21%;
     margin-left: 60%;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -o-border-radius: 8px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
 
 .emailsubmit {
     position: absolute;
     background-color: cadetblue;
     color: white;
-    border-radius: 15px;
     width: 100px;
     margin-top: 25.3%;
-    margin-left: 73.5%;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    -ms-border-radius: 15px;
-    -o-border-radius: 15px;
+    margin-left: 79%;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
 
 .emailsubmit:hover {

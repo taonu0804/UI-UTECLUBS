@@ -1,28 +1,3 @@
-.table td, .table th {
-    border: 1px solid #fff;
-    padding: 8px;
-  }
-  
-  .table tr:nth-child(even){background-color: #ffff73;}
-  
-  .table tr:hover {background-color: rgb(255, 254, 176);}
-  
-  .table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: center;
-    background-color: yellow;
-    color: rgb(0, 0, 0);
-  }
-  
-  .table {
-    text-align: center;
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    border: 3px solid rgb(0, 0, 0);
-    width: 100%;
-  }
-  
   .title {
       text-align: center;
       font-family: arial, sans-serif;
@@ -45,41 +20,56 @@
         -ms-border-radius: 25px;
         -o-border-radius: 25px;
   }
-  
-  .delbtn {
-      width: 25px;
-      height:25px;
-  }
-  
-  .table-name {
+
+  .o-name {
+    width: 1200px;
       font-size: 30px;
       color: gray;
       align-self: center;
-      margin-left: 40%;
+      margin-left: 45%;
   }
-  
-  .-pagination {
-    height: 60px;
-  }
-  
-  .-previous, .-next {
-    height: 60px;
-    color: black;
-  }
-  
-  .-center .-pageInfo, .-pageJump, .-totalPages {
-    height: 30px;
-    font-size: 15px;
-  }
-  
-  .-pageSizeOptions {
-    height: 30px;
-    font-size: 15px;
+  .line {
+    margin-left: 12%;
+    background: gray;
+    width: 1200px;
   }
 
   .outgr {
+    position: absolute;
+    z-index: 1;
     border: none;
     width: 35px;
     height: 35px;
     background: none;
+    margin-left: 17%;
+    margin-top: -1%;
+  }
+
+  .item1 {
+    border: solid 1px gray;
+    width: 400px;
+    height: 550px;
+    margin-left: 5%;
+    margin-top: 1%;
+  }
+
+  .joinbody .w3-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 2%;
+  }
+
+  .item1 .w3-container-w3-white {
+    margin-left: 7px;
+  }
+
+  .logoimg {
+    width: 400px;
+    height: 230px;
+    border: solid 1px gray;
+  }
+
+  .joinbody {
+    width: 1545px;
   }

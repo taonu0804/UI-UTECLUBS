@@ -1,28 +1,3 @@
-.table td, .table th {
-    border: 1px solid #fff;
-    padding: 8px;
-  }
-  
-  .table tr:nth-child(even){background-color: #ffff73;}
-  
-  .table tr:hover {background-color: rgb(255, 254, 176);}
-  
-  .table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: center;
-    background-color: yellow;
-    color: rgb(0, 0, 0);
-  }
-  
-  .table {
-    text-align: center;
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    border: 3px solid rgb(0, 0, 0);
-    width: 100%;
-  }
-  
   .title {
       text-align: center;
       font-family: arial, sans-serif;
@@ -47,8 +22,13 @@
   }
   
   .delbtn {
-      width: 25px;
-      height:25px;
+    position: absolute;
+    z-index: 1;
+    border: none;
+    width: 25px;
+    height: 25px;
+    background: none;
+    margin-left: 19%;
   }
   
   .table-name {
@@ -56,23 +36,4 @@
       color: gray;
       align-self: center;
       margin-left: 40%;
-  }
-  
-  .-pagination {
-    height: 60px;
-  }
-  
-  .-previous, .-next {
-    height: 60px;
-    color: black;
-  }
-  
-  .-center .-pageInfo, .-pageJump, .-totalPages {
-    height: 30px;
-    font-size: 15px;
-  }
-  
-  .-pageSizeOptions {
-    height: 30px;
-    font-size: 15px;
   }

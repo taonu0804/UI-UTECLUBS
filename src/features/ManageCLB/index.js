@@ -34,29 +34,24 @@ class ManageCLBFeature extends Component {
      render() {
         const notjoin = this.state.clubs.map((item) => {
            return (
-             <tr>
-                <Link className='row-link' to={`/newfeed/${item.clubId}`}> <td>{item.clubId}</td></Link>
-                <td>{item.clubName}</td>
-                <td>{item.affiliatedUnit}</td>
-             </tr>)
+            <div className='item1'>
+               <div className="w3-third-w3-container-w3-margin-bottom">
+                  <img src={item.logoUrl} alt="Norway" className="logoimg"/>
+                  <div className="w3-container-w3-white">
+                        <Link to={`/newfeed/${item.clubId}`}><b>{item.clubName}</b></Link>
+                        <p>{item.affiliatedUnit}</p>
+                        <p>{item.description}</p>
+                  </div>
+               </div>
+            </div>)
         });
          return (
-             <div className='club-form'>
-                <h3 className='table-name'><b>CÁC CÂU LẠC BỘ</b></h3>
-               <table className='table'>
-                   <thead>
-                      <tr>
-                         <th>ID Câu lạc bộ</th>
-                         <th>Tên câu lạc bộ</th>
-                         <th>Đơn vị</th>
-                      </tr>
-                   </thead>
-                   <tbody>
-                      {notjoin.length ? notjoin : <p>Bạn không quản lý câu lạc bộ nào</p>}
-                   </tbody>
-               </table>
- 
-             </div>
+            <div className='joinbody'>
+               <h3 className='o-name'><b>CÁC CÂU LẠC BỘ</b></h3><hr className='line'/>
+                 <div className="w3-row">
+                    {notjoin.length ? notjoin : <p>Bạn chưa tham gia câu lạc bộ nào</p>}
+                 </div>
+            </div>
           );
     }
 }

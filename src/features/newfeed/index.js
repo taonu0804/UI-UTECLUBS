@@ -360,7 +360,7 @@ class NewFeedFeature extends Component {
     const role = this.state.role;
     var link;
     if (role === 'ROLE_LEADER' || role === 'ROLE_MODERATOR') {
-        link = `/clubdetail/${clubId}`
+        link = `/userclubdetail/${clubId}`
     }
     else {
         link = `/userclubdetail/${clubId}`
@@ -389,7 +389,7 @@ class NewFeedFeature extends Component {
                             <Link className="w3-button-w3-block-w3-theme-l1-w3-left-align" to={link}><img className='btnic1' src={IN4}/> Thông tin chung<br/></Link>
                             <Link className="w3-button-w3-block-w3-theme-l1-w3-left-align" to={`/eventlist`}><img className='btnic2' src={EVENT}/> Các sự kiện<br/></Link>
                             <Link className="w3-button-w3-block-w3-theme-l1-w3-left-align" to={`/clbmember/${clubId}`}><img className='btnic3' src={MEM}/> Các thành viên<br/></Link>
-                            <Link className="w3-button-w3-block-w3-theme-l1-w3-left-align" to={`/noti/${clubId}`}><img className='btnic4' src={ADD}/> Thêm thành viên<br/></Link>
+                            <Link className="w3-button-w3-block-w3-theme-l1-w3-left-align" to={`/noti/${clubId}`}><img className='btnic4' src={ADD}/> Yêu cầu tham gia<br/></Link>
                             <Link className='add1btn' to={`/addevent/${clubId}`} style={{display: this.state.showL ? 'block' : 'none'}}><img className='addevent' src={ADDE}/>Thêm sự kiện</Link>
                             <button className='onleave' onClick={() => {this.hanldeOut(clubId)}} style={{display: this.state.showBtn ? 'block' : 'none'}}><b>Rời câu lạc bộ</b></button>
                         </div>

@@ -6,7 +6,7 @@ import { matchPath } from 'react-router';
 import { Link } from 'react-router-dom';
 import BTN from '../../image/qly.png';
 
-class ClubDetailFeature extends Component {
+class AdminClubDetailFeature extends Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -50,7 +50,7 @@ class ClubDetailFeature extends Component {
 
   componentDidMount() {
     const match = matchPath(this.props.history.location.pathname, {
-      path: '/clubdetail/:clubId',
+      path: '/admindetailclb/:clubId',
       exact: true,
       strict: false
     })
@@ -60,7 +60,7 @@ class ClubDetailFeature extends Component {
     const access_token = localStorage.getItem('access_token');
     console.log('token', access_token);
 
-    fetch('https://uteclubs.herokuapp.com/club-management/' + `${id}`, {
+    fetch('https://uteclubs.herokuapp.com/admin/club-management/' + `${id}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${access_token}`,
@@ -215,4 +215,4 @@ class ClubDetailFeature extends Component {
     }
 }
 
-export default ClubDetailFeature;
+export default AdminClubDetailFeature;

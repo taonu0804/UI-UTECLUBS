@@ -8,6 +8,7 @@ class ParticipantListFeature extends Component {
         super(props)
         this.state = {
            mems: [],
+           showAb: false,
            loading: true
         }
         
@@ -31,9 +32,9 @@ class ParticipantListFeature extends Component {
         console.log('id', id);
          const token = localStorage.getItem('access_token');
          const body ={
-             searchQuery: this.state.searchQuery,
+             search: this.state.search,
          }
-         fetch(`https://uteclubs.herokuapp.com/events/${id}/participants`, {
+         fetch(`https://uteclubs.herokuapp.com/events/${id}/participants/find?query=1234560`, {
              method: 'POST',
              headers: {
                  'Content-Type': 'application/json',
@@ -93,6 +94,27 @@ class ParticipantListFeature extends Component {
                    })
                })
             .catch(error => console.log(error))
+
+            fetch(`https://uteclubs.herokuapp.com/events/${linkId}/get-edit-permission`, {
+         headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          }
+      })
+            .then((response) => {
+                response.json();
+                console.log(response.ok);
+
+                if(response.ok == true) {
+                    this.setState({showAb: true})
+                }
+                else {
+                    this.setState({showAb: false})
+                }
+
+            })
+            .catch(error => console.log(error))
       }
 
     render() {
@@ -113,7 +135,7 @@ class ParticipantListFeature extends Component {
                <td>{item.value.major}</td>
                <td>{item.value.faculty}</td>
                <td>{item.value.email}</td>
-               <td><input type="checkbox" id="checkbox" name="checkbox" value="" /></td>
+               <td style={{display: this.state.showAb ? 'block' : 'none'}}><input type="checkbox" id="checkbox" name="checkbox" value="" /></td>
             </tr>)
       });
          return (
@@ -134,7 +156,7 @@ class ParticipantListFeature extends Component {
                         <th>Ngành</th>
                         <th>Khoa</th>
                         <th>Email</th>
-                        <th>Diểm danh</th>
+                        <th style={{display: this.state.showAb ? 'block' : 'none'}}>Diểm danh</th>
                       </tr>
                   </thead>
                   <tbody>

@@ -49,17 +49,15 @@ class ClbMembersFeature extends Component {
     })
     const id = match.params.clubId;
     console.log('id', id);
-     const token = localStorage.getItem('access_token');
      const body ={
-         searchQuery: this.state.searchQuery,
+         search: this.state.search,
      }
-     fetch(`https://uteclubs.herokuapp.com/clubs/${id}/members`, {
-         method: 'POST',
+     console.log('body', body);
+     fetch(`https://uteclubs.herokuapp.com/clubs/${id}/members/find?query=123456`, {
+         method: 'GET',
          headers: {
              'Content-Type': 'application/json',
-             Authorization: `Bearer ${token}`,
          },
-         body: JSON.stringify(body),
      })
          .then(response => {
              console.log(response.statusText);

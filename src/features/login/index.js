@@ -58,7 +58,6 @@ function LoginFeature() {
 
     return (
         <div className='login-page'>
-            <div className='decor'></div>
             <div className='login-bg'>
                 <img className='bg' src={BG}/>
             </div>

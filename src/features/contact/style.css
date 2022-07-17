@@ -3,7 +3,7 @@
   width: 210px;
   height: 340px;
   background: orange;
-  margin-top: -32%;
+  margin-top: -31.5%;
   margin-left: 10%;
 }
 
@@ -71,12 +71,12 @@
 
 .member .name {
   font-size: 20px;
-  padding-left: 35px;
+  margin-top: 5%;
 }
 
 .mssv {
   margin-top: 0%;
-  padding-left: 35px;
+  padding-left: 90px;
 }
 
 .square-decor {

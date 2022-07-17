@@ -40,3 +40,16 @@
   height: 35px;
   margin-left: 5%;
 }
+
+.club-form1 {
+  width: 1200px;
+  border: solid 3px gray;
+  border-radius: 25px;
+  margin-left: 10%;
+  margin-top: 1%;
+  box-shadow: 5px 5px 5px 5px gray;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+}

@@ -25,10 +25,9 @@ class EventListFeature extends Component {
 
     handleSearch() {
         const token = localStorage.getItem('access_token');
+
         const body ={
             name: this.state.name,
-            startTime: this.state.begdate + ' 08:00',
-            endTime: this.state.enddate + ' 08:00',
             clubId: null,
         }
         console.log('body', body);
@@ -45,7 +44,7 @@ class EventListFeature extends Component {
                 return (response.text());
             }).then(events => {
                 console.log(events);
-                if (events.length <= 1) {
+                if (events.length > 1) {
                     const arr = JSON.parse(events);
                     console.log(arr);
                     var details = [];

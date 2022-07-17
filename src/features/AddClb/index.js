@@ -41,6 +41,9 @@ class AddClbFeature extends Component {
           },
         ];
         this.validator = new Validator(rules);
+
+        
+      const beLink = 'https://uteclubs.herokuapp.com/';
     }
 
     handleChange = e => {

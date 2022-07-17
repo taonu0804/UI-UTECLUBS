@@ -54,7 +54,6 @@ class UserDetailFeature extends Component {
             <div className='decos'>
               <p className='helo'><b>XIN CHÀO, TÔI LÀ</b></p>
               <p className='name'><b>{user.fullName}</b></p>
-              <p className='id'><b>Mã người dùng: {user.userId}</b></p>
             </div>
             <div className="infodetail">
                 <p className='label'><b>Thông tin chi tiết</b><hr/></p>

@@ -68,9 +68,9 @@ class InputEmailForgetPassFeature extends Component {
         const {errors} = this.state;
         return (
             <div className='forgetpassemail-body'>
-                <input type='email' className='emailtxt' name='email' onChange={this.handleChange} placeholder='Email address' required/>
+                <input type='email' className='emailtxt' name='email' onChange={this.handleChange} placeholder='Địa chỉ email' required/>
                 {errors.email && <div className="validationemail" style={{display: 'block'}}>{errors.email}</div>}
-                <button className='emailsubmit' onClick={this.handleSubmit}>Next</button>
+                <button className='emailsubmit' onClick={this.handleSubmit}>Tiếp tục</button>
             </div>
         );
     }

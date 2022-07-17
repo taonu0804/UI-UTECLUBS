@@ -43,8 +43,7 @@ class ClubManagementFeature extends Component {
        var value = this.state.clubs.map((item) => {
           return (
              <tr key={item.value.id}>
-                <Link className='row-link' to={`/clubdetail/${item.value.clubId}`}> <td>{item.value.clubId}</td></Link>
-                <td>{item.value.clubName}</td>
+                <Link className='row-link' to={`/admindetailclb/${item.value.clubId}`}> <td>{item.value.clubName}</td></Link>
                 <td>{item.value.affiliatedUnit}</td>
              </tr>)
        });
@@ -68,9 +67,8 @@ class ClubManagementFeature extends Component {
               <table className='table'>
                   <thead>
                      <tr>
-                        <th>Club ID</th>
-                        <th>Club Name</th>
-                        <th>Unit</th>
+                        <th>Tên câu lạc bộ</th>
+                        <th>Đơn vị trực thuộc</th>
                      </tr>
                   </thead>
                   <tbody>

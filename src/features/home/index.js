@@ -16,7 +16,7 @@ function HomeFeature(props) {
       <div className='login-form'>
         <div className='login-group' style={{backgroundColor: 'white'}}>
           <div className='bg-group'>
-            <p className='greeting'><b>Chào mừng đến với<br/><span>UTECLUBS</span></b></p>
+            <p className='greeting'><b>UTE Clubs</b></p>
             <img className='background' src={BG}/>
           </div>
 
@@ -25,22 +25,20 @@ function HomeFeature(props) {
           </div>
         </div>
 
-        <div className='img-group' style={{backgroundColor: '#FFD700'}}>
+        <div className='img-group'>
           <div className='clear-both'/>
-          <img className='image' src={IMG1}/>
-          <img className='image' src={IMG2}/>
-          <img className='image' src={IMG3}/>
-          <img className='image' src={IMG4}/>
-        </div>
-
-        <div className='intro-group' style={{backgroundColor: '#233077'}}>
-          <p className='intro'><b className='bold'>TIỆN LỢI</b><br/><br/>
+          <img className='image1' src={IMG1}/>
+          <p className='intro1'><b className='bold'>TIỆN LỢI</b><br/><br/>
           CLB CLUBS là nơi các câu lạc bộ có thể liên lạc, kết nối với nhau một cách nhanh chóng
           </p>
-          <p className='intro'><b className='bold'>TÍCH CỰC</b><br/><br/>
+          <hr className='line1'/>
+          <img className='image2' src={IMG2}/>
+          <p className='intro2'><b className='bold'>TÍCH CỰC</b><br/><br/>
           Là môi trường mới, an toàn để các câu lạc bộ hoạt động, giao lưu với nhau
           </p>
-          <p className='intro'><b className='bold'>HIỆU QUẢ</b><br/><br/>
+          <hr className='line2'/>
+          <img className='image3' src={IMG3}/>
+          <p className='intro3'><b className='bold'>HIỆU QUẢ</b><br/><br/>
           Bằng những tính năng và sự riêng tư, giúp cho việc hoạt động câu lạc bộ tối ưu và hiệu quả hơn
           </p>
         </div>

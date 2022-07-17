@@ -20,7 +20,7 @@ function ErrorFeature(props) {
                 </div>
                 <div className="conten">
                 <img src={BG} alt="" title />
-                <h3>Tiếc quá! Trang bạn muốn đến không tồn tại, hãy đăng nhập để tiếp tục</h3>
+                <h3>Tiếc quá! Hãy đăng nhập để tiếp tục</h3>
                 <form>
                     <button className='loginbtn' onClick={handleMoving}> ĐĂNG NHẬP </button>
                 </form>
