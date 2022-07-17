@@ -35,6 +35,7 @@ import ManageCLBFeature from './features/ManageCLB';
 import MyEventFeature from './features/MyEvent';
 import EventEditFeature from './features/EventEdit';
 import ClubManagementFeature from './features/ClubManagement';
+import AdminClubDetailFeature from './features/AdminClubDetail';
 
 function App() {
   const history = useHistory();
@@ -81,7 +82,7 @@ function App() {
     <div className="App">
       <div className="Header">
         <img className='Logo' src={LOGO}/>
-        <button className='home-link' onClick={handleMoving}><b>HOME</b></button>
+        <button className='home-link' onClick={handleMoving}><b>TRANG CHỦ</b></button>
         <button className='event-link' onClick={handleEvent}><b>SỰ KIỆN</b></button>
         <button className='contact-link' onClick={contactPage}><b>LIÊN HỆ</b></button>
       </div>
@@ -120,6 +121,7 @@ function App() {
         <Route path='/myevent' component={ MyEventFeature } exact/>
         <Route path='/eventedit/:eventId' component={ EventEditFeature } exact/>
         <Route path='/usermanageclb' component={ ManageCLBFeature } exact/>
+        <Route path='/admindetailclb/:clubId' component={ AdminClubDetailFeature } exact/>
       </Switch>
       </div>
     </div>
