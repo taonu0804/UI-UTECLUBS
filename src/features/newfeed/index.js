@@ -16,6 +16,7 @@ import Moment from 'moment';
 import Popup from 'reactjs-popup';
 import ShowCmtComponent from '../Component/ShowCmt/Content';
 import CMT from '../../image/cmt.png';
+import ADDE from '../../image/addevent.png';
 
 class NewFeedFeature extends Component {
     constructor (props) {
@@ -30,9 +31,11 @@ class NewFeedFeature extends Component {
         posts: [],
         cmt: [],
         clubId: '',
+        role: null,
         showBtn: false,
         showLink: false,
         showUrl: true,
+        showL: false,
     }
     
     this.handleChange = this.handleChange.bind(this);
@@ -69,20 +72,24 @@ class NewFeedFeature extends Component {
         })
         .then(item => {
             console.log(item);
+            this.setState({role: item});
             if (item === 'ROLE_LEADER') {
                 this.setState({showBtn: false});
                 this.setState({showLink: true});
                 this.setState({showUrl: true});
+                this.setState({showL: true});
             }
             else if (item === 'ROLE_MODERATOR') {
                 this.setState({showLink: false});
                 this.setState({showBtn: true});
                 this.setState({showUrl: true});
+                this.setState({showL: true});
             }
             else {
                 this.setState({showLink: true});
                 this.setState({showBtn: false});
                 this.setState({showUrl: false});
+                this.setState({showL: false});
             }
         })
 
@@ -310,6 +317,14 @@ class NewFeedFeature extends Component {
     }
 
     render() {
+        const match = matchPath(this.props.history.location.pathname, {
+            path: '/newfeed/:clubId',
+            exact: true,
+            strict: false
+        })
+        const id = match.params.clubId;
+        console.log('id', id);
+
         const {userclubs} = this.state;
         const {posts} = this.state;
         const clubId = this.state.clubId;
@@ -325,7 +340,7 @@ class NewFeedFeature extends Component {
             return (
                 <div className='nf-post' key={item.value.postId}>
                 <div className='posted'>
-                    <button className='delpost' style={{display: this.state.showUrl ? 'block' : 'none'}} onClick={() => {this.handleDel(item.value.postId)}}>...</button>
+                    <button className='delpost' style={{display: this.state.showUrl ? 'block' : 'none'}} onClick={() => {this.handleDel(item.value.postId)}}>x</button>
                     <h3 className='authorFullName'><img className='authorAvtUrl' src={ava}/> {fullName}</h3>
                     <p className='createdDate'>{dt}</p>
                     <hr/>
@@ -341,6 +356,16 @@ class NewFeedFeature extends Component {
                 </div>
         )
     });
+
+    const role = this.state.role;
+    var link;
+    if (role === 'ROLE_LEADER' || role === 'ROLE_MODERATOR') {
+        link = `/clubdetail/${clubId}`
+    }
+    else {
+        link = `/userclubdetail/${clubId}`
+    }
+
     return (
         <div className='bodym'>
             <div className='content-border'>
@@ -361,10 +386,11 @@ class NewFeedFeature extends Component {
                         <br/>
                         
                         <div className="w3-card-w3-round">
-                            <Link className="w3-button-w3-block-w3-theme-l1-w3-left-align" to={`/userclubdetail/${clubId}`}><img className='btnic1' src={IN4}/> Thông tin chung<br/></Link>
+                            <Link className="w3-button-w3-block-w3-theme-l1-w3-left-align" to={link}><img className='btnic1' src={IN4}/> Thông tin chung<br/></Link>
                             <Link className="w3-button-w3-block-w3-theme-l1-w3-left-align" to={`/eventlist`}><img className='btnic2' src={EVENT}/> Các sự kiện<br/></Link>
                             <Link className="w3-button-w3-block-w3-theme-l1-w3-left-align" to={`/clbmember/${clubId}`}><img className='btnic3' src={MEM}/> Các thành viên<br/></Link>
                             <Link className="w3-button-w3-block-w3-theme-l1-w3-left-align" to={`/noti/${clubId}`}><img className='btnic4' src={ADD}/> Thêm thành viên<br/></Link>
+                            <Link className='add1btn' to={`/addevent/${clubId}`} style={{display: this.state.showL ? 'block' : 'none'}}><img className='addevent' src={ADDE}/>Thêm sự kiện</Link>
                             <button className='onleave' onClick={() => {this.hanldeOut(clubId)}} style={{display: this.state.showBtn ? 'block' : 'none'}}><b>Rời câu lạc bộ</b></button>
                         </div>
                         <br/>

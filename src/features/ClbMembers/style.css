@@ -38,7 +38,7 @@
         border: solid 3px gray;
         border-radius: 25px;
         margin-left: 10%;
-        margin-top: 2%;
+        margin-top: 3%;
         box-shadow: 5px 5px 5px 5px gray;
         -webkit-border-radius: 25px;
         -moz-border-radius: 25px;
@@ -127,4 +127,9 @@
 
   .empty {
     text-align: center;
+  }
+
+.searcha {
+    position: absolute;
+    margin-left: 70%;
   }

@@ -68,7 +68,7 @@ class ShowCmtComponent extends Component {
         const cmt = this.state.cmt.map((i) => {
             return(
             <div className='cmtnew'>
-                <h5 className='commentName'>{i.value.authorFullName}</h5><button className='delcmt' style={{display: this.state.showUrl ? 'block' : 'none'}}  onClick={() => {this.handleDel(i.value.commentId, i.value.postId, i.value.content)}}>...</button>
+                <h5 className='commentName'>{i.value.authorFullName}</h5><button className='delcmt' style={{display: this.state.showUrl ? 'block' : 'none'}}  onClick={() => {this.handleDel(i.value.commentId, i.value.postId, i.value.content)}}>x</button>
                 <p className='commenttxt'>{i.value.content}</p>
             </div>
         )});

@@ -94,3 +94,15 @@ Link:hover {
 .uploadbtn:hover {
     background-color: wheat;
 }
+
+.datealt {
+  position: absolute;
+  background: #ffffff;
+  margin-top: 3.5%;
+  margin-left: 1%;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+}

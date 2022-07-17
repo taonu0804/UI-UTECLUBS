@@ -11,6 +11,13 @@
 .begdatetext, .enddatetext {
     width: 190px;
 }
+.beg1date, .end1date {
+    position: absolute;
+    margin-top: 2%;
+    width: 100px;
+    margin-left: 2%;
+    background: white;
+}
 .endtimetitle {
     margin-top: 5%;
 }

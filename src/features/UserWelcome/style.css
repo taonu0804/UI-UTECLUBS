@@ -49,7 +49,7 @@
 
 .manageclb {
     margin-top: 20%;
-    margin-left: 22%;
+    margin-left: 18%;
     border-right: solid 2px gray;
     padding-right: 5%;
 }
@@ -63,9 +63,25 @@
 
 .notjoinedclb {
     margin-top: 20%;
-    margin-left: 65%;
+    margin-left: 66%;
 }
 
 .logobtn {
     margin-left: 35%;
 }
+
+
+
+.addbtn:hover {
+    text-decoration: none;
+    background-color: wheat;
+    color: #000;
+  }
+  
+  .addbtn {
+    position: absolute;
+    border: solid 2px gray;
+    color: black;
+    margin-left: 87%;
+    padding-inline: 5px;
+  }

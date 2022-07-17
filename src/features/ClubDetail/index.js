@@ -60,7 +60,7 @@ class ClubDetailFeature extends Component {
     const access_token = localStorage.getItem('access_token');
     console.log('token', access_token);
 
-    fetch('https://uteclubs.herokuapp.com/admin/club-management/' + `${id}`, {
+    fetch('https://uteclubs.herokuapp.com/club-management/' + `${id}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${access_token}`,
@@ -160,45 +160,55 @@ class ClubDetailFeature extends Component {
       img = clubs.logoUrl;
     }
       return (
-          <div className='clbdetail'>
+          <div className='event-detail'>
             <Link className='addmem' to={`/clbmember/${clubs.clubId}`}><img src={BTN} className='btn'/>Quản lý thành viên</Link>
-              <div className='detail-contain'>
-              <h2 className='titletxt'><b>Thông tin Câu lạc bộ</b></h2>
-                <div className='name-area'>
-                  <input type='text' className='club-name' name='clubName' placeholder={clubs.clubName} onChange={(e) => {this.setState({[e.target.name]: e.target.value})}} required/>
-                  {errors.clubName && <div className="validation1" style={{display: 'block'}}>{errors.clubName}</div>}
-                </div>
-                <div className='img-area'>
-                  <progress value={this.state.progress} max="100" hidden={true}/>
-                  <label htmlFor="files" className='img'>Tải ảnh lên</label>
-                  <input id='files' type='file' className='img' onChange={this.handleChange} hidden={true} required/>
-                  <button className='changeimg' onClick={this.handleUpload}></button>
-                  <img src={img} name='logoUrl' value={img} onChange={(e) => {this.setState({[e.target.name]: e.target.value})}} className='club-img' alt=" "/>
-                </div>
-                <div className='unit-area'>
-                  <h5 className='lead-text'><b>Đơn vị: </b></h5>
-                  <p className='unittxt' style={{display: this.state.showUnit ? 'block' : 'none'}}>{clubs.affiliatedUnit}</p>
-                  <select
-                        className='lead-name'
-                        onChange={(e) => {this.setState({[e.target.name]: e.target.value}); this.setState({showUnit: false})}}
-                        name='affiliatedUnit'
-                        value={this.state.affiliatedUnit}
-                        required
-                    >
-                        <option value="Hội Sinh viên">Hội Sinh viên</option>
-                        <option value="Khoa Công Nghệ thông tin">Khoa Công Nghệ thông tin</option>
-                        <option value="Khoa Kinh tế">Khoa Kinh tế</option>
-                        <option value="Khoa Điện - Điện tử">Khoa Điện - Điện tử</option>
-                        <option value="Khoa Ngoại ngữ">Khoa Ngoại ngữ</option>
-                    </select>
-                  {errors.affiliatedUnit && <div className="validation2" style={{display: 'block'}}>{errors.affiliatedUnit}</div>}
-                </div>
-                <div className='desc-area'>
-                  <p className='desc'><b>Mô tả: </b></p>
-                  <textarea className='desc-detail' name='description' placeholder={clubs.description} onChange={(e) => {this.setState({[e.target.name]: e.target.value})}} required/>
-                  {errors.description && <div className="validation3" style={{display: 'block'}}>{errors.description}</div>}
-                </div>
-                  <button type="submit" className="bouton-contact" onClick={() => {this.handleSubmit(clubs.clubId, clubs.clubName, clubs.affiliatedUnit, clubs.description, clubs.logoUrl)}}>Cập nhật</button>
+              <div className='detailcontain'>
+                      <div className='nameare1'>
+                        <div className='ename-area1'>
+                            <p className='enametitle1'><b>Tên sự kiện</b></p>
+                            <input type='text' className='ename' name='clubName' placeholder={clubs.clubName} onChange={(e) => {this.setState({[e.target.name]: e.target.value})}} required/>
+                            {errors.clubName && <div className="validation1" style={{display: 'block'}}>{errors.clubName}</div>}
+                        </div>
+
+                        <p className='begtimetitle'><b>Đơn vị</b></p>
+                        <div className="begtime-area">
+                            <p className='begdateopt' style={{display: this.state.showUnit ? 'block' : 'none'}}>{clubs.affiliatedUnit}</p>
+                            <select
+                                className='begdatetext'
+                                onChange={(e) => {this.setState({[e.target.name]: e.target.value}); this.setState({showUnit: false})}}
+                                name='affiliatedUnit'
+                                value={this.state.affiliatedUnit}
+                                required
+                            >
+                                <option value="Hội Sinh viên">Hội Sinh viên</option>
+                                <option value="Khoa Công Nghệ thông tin">Khoa Công Nghệ thông tin</option>
+                                <option value="Khoa Kinh tế">Khoa Kinh tế</option>
+                                <option value="Khoa Điện - Điện tử">Khoa Điện - Điện tử</option>
+                                <option value="Khoa Ngoại ngữ">Khoa Ngoại ngữ</option>
+                            </select>
+                          {errors.affiliatedUnit && <div className="validation2" style={{display: 'block'}}>{errors.affiliatedUnit}</div>}
+                        </div>
+
+                            <button type="submit" className="e-button" onClick={() => {this.handleSubmit(clubs.clubId, clubs.clubName, clubs.affiliatedUnit, clubs.description, clubs.logoUrl)}}><b>Cập nhật</b></button>
+                            </div>
+
+                            <div className='avaarea1'>
+                                <div className='eimgarea'>
+                                    <progress value={this.state.progress} max="100" hidden={true}/>
+                                    <label htmlFor="files" className='img'>Tải ảnh lên</label>
+                                    <input id='files' type='file' className='img' onChange={this.handleChange} hidden={true} required/>
+                                    <button className='img' onClick={this.handleUpload}></button>
+                                    <img src={img} name='logoUrl' value={img} onChange={(e) => {this.setState({[e.target.name]: e.target.value})}} className='eve-img' alt=" "/>
+                                </div>
+
+                                <div className='eunit-area'>
+                                    <div className='edesc-area'>
+                                        <p className='edesc1'><b>Mô tả: </b></p>
+                                        <textarea className='edescdetail' name='description' placeholder={clubs.description} onChange={(e) => {this.setState({[e.target.name]: e.target.value})}} required/>
+                                        {errors.description && <div className="validation3" style={{display: 'block'}}>{errors.description}</div>}
+                                    </div>
+                                </div>
+                    </div>
               </div>
           </div>
       );

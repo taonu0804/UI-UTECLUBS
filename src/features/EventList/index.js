@@ -9,16 +9,29 @@ class EventListFeature extends Component {
        super(props)
        this.state = {
           events: [],
+          parts:[],
           loading: true
-       };
+       }
+
+       this.handleInput = this.handleInput.bind(this);
+       this.handleSearch = this.handleSearch.bind(this);
+    }
+
+    handleInput(e) {
+        this.setState({
+            [e.target.name]: e.target.value,
+        })
     }
 
     handleSearch() {
         const token = localStorage.getItem('access_token');
         const body ={
             name: this.state.name,
-            date: this.state.begdate + this.state.enddate,
+            startTime: this.state.begdate + ' 08:00',
+            endTime: this.state.enddate + ' 08:00',
+            clubId: null,
         }
+        console.log('body', body);
         fetch('https://uteclubs.herokuapp.com/events/search', {
             method: 'POST',
             headers: {
@@ -32,7 +45,7 @@ class EventListFeature extends Component {
                 return (response.text());
             }).then(events => {
                 console.log(events);
-                if (events !== '') {
+                if (events.length <= 1) {
                     const arr = JSON.parse(events);
                     console.log(arr);
                     var details = [];
@@ -57,13 +70,14 @@ class EventListFeature extends Component {
     componentDidMount() {
         const token = localStorage.getItem('access_token');
         console.log('userId', token);
+
         fetch('https://uteclubs.herokuapp.com/events?page=0', {
-         headers: {
-            Authorization: `Bearer ${token}`,
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-          }
-      })
+            headers: {
+                Authorization: `Bearer ${token}`,
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
             .then(response => response.json())
             .then(events => {
                let details = [];
@@ -76,6 +90,30 @@ class EventListFeature extends Component {
                     events: details,
                     loading: true,
                 })
+
+                this.state.events.map((item) => {
+                    fetch(`https://uteclubs.herokuapp.com/events/${item.value.id}/participants`, {
+                        headers: {
+                           Authorization: `Bearer ${token}`,
+                           Accept: 'application/json',
+                           'Content-Type': 'application/json'
+                         }
+                     })
+                           .then(response => response.json())
+                           .then(parts => {
+                              let details = [];
+               
+                              for (var i in parts.content) {
+                                  details.push({ name: i, value: parts.content[i] })
+                              }
+                  
+                               this.setState({
+                                   parts: details,
+                                   loading: true,
+                               })
+                           })
+                        .catch(error => console.log(error))
+                    })
             })
          .catch(error => console.log(error))
     }
@@ -90,6 +128,8 @@ class EventListFeature extends Component {
                         <div className="w3-container-w3-white">
                             <Link to={`/detailevent/${item.value.id}`}><b>{item.value.name}</b></Link>
                             <p>{item.value.description}</p>
+                            <p>Tối đa {item.value.maximumParticipants} người tham gia</p>
+                            <p>Đã có {this.state.parts.length} người tham gia</p>
                         </div>
                     </div>
                 </div>
@@ -128,7 +168,7 @@ class EventListFeature extends Component {
                 <hr className='endline'/>
                 
                 <div className="w3-row-padding">
-                    {value}
+                {value.length ? value : <p className='notible'>Không có câu lạc bộ nào</p>}
                 </div>
             </div>
         </div>

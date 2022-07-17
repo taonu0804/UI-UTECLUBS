@@ -34,6 +34,7 @@ import ParticipantListFeature from './features/Participantlist';
 import ManageCLBFeature from './features/ManageCLB';
 import MyEventFeature from './features/MyEvent';
 import EventEditFeature from './features/EventEdit';
+import ClubManagementFeature from './features/ClubManagement';
 
 function App() {
   const history = useHistory();
@@ -104,7 +105,7 @@ function App() {
             <Route path='/userclubdetail/:clubId/notjoin' component={ UserClubDetailFeature } exact/>
         </Route>
         <Route path='/userwelcome' component={ UserWelcomeFeature } exact/>
-        <Route path='/manageclb' component={ ManageCLBFeature } exact/>
+        <Route path='/manageclb' component={ ClubManagementFeature } exact/>
         <Route path='/clbmember/:clubId' component={ ClbMembersFeature } exact/>
         <Route path='/addclb' component={ AddClbFeature } exact/>
         <Route path='/inputemail' component={ InputEmailForgetPassFeature } exact/>
@@ -114,10 +115,11 @@ function App() {
         <Route path='/detailevent/:eventId' component={ DetailedEventFeature } exact/>
         <Route path='/eventlist' component={ EventListFeature } exact/>
         <Route path='/statistic' component={ StatisticFeature } exact/>
-        <Route path='/addevent' component={ AddEventFeature } exact/>
-        <Route path='/participant' component={ ParticipantListFeature } exact/>
+        <Route path='/addevent/:clubId' component={ AddEventFeature } exact/>
+        <Route path='/participant/:eventId' component={ ParticipantListFeature } exact/>
         <Route path='/myevent' component={ MyEventFeature } exact/>
-        <Route path='/eventedit' component={ EventEditFeature } exact/>
+        <Route path='/eventedit/:eventId' component={ EventEditFeature } exact/>
+        <Route path='/usermanageclb' component={ ManageCLBFeature } exact/>
       </Switch>
       </div>
     </div>

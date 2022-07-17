@@ -76,23 +76,3 @@
   height: 30px;
   font-size: 15px;
 }
-
-.addbtn:hover {
-  text-decoration: none;
-  background-color: wheat;
-  color: #000;
-}
-
-.addbtn {
-  background-color: yellow;
-  border-radius: 15px;
-  border: solid 2px gray;
-  color: black;
-  margin-left: 87%;
-  margin-top: 2%;
-  padding-inline: 5px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
-}

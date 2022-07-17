@@ -10,8 +10,62 @@ class MyEventFeature extends Component {
        this.state = {
           events: [],
           loading: true
-       };
+       }
+
+       this.handleInput = this.handleInput.bind(this);
+       this.handleSearch = this.handleSearch.bind(this);
     }
+
+    handleInput(e) {
+        this.setState({
+            [e.target.name]: e.target.value,
+        })
+    }
+
+    handleSearch() {
+        const token = localStorage.getItem('access_token');
+        const body ={
+            name: this.state.name,
+            startTime: this.state.begdate + ' 08:00',
+            endTime: this.state.enddate + ' 08:00',
+            clubId: null,
+        }
+        console.log('body', body);
+        fetch('https://uteclubs.herokuapp.com/events/search', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(body),
+        })
+            .then(response => {
+                console.log(response.statusText);
+                return (response.text());
+            }).then(events => {
+                console.log(events);
+                if (events.length <= 1) {
+                    const arr = JSON.parse(events);
+                    console.log(arr);
+                    var details = [];
+
+                    for (var i in arr)
+                    {
+                        details.push({name: i, value: arr[i]})
+                    }
+
+                    this.setState({events: details});
+                }
+                else {
+                    alert('Không có kết quả');
+                }
+            })
+            .catch((e) => {
+                alert('Không có kết quả');
+                console.log('error', e);
+            })
+    }
+
 
     componentDidMount() {
         const token = localStorage.getItem('access_token');
@@ -75,6 +129,15 @@ class MyEventFeature extends Component {
                             <span className="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey"><i className="fa fa-bars"></i></span>
                             <div className="w3-container1">
                                 <h2><b>Các sự kiện của tôi</b></h2>
+                                <div className="w3-section w3-bottombar w3-padding-16">
+                                <span className="w3-margin-right">Tên sự kiện</span>
+                                <input type='text' className='evename-search' name='name' onChange={this.handleInput}></input>
+                                <span className="w3-margin-right">Thời gian: Từ</span>
+                                <input type='date' className='evebeg-search' name='begdate' onChange={this.handleInput}></input>
+                                <span className="w3-margin-right">đến</span>
+                                <input type='date' className='eveend-search' name='enddate' onChange={this.handleInput}></input>
+                                <button className="w3-button-w3-white-w3-hide-small" onClick={() => {this.handleSearch()}}>Tìm kiếm</button>
+                            </div>
                             </div>
                         </header>
                     <hr className='endline'/>

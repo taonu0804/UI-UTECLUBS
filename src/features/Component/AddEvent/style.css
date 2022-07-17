@@ -62,6 +62,7 @@
 }
 .endtime-title1 {
     margin-left: 5%;
+    margin-top: 1%;
 }
 
 .begtime-area1 {
@@ -98,4 +99,22 @@
 
 .submitevent:hover {
     background: gray;
+}
+
+.valid1, .valid2, .valid3, .valid4, .valid5, .valid0 {
+    position: absolute;
+    font-size: small;
+    color: red;
+}
+.valid1 {
+    margin-left: 19%;
+}
+.valid2 {
+    margin-left: 19%;
+}
+.valid4 {
+    margin-left: 4%;
+}
+.valid0 {
+    margin-left: 2%;
 }

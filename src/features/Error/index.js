@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.css';
 import BG from '../../image/green.png';
+import ERR from '../../image/error.png';
 import { useHistory } from 'react-router-dom';
 
 ErrorFeature.propTypes = {
@@ -15,7 +16,7 @@ function ErrorFeature(props) {
         <div className='errorbody'>
             <div className="not-found">
                 <div className="notfound-top">
-                <h1>404</h1>
+                <img className='error' src={ERR}/>
                 </div>
                 <div className="conten">
                 <img src={BG} alt="" title />

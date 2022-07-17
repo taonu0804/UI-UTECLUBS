@@ -14,6 +14,7 @@ class SignupFeature extends Component {
       url: '',
       errors: {},
       info: [],
+      showtxt: true,
     }
 
     const requiredWith = (value, field, state) => (!state[field] && !value) || !!value;
@@ -23,19 +24,19 @@ class SignupFeature extends Component {
         field: 'fullName',
         method: 'isEmpty',
         validWhen: false,
-        message: 'The full name field is required.',
+        message: 'Yêu cầu nhập họ tên.',
       },
       {
         field: 'avatarUrl',
         method: 'isEmpty',
         validWhen: false,
-        message: 'The avatar is required.',
+        message: 'Yêu cầu chọn ảnh đại diện.',
       },
       {
         field: 'email',
         method: 'isEmpty',
         validWhen: false,
-        message: 'The email field is required.',
+        message: 'Yêu cầu nhập email',
       },
       {
         field: 'email',
@@ -47,13 +48,13 @@ class SignupFeature extends Component {
         field: 'studentId',
         method: 'isEmpty',
         validWhen: false,
-        message: 'The student ID field is required.',
+        message: 'Yêu cầu nhập mã số sinh viên',
       },
       {
         field: 'gender',
         method: 'isEmpty',
         validWhen: false,
-        message: 'The gender field is required.',
+        message: 'Yêu cầu chọn giới tính',
       },
       {
         field: 'major',
@@ -65,44 +66,44 @@ class SignupFeature extends Component {
         field: 'faculty',
         method: 'isEmpty',
         validWhen: false,
-        message: 'The faculty field is required.',
+        message: 'Yêu cầu chọn khoa.',
       },
       {
         field: 'username',
         method: 'isEmpty',
         validWhen: false,
-        message: 'The username field is required.',
+        message: 'Yêu cầu nhập tên đăng nhập.',
       },
       {
         field: 'dob',
         method: 'isEmpty',
         validWhen: false,
-        message: 'The birthday field is required.',
+        message: 'Yêu cầu chọn ngày tháng năm sinh.',
       },
       {
         field: 'password',
         method: 'isEmpty',
         validWhen: false,
-        message: 'The password field is required.',
+        message: 'Yêu cầu nhập mật khẩu.',
       },
       {
         field: 'confirmedPassword',
         method: 'isEmpty', 
         validWhen: false,
-        message: 'The password confirmation field is required.',
+        message: 'Yêu cầu nhập mật khẩu.',
       },
       {
         field: 'password',
         method: 'isLength',
         args: [{min: 8}],
         validWhen: true,
-        message: 'The password must be at least 8 characters, one upper letter, one lower letter, one special character.',
+        message: 'Yêu cầu nhập mật khẩu.',
       },
       {
         field: 'confirmedPassword',
         method: this.passwordMatch,
         validWhen: true,
-        message: 'Password and password confirmation do not match.'
+        message: 'Mật khẩu không khớp.'
       },
     ];
     this.validator = new Validator(rules);
@@ -125,7 +126,9 @@ class SignupFeature extends Component {
     if (e.target.files[0]) {
       const image = e.target.files[0];
       this.setState(() => ({image}));
-    }}
+    }
+    this.setState({showtxt: false})
+  }
 
   handleUpload = () => {
     const {image} = this.state;
@@ -156,6 +159,7 @@ class SignupFeature extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
+    this.setState({showtxt: false})
   }
 
   register() {
@@ -173,23 +177,17 @@ class SignupFeature extends Component {
   )
       .then(response => {
         console.log(response);
-        if (response.status === 409) {
-          return response.json();
+        if (response.ok === true) {
+          this.props.history.push('/signupconfirm');
+          localStorage.setItem('pass', JSON.stringify(this.state.password));
         }
-        return response.json();
-      })
-      .then(obj => {
-        console.log(obj.message);
-        if (obj.message === undefined) {
-        this.props.history.push('/signupconfirm');
-        localStorage.setItem('info', JSON.stringify(obj));
-        localStorage.setItem('pass', JSON.stringify(this.state.password));}
-        else {
-          alert(obj.message);
+        else{
+          alert('Đã xảy ra lỗi');
+          return;
         }
       })
       .catch(error => {
-        console.log('registration error', error);
+        console.log('Đã xảy ra lỗi', error);
       })
 }
 
@@ -224,6 +222,7 @@ render() {
                     name='gender'
                     required
                 >
+                    <option value="">Giới tính</option>
                     <option value="male">Nam</option>
                     <option value="female">Nữ</option>
                 </select>
@@ -239,6 +238,7 @@ render() {
                     name='faculty'
                     required
                 >
+                    <option value="">Khoa</option>
                     <option value="Công nghệ thông tin">Công nghệ thông tin</option>
                     <option value="Kinh tế">Kinh tế</option>
                     <option value="Điện - Điện tử">Điện - Điện tử</option>
@@ -246,6 +246,7 @@ render() {
                 </select>
               </div>
               <div className="date-area">
+                <p className='datealt' style={{display: this.state.showtxt ? 'block' : 'none'}}>Ngày tháng năm sinh</p>
                 <input type="date" name='dob' onChange={this.handleChange} placeholder="Ngày tháng năm sinh" className="date-text" required />
                 {errors.dob && <div className="validation" style={{display: 'block'}}>{errors.dob}</div>}
               </div>

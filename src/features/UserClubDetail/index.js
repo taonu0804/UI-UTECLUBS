@@ -119,24 +119,35 @@ class UserClubDetailFeature extends Component {
     console.log(clubs);
       return (
           <div>
-              <div className='detail-contain'>
-                  <input className='id' name='clubId' value={clubs.clubId} hidden={true} required/>
-                <div className='name-area'>
-                  <input className='club-name' value={clubs.clubName} required/>
-                </div>
-                <div className='img-area'>
-                  <img src={clubs.logoUrl} value={this.state.url} className='club-img' alt=" "/>
-                </div>
-                <div className='unit-area'>
-                  <h5 className='lead-text'><b>Đơn vị: </b></h5>
-                  <input className='lead-name' value={clubs.affiliatedUnit} required/>
-                </div>
-                <div className='desc-area'>
-                  <p className='desc'><b>Mô tả: </b></p>
-                  <textarea className='desc-detail' value={clubs.description} required/>
-                </div>
-                  <button type="submit" class="register-btn" onClick={this.handleRegister} style={{display: this.state.showBtn ? 'block' : 'none'}}>Yêu cầu tham gia</button>
-                  <button type="submit" class="cancel-btn" onClick={this.handleCancel} style={{display: this.state.showCancel ? 'block' : 'none'}}>Hủy yêu cầu</button>
+            <div className='detailcontain'>
+                      <div className='nameare1'>
+                        <div className='ename-area1'>
+                            <p className='enametitle1'><b>Tên câu lạc bộ</b></p>
+                            <input type='text' className='ename' name='clubName' value={clubs.clubName}required/>
+                        </div>
+
+                        <p className='begtimetitle'><b>Đơn vị</b></p>
+                        <div className="begtime-area">
+                            <p className='begdateopt' style={{display: this.state.showUnit ? 'block' : 'none'}}>{clubs.affiliatedUnit}</p>
+                            <input type='text' className='begdatetext' name='affiliatedUnit' value={clubs.clubName}required/>
+                        </div>
+
+                        <button type="submit" className="e-button" onClick={this.handleRegister} style={{display: this.state.showBtn ? 'block' : 'none'}}><b>Yêu cầu tham gia</b></button>
+                        <button type="submit" className="e-button" onClick={this.handleCancel} style={{display: this.state.showCancel ? 'block' : 'none'}}><b>Hủy yêu cầu</b></button>
+                      </div>
+
+                            <div className='avaarea1'>
+                                <div className='eimgarea'>
+                                    <img src={clubs.logoUrl} name='logoUrl' className='eve-img' alt=" "/>
+                                </div>
+
+                                <div className='eunit-area'>
+                                    <div className='edesc-area'>
+                                        <p className='edesc1'><b>Mô tả: </b></p>
+                                        <textarea className='edescdetail' name='description' value={clubs.description} required/>
+                                    </div>
+                                </div>
+                    </div>
               </div>
           </div>
       );

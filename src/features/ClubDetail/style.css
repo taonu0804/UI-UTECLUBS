@@ -1,145 +1,3 @@
-.detail-contain {
-    background-color: white;
-    width: 900px;
-    height: 530px;
-    border: solid 3px gray;
-    margin-left: 35%;
-    margin-top: 8%;
-    border-radius: 25px;
-    box-shadow: 5px 5px 5px gray;
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-    -ms-border-radius: 25px;
-    -o-border-radius: 25px;
-}
-
-.club-name {
-    font-size: 30px;
-    color: rgb(209, 209, 38);
-    margin-left: 10%;
-    margin-top: 5%;
-}
-
-.club-img {
-    z-index: 0;
-    width: 280px;
-    height: 280px;
-    margin-top: 1%;
-    margin-left: 7%;
-    border: solid 2px gray;
-    border-radius: 250px;
-    -webkit-border-radius: 250px;
-    -moz-border-radius: 250px;
-    -ms-border-radius: 250px;
-    -o-border-radius: 250px;
-}
-
-.lead-text, .lead-name, .desc, .desc-detail {
-    position: absolute;
-}
-
-.detail-contain .lead-text {
-    margin-left: 35%;
-    margin-top: 3%;
-    font-size: 20px;
-}
-
-.detail-contain .lead-name {
-    width: 315px;
-    font-size: 20px;
-    margin-top: 5%;
-    margin-left: 35%;
-}
-
-.desc {
-    font-size: 20px;
-    margin-top: 8%;
-    margin-left: 35%;
-}
-
-.desc-detail {
-    width: 300px;
-    height: 150px;
-    font-size: 20px;
-    margin-top: 10%;
-    margin-left: 35%;
-    border: solid 2px gray;
-}
-
-.club-name, .desc-detail, .lead-name {
-    border-radius: 15px;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    -ms-border-radius: 15px;
-    -o-border-radius: 15px;
-}
-
-.bouton-contact{
-    background-color: #f7f321;
-    color: rgb(0, 0, 0);
-    text-align: center;
-    width: 100%;
-    border:0;
-    padding: 17px 25px;
-    border-radius: 0px 0px 25px 25px;
-    cursor: pointer;
-    margin-top: 41%;
-    font-size: 18px;
-    -webkit-border-radius: 0px 0px 25px 25px;
-    -moz-border-radius: 0px 0px 25px 25px;
-    -ms-border-radius: 0px 0px 25px 25px;
-    -o-border-radius: 0px 0px 25px 25px;
-}
-
-.bouton-contact:hover {
-    background-color: wheat;
-}
-
-.validation1, .validation2, .validation3 {
-    position: absolute;
-    font-size: small;
-    color: red;
-}
-
-.name-area .validation1 {
-    margin-left: 6%;
-}
-
-.unit-area .validation2 {
-    margin-left: 36%;
-    margin-top: 7.5%;
-}
-
-.desc-area .validation3 {
-    margin-left: 36%;
-    margin-top: 20%;
-}
-
-.img, .changeimg, .club-img {
-    position: absolute;
-}
-
-.img, .changeimg {
-    z-index: 1;
-    margin-top: 20%;
-    margin-left: 13%;
-}
-
-.img {
-    border: solid 2px gray;
-    background-color: yellow;
-    padding-inline: 5px;
-    border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-}
-
-.img:hover {
-    background-color: wheat;
-}
-
 .addmem:hover {
     text-decoration: none;
     color: black;
@@ -165,27 +23,69 @@
     width: 60px;
     height: 50px;
 }
-
-.detail-contain .titletxt {
+.nameare1 {
+    background: rgb(218, 218, 218);
+    width: 250px;
+    height: 485px;
+    padding: 25px;
+    margin-left: 18.3%;
     position: absolute;
-    margin-left: 1%;
-    margin-top: -3%;
-    -webkit-text-stroke: 0.5px yellow;
+}
+.begtimetitle {
+    margin-top: 5%;
+}
+.begdatetext, .enddatetext {
+    width: 190px;
+}
+.begdateopt {
+    position: absolute;
+    width: 190px;
+    background: white;
+}
+.endtimetitle {
+    margin-top: 5%;
+}
+.enametitle {
+    margin-top: 35%;
+}
+.maxptitle {
+    margin-top: 5%;
+}
+.e-button {
+    width: 190px;
+    border: none;
+    background: yellow;
+    margin-top: 15%;
+}
+.e-button:hover {
+    background: rgb(255, 255, 193);
 }
 
-.unittxt {
-    position: absolute;
-    z-index: 1;
-    font-size: 20px;
-    background-color: white;
-    margin-left: 35%;
-    margin-top: 5%;
-    border-left: solid 1px gray;
-    border-top: solid 1px gray;
-    border-bottom: solid 1px gray;
-    border-radius: 65px;
-    -webkit-border-radius: 65px;
-    -moz-border-radius: 65px;
-    -ms-border-radius: 65px;
-    -o-border-radius: 65px;
+.avaarea1 {
+    border: solid 1px rgb(199, 199, 199);
+    width: 800px;
+    height: 485px;
+    margin-left: 66.3%;
+    margin-top: 10%;
+}
+
+.eventdetail1 {
+    height: 1000px;
+}
+.eve-img {
+    width: 800px;
+    height: 300px;
+}
+.avaarea1 .img {
+    margin-top: -2%;
+    margin-left: 10px;
+}
+.edesc1 {
+    margin-left: 1%;
+    margin-top: 1%;
+}
+.edescdetail {
+    margin-left: 2%;
+    width: 700px;
+    height: 120px;
 }

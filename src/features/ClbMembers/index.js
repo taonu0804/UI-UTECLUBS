@@ -27,10 +27,64 @@ class ClbMembersFeature extends Component {
     this.handleView = this.handleView.bind(this);
     this.handleDel = this.handleDel.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
  }
 
  handleOff(e) {
      this.setState({show: false})
+ }
+
+ handleInput(e) {
+     this.setState({
+         [e.target.name]: e.target.value,
+     })
+ }
+
+ handleSearch() {
+    const match = matchPath(this.props.history.location.pathname, {
+        path: '/clbmember/:clubId',
+        exact: true,
+        strict: false
+    })
+    const id = match.params.clubId;
+    console.log('id', id);
+     const token = localStorage.getItem('access_token');
+     const body ={
+         searchQuery: this.state.searchQuery,
+     }
+     fetch(`https://uteclubs.herokuapp.com/clubs/${id}/members`, {
+         method: 'POST',
+         headers: {
+             'Content-Type': 'application/json',
+             Authorization: `Bearer ${token}`,
+         },
+         body: JSON.stringify(body),
+     })
+         .then(response => {
+             console.log(response.statusText);
+             return (response.text());
+         }).then(item => {
+             console.log(item);
+             if (item !== '') {
+                 const arr = JSON.parse(item);
+                 console.log(arr);
+                 var data = [];
+
+                 for (var i in arr)
+                 {
+                     data.push({name: i, value: arr[i]})
+                 }
+
+                 this.setState({members: data});
+             }
+             else {
+                 alert('Không có kết quả');
+             }
+         })
+         .catch((e) => {
+             console.log('error', e);
+         })
  }
 
  componentDidMount() {
@@ -198,42 +252,48 @@ class ClbMembersFeature extends Component {
               </tr>)
         });
         return (
-            <div className='member-form' style={{filter: this.state.show ? 'grayscale(50%) blur(5px)' : 'none'}}>
-                <div className='adminbtn' style={{display: this.state.showBtn ? 'block' : 'none'}}>
-                    <Popup modal trigger={<button className='add'><img src={ADD} className='add' onClick={this.handleBlur}/></button>}>
-                        {<ContentComponent clubId={this.state.clubId}/>}
-                    </Popup>
+            <div>
+                <div className='searcha'>
+                    <input type='text' className='searchtxt1' name='search'  onChange={this.handleInput}></input>
+                    <button className='searchbtn1' onClick={() => {this.handleSearch()}}>Tìm</button>
                 </div>
-               <h3 className='table-name' onClick={this.handleView}><b>CÁC THÀNH VIÊN</b></h3>
-               <div className="role-area">
-                <select
-                    className='role-text'
-                    name='role'
-                    value={this.state.role}
-                    onChange={this.handleChange}
-                    required
-                >
-                    <option value="#">Chọn vai trò</option>
-                    <option value="ROLE_MEMBER">Thành viên</option>
-                    <option value="ROLE_MODERATOR">Người chỉnh sửa</option>
-                    <option value="ROLE_LEADER">Chủ nhiệm</option>
-                </select>
-              </div>
-              <table className='table' onClick={this.handleOff}>
-                  <thead>
-                     <tr>
-                        <th>Họ  và tên</th>
-                        <th>Mã số sinh viên</th>
-                        <th>Giới tính</th>
-                        <th>Khoa</th>
-                        <th style={{display: this.state.showBtn ? 'block' : 'none'}}>Tác vụ</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                    {value.length ? value : <p className='empty'>Không có thành viên nào. Vui lòng chọn vai trò khác</p>}
-                  </tbody>
-              </table>
+                <div className='member-form' style={{filter: this.state.show ? 'grayscale(50%) blur(5px)' : 'none'}}>
+                    <div className='adminbtn' style={{display: this.state.showBtn ? 'block' : 'none'}}>
+                        <Popup modal trigger={<button className='add'><img src={ADD} className='add' onClick={this.handleBlur}/></button>}>
+                            {<ContentComponent clubId={this.state.clubId}/>}
+                        </Popup>
+                    </div>
+                <h3 className='table-name' onClick={this.handleView}><b>CÁC THÀNH VIÊN</b></h3>
+                <div className="role-area">
+                    <select
+                        className='role-text'
+                        name='role'
+                        value={this.state.role}
+                        onChange={this.handleChange}
+                        required
+                    >
+                        <option value="#">Chọn vai trò</option>
+                        <option value="ROLE_MEMBER">Thành viên</option>
+                        <option value="ROLE_MODERATOR">Người chỉnh sửa</option>
+                        <option value="ROLE_LEADER">Chủ nhiệm</option>
+                    </select>
+                </div>
+                <table className='table' onClick={this.handleOff}>
+                    <thead>
+                        <tr>
+                            <th>Họ  và tên</th>
+                            <th>Mã số sinh viên</th>
+                            <th>Giới tính</th>
+                            <th>Khoa</th>
+                            <th style={{display: this.state.showBtn ? 'block' : 'none'}}>Tác vụ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {value.length ? value : <p className='empty'>Không có thành viên nào. Vui lòng chọn vai trò khác</p>}
+                    </tbody>
+                </table>
 
+                </div>
             </div>
         );
     }

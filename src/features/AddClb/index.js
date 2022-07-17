@@ -115,41 +115,52 @@ class AddClbFeature extends Component {
         const {errors} = this.state;
         return (
             <div>
-              <div className='detail-contain'>
-                <div className='name-area'>
-                  <input className='club-name' placeholder='Nhập tên Câu lạc bộ' name='clubName' onChange={this.handleInput} required/>
-                  {errors.clubName && <div className="validation1" style={{display: 'block'}}>{errors.clubName}</div>}
-                </div>
-                <div className='img-area'>
-                  <progress value={this.state.progress} max="100" hidden={true}/>
-                  <label for="files" className='img'>Tải ảnh lên</label>
-                  <input id='files' type='file' className='img' onChange={this.handleChange} hidden={true} required/>
-                  <button className='changeimg' onClick={this.handleUpload}></button>
-                  <img src={this.state.url} name='logoUrl' value={this.state.logoUrl} onChange={this.handleInput} className='club-img' alt=" "/>
-                </div>
-                <div className='unit-area'>
-                  <h5 className='lead-text'><b>Đơn vị: </b></h5>
-                  <select 
-                        className='lead-name'
-                        value={this.state.affiliatedUnit}
-                        onChange={this.handleInput}
-                        name='affiliatedUnit'
-                        required
-                    >
-                        <option value="Hội Sinh viên">Hội Sinh viên</option>
-                        <option value="Khoa Công Nghệ thông tin">Khoa Công Nghệ thông tin</option>
-                        <option value="Khoa Kinh tế">Khoa Kinh tế</option>
-                        <option value="Khoa Điện - Điện tử">Khoa Điện - Điện tử</option>
-                        <option value="Khoa Ngoại ngữ">Khoa Ngoại ngữ</option>
-                    </select>
-                  {errors.affiliatedUnit && <div className="validation2" style={{display: 'block'}}>{errors.affiliatedUnit}</div>}
-                </div>
-                <div className='desc-area'>
-                  <p className='desc'><b>Mô tả: </b></p>
-                  <textarea className='desc-detail' name='description' onChange={this.handleInput} required/>
-                  {errors.description && <div className="validation3" style={{display: 'block'}}>{errors.description}</div>}
-                </div>
-                  <button type="submit" className="bouton-contact" onClick={this.handleSubmit}>Khởi tạo</button>
+              <div className='detailcontain'>
+                      <div className='nameare1'>
+                        <div className='ename-area1'>
+                            <p className='enametitle1'><b>Tên câu lạc bộ</b></p>
+                            <input type='text' className='ename' name='clubName' placeholder='Nhập tên câu lạc bộ' onChange={this.handleInput} required/>
+                            {errors.clubName && <div className="validation1" style={{display: 'block'}}>{errors.clubName}</div>}
+                        </div>
+
+                        <p className='begtimetitle'><b>Đơn vị</b></p>
+                        <div className="begtime-area">
+                            <select
+                                className='begdatetext'
+                                onChange={this.handleInput}
+                                name='affiliatedUnit'
+                                value={this.state.affiliatedUnit}
+                                required
+                            >
+                                <option value="Hội Sinh viên">Hội Sinh viên</option>
+                                <option value="Khoa Công Nghệ thông tin">Khoa Công Nghệ thông tin</option>
+                                <option value="Khoa Kinh tế">Khoa Kinh tế</option>
+                                <option value="Khoa Điện - Điện tử">Khoa Điện - Điện tử</option>
+                                <option value="Khoa Ngoại ngữ">Khoa Ngoại ngữ</option>
+                            </select>
+                          {errors.affiliatedUnit && <div className="validation2" style={{display: 'block'}}>{errors.affiliatedUnit}</div>}
+                        </div>
+
+                            <button type="submit" className="e-button" onClick={this.handleSubmit}><b>Khởi tạo</b></button>
+                            </div>
+
+                            <div className='avaarea1'>
+                                <div className='eimgarea'>
+                                    <progress value={this.state.progress} max="100" hidden={true}/>
+                                    <label htmlFor="files" className='img'>Tải ảnh lên</label>
+                                    <input id='files' type='file' className='img' onChange={this.handleChange} hidden={true} required/>
+                                    <button className='img' onClick={this.handleUpload}></button>
+                                    <img src={this.state.url} name='logoUrl' value={this.state.logoUrl} onChange={this.handleInput} className='eve-img' alt=" "/>
+                                </div>
+
+                                <div className='eunit-area'>
+                                    <div className='edesc-area'>
+                                        <p className='edesc1'><b>Mô tả: </b></p>
+                                        <textarea className='edescdetail' name='description' placeholder='Nhập mô tả' onChange={this.handleInput} required/>
+                                        {errors.description && <div className="validation3" style={{display: 'block'}}>{errors.description}</div>}
+                                    </div>
+                                </div>
+                    </div>
               </div>
           </div>
         );

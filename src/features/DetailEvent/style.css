@@ -49,19 +49,6 @@
     -o-border-radius: 5px;
 }
 
-.add1btn {
-    text-decoration: none;
-    color: black;
-    margin-top: 10px;
-    margin-left: 10%;
-}
-.addevent {
-    width: 25px;
-    height: 25px;
-    margin-right: 5%;
-    margin-bottom: 6%;
-}
-
 .edit1 {
     color: black;
     margin-left: 9%;}
@@ -100,12 +87,12 @@
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
     margin-bottom: 2%;
-    padding-top: 8px;
+    padding-top: 0.05px;
 }
 
 .title11, .begin-time, .end-time {
     margin-left: 3%;
-    margin-top: 5%;
+    margin-top: 3%;
 }
 
 .detailed {
@@ -159,11 +146,12 @@
     -o-border-radius: 250px;
 }
 
-.amount {
+.body-two .amount {
     text-decoration: none;
     color: black;
     position: absolute;
-    margin-left: 4%;
+    margin-left: 3.5%;
+    margin-top: -0.1%;
 }
 
 .body-three {
